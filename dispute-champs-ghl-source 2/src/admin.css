@@ -1,0 +1,168 @@
+.admin-login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(11, 108, 209, 0.12), transparent 35%),
+    #f5f8fc;
+}
+
+.admin-login-card {
+  width: min(430px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 32px;
+  background: #fff;
+  border: 1px solid #dfe6ef;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.admin-login-card > img {
+  width: 220px;
+  height: 110px;
+  align-self: center;
+  object-fit: contain;
+}
+
+.admin-lock-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  margin: 4px auto 17px;
+  color: var(--blue);
+  background: #eaf4ff;
+  border-radius: 14px;
+}
+
+.admin-login-card h1 {
+  margin-bottom: 8px;
+  color: #1f2d43;
+  font-size: 24px;
+  text-align: center;
+}
+
+.admin-login-card p {
+  margin-bottom: 23px;
+  color: #748096;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.admin-login-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #48566c;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.admin-login-card input {
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid #d6dfea;
+  border-radius: 8px;
+  outline: 0;
+}
+
+.admin-login-card input:focus {
+  border-color: #77afe6;
+  box-shadow: 0 0 0 3px #eaf4ff;
+}
+
+.admin-login-card .button {
+  margin-top: 15px;
+}
+
+.admin-login-card > a {
+  margin-top: 20px;
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+.admin-status {
+  margin-top: 13px;
+  padding: 9px 11px;
+  color: #9b3030;
+  background: #fff0f0;
+  border-radius: 7px;
+  font-size: 11px;
+  text-align: center;
+}
+
+.admin-portal {
+  min-height: 100vh;
+}
+
+.admin-portal-bar {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 28px;
+  color: #fff;
+  background: #13233a;
+}
+
+.admin-portal-bar > span,
+.admin-portal-bar > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-portal-bar a,
+.admin-portal-bar button {
+  color: #fff;
+  background: transparent;
+  border: 0;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.admin-portal-bar button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-portal-bar svg {
+  width: 16px;
+}
+
+.admin-publish-status {
+  padding: 9px 20px;
+  color: #1b6647;
+  background: #e9f9f1;
+  border-bottom: 1px solid #d2f0e1;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 620px) {
+  .admin-login-card {
+    padding: 24px 20px;
+  }
+
+  .admin-portal-bar {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 13px 16px;
+  }
+
+  .admin-portal-bar > div {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
