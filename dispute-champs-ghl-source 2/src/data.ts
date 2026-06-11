@@ -44,7 +44,7 @@ export const starterTemplates: LetterTemplate[] = [
   {
     id: "template-initial-dispute",
     templateName: "Initial Bureau Dispute",
-    category: "Credit Bureau",
+    category: "Miscellaneous",
     description:
       "First-round request to investigate inaccurate or unverifiable credit information.",
     isActive: true,
@@ -55,7 +55,7 @@ export const starterTemplates: LetterTemplate[] = [
   {
     id: "template-identity-theft",
     templateName: "Identity Theft Block Request",
-    category: "Fraud & Identity",
+    category: "Fraud",
     description:
       "Requests a block of information caused by identity theft with supporting documents.",
     isActive: true,
@@ -66,7 +66,7 @@ export const starterTemplates: LetterTemplate[] = [
   {
     id: "template-method-verification",
     templateName: "Method of Verification Follow-Up",
-    category: "FCRA",
+    category: "Miscellaneous",
     description:
       "Requests the procedure used to determine the accuracy of a disputed item.",
     isActive: true,
@@ -77,7 +77,7 @@ export const starterTemplates: LetterTemplate[] = [
   {
     id: "template-intent-sue",
     templateName: "Intent to Sue Notice",
-    category: "Legal",
+    category: "Miscellaneous",
     description: "Formal notice template reserved for administrator review.",
     isActive: false,
     createdAt: seededAt,
@@ -87,10 +87,12 @@ export const starterTemplates: LetterTemplate[] = [
 ];
 
 export const templateCategories = [
-  "Credit Bureau",
-  "Fraud & Identity",
-  "FCRA",
-  "Metro 2",
-  "Legal",
-  "Custom",
+  "Collection",
+  "Charge-Off Account",
+  "Inquiry",
+  "Personal Information",
+  "Bankruptcy",
+  "Late Payments",
+  "Fraud",
+  "Miscellaneous",
 ] as const;
