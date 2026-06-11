@@ -16,11 +16,52 @@ export const mergeFields = [
   "{{BUREAU_ADDRESS}}",
 ] as const;
 
+const supportedHtmlTag =
+  /<\/?(?:p|div|br|h[1-6]|ul|ol|li|blockquote|table|thead|tbody|tr|th|td|span|strong|b|em|i|u|s|mark|a)\b[^>]*>/i;
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function preservePlainTextSpacing(line: string) {
+  return escapeHtml(line)
+    .replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;")
+    .replace(/^ +/, (spaces) => "&nbsp;".repeat(spaces.length))
+    .replace(/ {2,}/g, (spaces) => "&nbsp;".repeat(spaces.length));
+}
+
+export function normalizeTemplateBody(body: string) {
+  const normalized = body
+    .replace(/\r\n?/g, "\n")
+    .replace(/^\n+|\n+$/g, "");
+
+  if (!normalized || supportedHtmlTag.test(normalized)) {
+    return normalized;
+  }
+
+  return normalized
+    .split(/\n[ \t]*\n+/)
+    .map(
+      (paragraph) =>
+        `<p>${paragraph
+          .split("\n")
+          .map(preservePlainTextSpacing)
+          .join("<br>")}</p>`,
+    )
+    .join("");
+}
+
 export function mergeTemplate(
   body: string,
   client: ClientProfile,
   bureau: BureauAddress,
 ) {
+  const formattedBody = normalizeTemplateBody(body);
   const bureauAddress = [
     bureau.addressLine1,
     bureau.addressLine2,
@@ -53,6 +94,6 @@ export function mergeTemplate(
 
   return mergeFields.reduce(
     (result, field) => result.replaceAll(field, values[field]),
-    body,
+    formattedBody,
   );
 }
