@@ -141,8 +141,8 @@ export function Generator({
     <main className="content-area">
       <div className="page-heading">
         <div>
-          <span className="eyebrow">Letter workspace</span>
-          <h1>Generate a dispute letter</h1>
+          <span className="eyebrow">Letter Workspace</span>
+          <h1>Generate a Dispute Letter</h1>
           <p>Choose a proven template, merge the client details, then personalize.</p>
         </div>
         <div className="client-pill">
@@ -162,11 +162,9 @@ export function Generator({
 
       <section className="setup-card">
         <div className="setup-step">
-          <span className="step-number">1</span>
-          <div className="step-copy">
-            <label htmlFor="category-select">Letter category</label>
-            <span>Choose the account or dispute category first.</span>
-          </div>
+          <label className="sr-only" htmlFor="category-select">
+            Letter Category
+          </label>
           <div className="select-wrap">
             <FolderOpen />
             <select
@@ -195,11 +193,9 @@ export function Generator({
         <div className="setup-line" />
 
         <div className="setup-step">
-          <span className="step-number">2</span>
-          <div className="step-copy">
-            <label htmlFor="template-select">Letter template</label>
-            <span>Select a letter available in this category.</span>
-          </div>
+          <label className="sr-only" htmlFor="template-select">
+            Letter Template
+          </label>
           <div className="select-wrap">
             <FileText />
             <select
@@ -227,11 +223,9 @@ export function Generator({
         <div className="setup-line" />
 
         <div className="setup-step">
-          <span className="step-number">3</span>
-          <div className="step-copy">
-            <label htmlFor="bureau-select">Bureau address</label>
-            <span>Choose the bureau and correct department.</span>
-          </div>
+          <label className="sr-only" htmlFor="bureau-select">
+            Bureau Address
+          </label>
           <div className="select-wrap">
             <MapPin />
             <select
@@ -255,18 +249,13 @@ export function Generator({
         <div className="setup-line" />
 
         <div className="setup-step generate-step">
-          <span className="step-number">4</span>
-          <div className="step-copy">
-            <label>Build your letter</label>
-            <span>Client and bureau information will merge automatically.</span>
-          </div>
           <button
             className="button button-green generate-button"
             onClick={generateLetter}
             disabled={!selectedTemplate}
           >
             <Sparkles />
-            Generate letter
+            Generate Letter
           </button>
         </div>
       </section>
@@ -276,7 +265,7 @@ export function Generator({
           <div className="empty-icon">
             <FileText />
           </div>
-          <h2>Your letter will appear here</h2>
+          <h2>Your Letter Will Appear Here</h2>
           <p>
             Select a template and bureau above, then generate a professionally
             formatted letter ready for review.
@@ -284,7 +273,7 @@ export function Generator({
           <div className="profile-preview">
             <UserRound />
             <span>
-              <small>Profile connected</small>
+              <small>Profile Connected</small>
               {client.email}
             </span>
           </div>
@@ -294,7 +283,7 @@ export function Generator({
           <div className="section-heading">
             <div>
               <span className="status-dot" />
-              <span>Generated letter</span>
+              <span>Generated Letter</span>
               <small>Edit your letter, then download the finished PDF</small>
             </div>
             <div className="document-meta">
