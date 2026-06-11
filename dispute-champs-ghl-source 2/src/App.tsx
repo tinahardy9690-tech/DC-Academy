@@ -80,11 +80,11 @@ function App() {
           <span className="nav-label">Workspace</span>
           <button className={view === "generator" ? "active" : ""} onClick={() => navigate("generator")}>
             <FilePenLine />
-            Letter generator
+            Letter Generator
           </button>
           <button className={view === "saved" ? "active" : ""} onClick={() => navigate("saved")}>
             <FileClock />
-            Saved letters
+            Saved Letters
             {letters.length > 0 && <small>{letters.length}</small>}
           </button>
           <span className="nav-label admin-label">Administration</span>
