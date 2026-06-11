@@ -1,9 +1,15 @@
-import { bureauAddresses, demoClient, starterTemplates } from "./data";
+import {
+  bureauAddresses,
+  demoClient,
+  starterTemplates,
+  templateCategories,
+} from "./data";
 import type {
   BureauAddress,
   ClientProfile,
   LetterTemplate,
   SavedLetter,
+  TemplateCategory,
 } from "./types";
 
 const keys = {
@@ -20,12 +26,30 @@ function parseStored<T>(key: string, fallback: T): T {
   }
 }
 
+const legacyCategoryMap: Record<string, TemplateCategory> = {
+  "Credit Bureau": "Miscellaneous",
+  "Fraud & Identity": "Fraud",
+  FCRA: "Miscellaneous",
+  "Metro 2": "Miscellaneous",
+  Legal: "Miscellaneous",
+  Custom: "Miscellaneous",
+};
+
+function normalizeTemplateCategory(category: string): TemplateCategory {
+  if (templateCategories.includes(category as TemplateCategory)) {
+    return category as TemplateCategory;
+  }
+  return legacyCategoryMap[category] ?? "Miscellaneous";
+}
+
 export const storageService = {
   getTemplates(): LetterTemplate[] {
-    const templates = parseStored(keys.templates, starterTemplates);
-    if (!localStorage.getItem(keys.templates)) {
-      localStorage.setItem(keys.templates, JSON.stringify(templates));
-    }
+    const storedTemplates = parseStored(keys.templates, starterTemplates);
+    const templates = storedTemplates.map((template) => ({
+      ...template,
+      category: normalizeTemplateCategory(template.category),
+    }));
+    localStorage.setItem(keys.templates, JSON.stringify(templates));
     return templates;
   },
   setTemplates(templates: LetterTemplate[]) {
