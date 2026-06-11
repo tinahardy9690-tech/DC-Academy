@@ -5,12 +5,14 @@ import {
   Check,
   ChevronDown,
   Download,
+  FolderOpen,
   FileText,
   MapPin,
   Save,
   Sparkles,
   UserRound,
 } from "lucide-react";
+import { templateCategories } from "../data";
 import { mergeTemplate } from "../merge";
 import type {
   BureauAddress,
@@ -37,7 +39,17 @@ export function Generator({
     () => templates.filter((template) => template.isActive),
     [templates],
   );
-  const [templateId, setTemplateId] = useState(activeTemplates[0]?.id ?? "");
+  const [category, setCategory] = useState(
+    activeTemplates[0]?.category ?? templateCategories[0],
+  );
+  const categoryTemplates = useMemo(
+    () =>
+      activeTemplates.filter((template) => template.category === category),
+    [activeTemplates, category],
+  );
+  const [templateId, setTemplateId] = useState(
+    categoryTemplates[0]?.id ?? "",
+  );
   const [addressId, setAddressId] = useState(addresses[0]?.id ?? "");
   const [content, setContent] = useState("");
   const [generated, setGenerated] = useState(false);
@@ -45,7 +57,7 @@ export function Generator({
   const [isExporting, setIsExporting] = useState(false);
   const printRef = useRef<HTMLDivElement>(null);
 
-  const selectedTemplate = activeTemplates.find(
+  const selectedTemplate = categoryTemplates.find(
     (template) => template.id === templateId,
   );
   const selectedAddress = addresses.find(
@@ -53,10 +65,10 @@ export function Generator({
   );
 
   useEffect(() => {
-    if (!templateId && activeTemplates[0]) {
-      setTemplateId(activeTemplates[0].id);
+    if (!categoryTemplates.some((template) => template.id === templateId)) {
+      setTemplateId(categoryTemplates[0]?.id ?? "");
     }
-  }, [activeTemplates, templateId]);
+  }, [categoryTemplates, templateId]);
 
   useEffect(() => {
     if (!addressId && addresses[0]) {
@@ -70,6 +82,11 @@ export function Generator({
     setGenerated(true);
     setNotice("Letter generated and ready to edit.");
     window.setTimeout(() => setNotice(""), 2800);
+  }
+
+  function resetGeneratedLetter() {
+    setContent("");
+    setGenerated(false);
   }
 
   function saveLetter() {
@@ -159,19 +176,27 @@ export function Generator({
         <div className="setup-step">
           <span className="step-number">1</span>
           <div className="step-copy">
-            <label htmlFor="template-select">Letter template</label>
-            <span>Select the type of dispute you want to create.</span>
+            <label htmlFor="category-select">Letter category</label>
+            <span>Choose the account or dispute category first.</span>
           </div>
           <div className="select-wrap">
-            <FileText />
+            <FolderOpen />
             <select
-              id="template-select"
-              value={templateId}
-              onChange={(event) => setTemplateId(event.target.value)}
+              id="category-select"
+              value={category}
+              onChange={(event) => {
+                const nextCategory = event.target.value as typeof category;
+                setCategory(nextCategory);
+                const firstTemplate = activeTemplates.find(
+                  (template) => template.category === nextCategory,
+                );
+                setTemplateId(firstTemplate?.id ?? "");
+                resetGeneratedLetter();
+              }}
             >
-              {activeTemplates.map((template) => (
-                <option key={template.id} value={template.id}>
-                  {template.templateName}
+              {templateCategories.map((templateCategory) => (
+                <option key={templateCategory} value={templateCategory}>
+                  {templateCategory}
                 </option>
               ))}
             </select>
@@ -184,6 +209,38 @@ export function Generator({
         <div className="setup-step">
           <span className="step-number">2</span>
           <div className="step-copy">
+            <label htmlFor="template-select">Letter template</label>
+            <span>Select a letter available in this category.</span>
+          </div>
+          <div className="select-wrap">
+            <FileText />
+            <select
+              id="template-select"
+              value={templateId}
+              disabled={categoryTemplates.length === 0}
+              onChange={(event) => {
+                setTemplateId(event.target.value);
+                resetGeneratedLetter();
+              }}
+            >
+              {categoryTemplates.length === 0 && (
+                <option value="">No letters in this category yet</option>
+              )}
+              {categoryTemplates.map((template) => (
+                <option key={template.id} value={template.id}>
+                  {template.templateName}
+                </option>
+              ))}
+            </select>
+            <ChevronDown />
+          </div>
+        </div>
+
+        <div className="setup-line" />
+
+        <div className="setup-step">
+          <span className="step-number">3</span>
+          <div className="step-copy">
             <label htmlFor="bureau-select">Bureau address</label>
             <span>Choose the bureau and correct department.</span>
           </div>
@@ -192,7 +249,10 @@ export function Generator({
             <select
               id="bureau-select"
               value={addressId}
-              onChange={(event) => setAddressId(event.target.value)}
+              onChange={(event) => {
+                setAddressId(event.target.value);
+                resetGeneratedLetter();
+              }}
             >
               {addresses.map((address) => (
                 <option key={address.id} value={address.id}>
@@ -207,12 +267,16 @@ export function Generator({
         <div className="setup-line" />
 
         <div className="setup-step generate-step">
-          <span className="step-number">3</span>
+          <span className="step-number">4</span>
           <div className="step-copy">
             <label>Build your letter</label>
             <span>Client and bureau information will merge automatically.</span>
           </div>
-          <button className="button button-green generate-button" onClick={generateLetter}>
+          <button
+            className="button button-green generate-button"
+            onClick={generateLetter}
+            disabled={!selectedTemplate}
+          >
             <Sparkles />
             Generate letter
           </button>
