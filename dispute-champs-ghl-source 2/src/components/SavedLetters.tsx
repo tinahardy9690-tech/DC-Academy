@@ -15,7 +15,7 @@ export function SavedLetters({
       <div className="page-heading">
         <div>
           <span className="eyebrow">Letter archive</span>
-          <h1>Saved letters</h1>
+          <h1>Saved Letters</h1>
           <p>Review letters saved on this device.</p>
         </div>
       </div>
