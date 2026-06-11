@@ -1,10 +1,12 @@
 export type TemplateCategory =
-  | "Credit Bureau"
-  | "Fraud & Identity"
-  | "FCRA"
-  | "Metro 2"
-  | "Legal"
-  | "Custom";
+  | "Collection"
+  | "Charge-Off Account"
+  | "Inquiry"
+  | "Personal Information"
+  | "Bankruptcy"
+  | "Late Payments"
+  | "Fraud"
+  | "Miscellaneous";
 
 export interface LetterTemplate {
   id: string;
