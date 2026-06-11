@@ -11,6 +11,29 @@ import {
 } from "./services";
 import type { ClientProfile, LetterTemplate } from "./types";
 
+const generatorSteps = [
+  {
+    number: "1",
+    title: "Letter Category",
+    description: "Choose the account or dispute category first.",
+  },
+  {
+    number: "2",
+    title: "Letter Template",
+    description: "Select a letter available in this category.",
+  },
+  {
+    number: "3",
+    title: "Bureau Address",
+    description: "Choose the bureau and correct department.",
+  },
+  {
+    number: "4",
+    title: "Build Your Letter",
+    description: "Client and bureau information will merge automatically.",
+  },
+];
+
 function StudentGenerator() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [templates, setTemplates] =
@@ -55,6 +78,18 @@ function StudentGenerator() {
             Letter Generator
           </button>
         </nav>
+
+        <section className="sidebar-workflow" aria-label="Letter generator steps">
+          {generatorSteps.map((step) => (
+            <div className="sidebar-workflow-step" key={step.number}>
+              <span>{step.number}</span>
+              <div>
+                <strong>{step.title}</strong>
+                <p>{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </section>
 
         <div className="sidebar-bottom">
           <div className="secure-card">
