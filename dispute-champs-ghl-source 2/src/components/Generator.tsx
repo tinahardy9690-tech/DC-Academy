@@ -8,7 +8,6 @@ import {
   FolderOpen,
   FileText,
   MapPin,
-  Save,
   Sparkles,
   UserRound,
 } from "lucide-react";
@@ -18,7 +17,6 @@ import type {
   BureauAddress,
   ClientProfile,
   LetterTemplate,
-  SavedLetter,
 } from "../types";
 import { Editor } from "./Editor";
 
@@ -26,14 +24,12 @@ interface GeneratorProps {
   templates: LetterTemplate[];
   addresses: BureauAddress[];
   client: ClientProfile;
-  onSave: (letter: SavedLetter) => void;
 }
 
 export function Generator({
   templates,
   addresses,
   client,
-  onSave,
 }: GeneratorProps) {
   const activeTemplates = useMemo(
     () => templates.filter((template) => template.isActive),
@@ -65,6 +61,15 @@ export function Generator({
   );
 
   useEffect(() => {
+    if (
+      activeTemplates.length > 0 &&
+      !activeTemplates.some((template) => template.category === category)
+    ) {
+      setCategory(activeTemplates[0].category);
+    }
+  }, [activeTemplates, category]);
+
+  useEffect(() => {
     if (!categoryTemplates.some((template) => template.id === templateId)) {
       setTemplateId(categoryTemplates[0]?.id ?? "");
     }
@@ -87,23 +92,6 @@ export function Generator({
   function resetGeneratedLetter() {
     setContent("");
     setGenerated(false);
-  }
-
-  function saveLetter() {
-    if (!selectedTemplate || !selectedAddress || !content) return;
-    onSave({
-      id: crypto.randomUUID(),
-      clientId: client.id,
-      templateId: selectedTemplate.id,
-      templateName: selectedTemplate.templateName,
-      bureauAddressId: selectedAddress.id,
-      bureauName: selectedAddress.bureau,
-      content,
-      pdfUrl: null,
-      createdAt: new Date().toISOString(),
-    });
-    setNotice("Letter saved to this browser.");
-    window.setTimeout(() => setNotice(""), 2800);
   }
 
   async function downloadPdf() {
@@ -307,7 +295,7 @@ export function Generator({
             <div>
               <span className="status-dot" />
               <span>Generated letter</span>
-              <small>All changes save when you click Save letter</small>
+              <small>Edit your letter, then download the finished PDF</small>
             </div>
             <div className="document-meta">
               {selectedAddress?.bureau} · {selectedTemplate?.category}
@@ -316,7 +304,7 @@ export function Generator({
           <Editor content={content} onChange={setContent} printRef={printRef} />
           <div className="editor-actions">
             <span className="privacy-note">
-              Stored only in this browser until connected to your backend.
+              Your letter is not stored. Download it before leaving this page.
             </span>
             <div>
               <button
@@ -326,10 +314,6 @@ export function Generator({
               >
                 <Download />
                 {isExporting ? "Preparing..." : "Download PDF"}
-              </button>
-              <button className="button button-green" onClick={saveLetter}>
-                <Save />
-                Save letter
               </button>
             </div>
           </div>
