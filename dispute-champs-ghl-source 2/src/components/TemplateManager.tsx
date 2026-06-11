@@ -21,7 +21,7 @@ interface TemplateManagerProps {
 
 const blankTemplate = {
   templateName: "",
-  category: "Credit Bureau" as TemplateCategory,
+  category: "Collection" as TemplateCategory,
   description: "",
   body: "<p>{{CLIENT_NAME}}<br>{{CLIENT_ADDRESS}}<br>{{CLIENT_CITY}}, {{CLIENT_STATE}} {{CLIENT_ZIP}}</p><p>{{CURRENT_DATE}}</p><p>{{BUREAU_NAME}}<br>{{BUREAU_ADDRESS}}</p><p>To Whom It May Concern:</p><p>Write your letter here.</p><p>Sincerely,</p><p>{{CLIENT_NAME}}</p>",
   isActive: true,
@@ -32,6 +32,9 @@ export function TemplateManager({
   onChange,
 }: TemplateManagerProps) {
   const [search, setSearch] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState<
+    TemplateCategory | "All Categories"
+  >("All Categories");
   const [editing, setEditing] = useState<LetterTemplate | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [draft, setDraft] = useState(blankTemplate);
@@ -40,10 +43,12 @@ export function TemplateManager({
     const query = search.toLowerCase();
     return templates.filter(
       (template) =>
-        template.templateName.toLowerCase().includes(query) ||
-        template.category.toLowerCase().includes(query),
+        (categoryFilter === "All Categories" ||
+          template.category === categoryFilter) &&
+        (template.templateName.toLowerCase().includes(query) ||
+          template.category.toLowerCase().includes(query)),
     );
-  }, [search, templates]);
+  }, [categoryFilter, search, templates]);
 
   function openNew() {
     setEditing(null);
@@ -130,7 +135,7 @@ export function TemplateManager({
             <Copy />
           </span>
           <span>
-            <strong>{new Set(templates.map((template) => template.category)).size}</strong>
+            <strong>{templateCategories.length}</strong>
             Categories
           </span>
         </div>
@@ -142,14 +147,55 @@ export function TemplateManager({
             <h2>Template library</h2>
             <p>Activate, edit, or remove your reusable letter content.</p>
           </div>
-          <label className="search-box">
-            <Search />
-            <input
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search templates..."
-            />
-          </label>
+          <div
+            className="library-filters"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "10px",
+            }}
+          >
+            <label
+              className="search-box"
+              style={{ width: "190px", paddingRight: "8px" }}
+            >
+              <select
+                aria-label="Category"
+                value={categoryFilter}
+                onChange={(event) =>
+                  setCategoryFilter(
+                    event.target.value as
+                      | TemplateCategory
+                      | "All Categories",
+                  )
+                }
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  color: "#435168",
+                  background: "transparent",
+                  border: 0,
+                  outline: 0,
+                  fontSize: "11px",
+                  fontWeight: 600,
+                }}
+              >
+                <option>All Categories</option>
+                {templateCategories.map((category) => (
+                  <option key={category}>{category}</option>
+                ))}
+              </select>
+            </label>
+            <label className="search-box">
+              <Search />
+              <input
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                placeholder="Search templates..."
+              />
+            </label>
+          </div>
         </div>
 
         <div className="template-list">
@@ -246,8 +292,9 @@ export function TemplateManager({
                 />
               </label>
               <label>
-                Category
+                Letter category
                 <select
+                  required
                   value={draft.category}
                   onChange={(event) =>
                     setDraft({
@@ -260,6 +307,9 @@ export function TemplateManager({
                     <option key={category}>{category}</option>
                   ))}
                 </select>
+                <small>
+                  Students will find this letter under the selected category.
+                </small>
               </label>
               <label className="full-field">
                 Description
