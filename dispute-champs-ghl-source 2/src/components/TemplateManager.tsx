@@ -102,12 +102,12 @@ export function TemplateManager({
       <div className="page-heading">
         <div>
           <span className="eyebrow">Administrator tools</span>
-          <h1>Letter templates</h1>
+          <h1>Letter Templates</h1>
           <p>Create and manage the letters available to your students.</p>
         </div>
         <button className="button button-blue" onClick={openNew}>
           <Plus />
-          New template
+          New Template
         </button>
       </div>
 
@@ -144,7 +144,7 @@ export function TemplateManager({
       <section className="library-card">
         <div className="library-toolbar">
           <div>
-            <h2>Template library</h2>
+            <h2>Template Library</h2>
             <p>Activate, edit, or remove your reusable letter content.</p>
           </div>
           <div
@@ -272,7 +272,7 @@ export function TemplateManager({
                   <FilePlus2 />
                 </span>
                 <span>
-                  <h2>{editing ? "Edit template" : "New letter template"}</h2>
+                  <h2>{editing ? "Edit Template" : "New Letter Template"}</h2>
                   <p>Use merge fields to personalize every generated letter.</p>
                 </span>
               </div>
