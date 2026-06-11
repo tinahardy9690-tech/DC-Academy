@@ -6,7 +6,7 @@ export default defineConfig({
   base: "./",
   build: {
     outDir: "outputs/ghl-letter-studio",
-    emptyOutDir: false,
+    emptyOutDir: true,
     sourcemap: true,
   },
 });
