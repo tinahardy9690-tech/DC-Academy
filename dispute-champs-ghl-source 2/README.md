@@ -1,4 +1,4 @@
-# Dispute Champs NexGen Letter Studio
+# Dispute Champs Academy Letter Studio
 
 A responsive credit-dispute letter generator built to run inside GoHighLevel
 (GHL) websites, funnels, membership areas, custom pages, or custom menu links.
@@ -38,6 +38,17 @@ The deployable static files are created in:
 ```text
 outputs/ghl-letter-studio/
 ```
+
+## Automatic Netlify deployment
+
+The included `netlify.toml` configures Netlify automatically:
+
+- Build command: `npm run build`
+- Publish directory: `outputs/ghl-letter-studio`
+- Node.js version: 22
+
+When the application is stored in a subfolder of a GitHub repository, select
+that subfolder as Netlify's Base directory when linking the repository.
 
 Upload that entire folder to Netlify, Cloudflare Pages, Vercel, Amazon S3, or
 another static host. Set the publish directory to
@@ -99,7 +110,7 @@ An enclosing application can also send a profile:
 ```js
 document.querySelector("iframe").contentWindow.postMessage(
   {
-    type: "DC_NEXGEN_CONTACT",
+    type: "DC_ACADEMY_CONTACT",
     contact: {
       id: "contact-id",
       firstName: "Jordan",

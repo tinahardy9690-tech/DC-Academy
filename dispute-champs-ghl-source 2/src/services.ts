@@ -88,7 +88,7 @@ export function listenForGhlContact(
 ) {
   const onMessage = (event: MessageEvent) => {
     if (
-      event.data?.type === "DC_NEXGEN_CONTACT" &&
+      ["DC_ACADEMY_CONTACT", "DC_NEXGEN_CONTACT"].includes(event.data?.type) &&
       typeof event.data.contact === "object"
     ) {
       callback({ ...demoClient, ...event.data.contact });

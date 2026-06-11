@@ -67,51 +67,17 @@ svg {
 }
 
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 9px 28px;
-}
-
-.brand-mark {
-  width: 39px;
-  height: 39px;
-  flex: 0 0 39px;
   display: grid;
   place-items: center;
-  color: #fff;
-  background: linear-gradient(145deg, #1378e5, #0759b2);
-  border-radius: 11px;
-  font-family: "Manrope", sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  box-shadow: 0 7px 16px rgba(11, 108, 209, 0.24);
+  min-height: 118px;
+  padding: 0 5px 23px;
 }
 
-.brand > div:last-child,
-.mobile-brand {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.08;
-}
-
-.brand strong,
-.mobile-brand strong {
-  color: #14203a;
-  font-family: "Manrope", sans-serif;
-  font-size: 15px;
-  letter-spacing: -0.3px;
-}
-
-.brand span,
-.mobile-brand span {
-  margin-top: 4px;
-  color: var(--blue);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2.3px;
-  text-transform: uppercase;
+.brand img {
+  width: 100%;
+  max-width: 200px;
+  height: 112px;
+  object-fit: contain;
 }
 
 .sidebar nav {
@@ -1318,14 +1284,11 @@ h3 {
     margin-left: auto;
   }
 
-  .mobile-header .brand-mark {
-    width: 34px;
-    height: 34px;
-    flex-basis: 34px;
-  }
-
-  .mobile-brand strong {
-    font-size: 13px;
+  .mobile-logo {
+    width: 142px;
+    height: 52px;
+    object-fit: contain;
+    object-position: left center;
   }
 
   .topbar {

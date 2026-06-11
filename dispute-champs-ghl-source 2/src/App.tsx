@@ -10,6 +10,7 @@ import {
   ShieldCheck,
   X,
 } from "lucide-react";
+import academyLogo from "./assets/dispute-champs-academy-logo.png";
 import { Generator } from "./components/Generator";
 import { SavedLetters } from "./components/SavedLetters";
 import { TemplateManager } from "./components/TemplateManager";
@@ -60,11 +61,11 @@ function App() {
   return (
     <div className="app-shell">
       <header className="mobile-header">
-        <div className="brand-mark">DC</div>
-        <div className="mobile-brand">
-          <strong>Dispute Champs</strong>
-          <span>NexGen</span>
-        </div>
+        <img
+          className="mobile-logo"
+          src={academyLogo}
+          alt="Dispute Champs Academy"
+        />
         <button className="icon-button" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X /> : <Menu />}
         </button>
@@ -72,11 +73,7 @@ function App() {
 
       <aside className={`sidebar ${menuOpen ? "open" : ""}`}>
         <div className="brand">
-          <div className="brand-mark">DC</div>
-          <div>
-            <strong>Dispute Champs</strong>
-            <span>NexGen</span>
-          </div>
+          <img src={academyLogo} alt="Dispute Champs Academy" />
         </div>
 
         <nav>
