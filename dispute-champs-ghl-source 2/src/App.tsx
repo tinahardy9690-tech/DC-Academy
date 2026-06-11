@@ -1,62 +1,34 @@
 import { useEffect, useState } from "react";
-import {
-  FileClock,
-  FilePenLine,
-  Files,
-  HelpCircle,
-  LayoutDashboard,
-  Menu,
-  Settings,
-  ShieldCheck,
-  X,
-} from "lucide-react";
+import { FilePenLine, Files, Menu, ShieldCheck, X } from "lucide-react";
 import academyLogo from "./assets/dispute-champs-academy-logo.png";
+import { AdminPortal } from "./components/AdminPortal";
 import { Generator } from "./components/Generator";
-import { SavedLetters } from "./components/SavedLetters";
-import { TemplateManager } from "./components/TemplateManager";
+import { bureauAddresses, demoClient, starterTemplates } from "./data";
 import {
   getContactFromGhl,
   listenForGhlContact,
-  storageService,
+  templateService,
 } from "./services";
-import type {
-  ClientProfile,
-  LetterTemplate,
-  SavedLetter,
-  ViewName,
-} from "./types";
-import { demoClient } from "./data";
+import type { ClientProfile, LetterTemplate } from "./types";
 
-function App() {
-  const [view, setView] = useState<ViewName>("generator");
+function StudentGenerator() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [templates, setTemplates] = useState<LetterTemplate[]>([]);
-  const [letters, setLetters] = useState<SavedLetter[]>([]);
+  const [templates, setTemplates] =
+    useState<LetterTemplate[]>(starterTemplates);
   const [client, setClient] = useState<ClientProfile>(demoClient);
 
   useEffect(() => {
-    setTemplates(storageService.getTemplates());
-    setLetters(storageService.getLetters());
+    let active = true;
+    void templateService.getTemplates().then((sharedTemplates) => {
+      if (active) setTemplates(sharedTemplates);
+    });
     setClient(getContactFromGhl());
-    return listenForGhlContact(setClient);
+    const stopListening = listenForGhlContact(setClient);
+    return () => {
+      active = false;
+      stopListening();
+    };
   }, []);
-
-  function updateTemplates(nextTemplates: LetterTemplate[]) {
-    setTemplates(nextTemplates);
-    storageService.setTemplates(nextTemplates);
-  }
-
-  function saveLetter(letter: SavedLetter) {
-    const next = [letter, ...letters];
-    setLetters(next);
-    storageService.setLetters(next);
-  }
-
-  function navigate(nextView: ViewName) {
-    setView(nextView);
-    setMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
 
   return (
     <div className="app-shell">
@@ -78,48 +50,18 @@ function App() {
 
         <nav>
           <span className="nav-label">Workspace</span>
-          <button className={view === "generator" ? "active" : ""} onClick={() => navigate("generator")}>
+          <button className="active" onClick={() => setMenuOpen(false)}>
             <FilePenLine />
             Letter Generator
-          </button>
-          <button className={view === "saved" ? "active" : ""} onClick={() => navigate("saved")}>
-            <FileClock />
-            Saved Letters
-            {letters.length > 0 && <small>{letters.length}</small>}
-          </button>
-          <span className="nav-label admin-label">Administration</span>
-          <button className={view === "templates" ? "active" : ""} onClick={() => navigate("templates")}>
-            <Files />
-            Templates
-          </button>
-          <button disabled>
-            <LayoutDashboard />
-            Reports
-            <em>Soon</em>
           </button>
         </nav>
 
         <div className="sidebar-bottom">
-          <button disabled>
-            <Settings />
-            Settings
-          </button>
-          <button disabled>
-            <HelpCircle />
-            Help center
-          </button>
           <div className="secure-card">
             <ShieldCheck />
             <span>
-              <strong>GHL-ready</strong>
-              Contact merge enabled
-            </span>
-          </div>
-          <div className="user-card">
-            <span className="client-avatar">AM</span>
-            <span>
-              <strong>Account Admin</strong>
-              <small>Administrator</small>
+              <strong>Course Tool</strong>
+              Download letters when finished
             </span>
           </div>
         </div>
@@ -145,32 +87,28 @@ function App() {
             ← Student Dashboard
           </a>
         </div>
-        {view === "generator" && (
-          <Generator
-            templates={templates}
-            addresses={storageService.getBureauAddresses()}
-            client={client}
-            onSave={saveLetter}
-          />
-        )}
-        {view === "templates" && (
-          <TemplateManager templates={templates} onChange={updateTemplates} />
-        )}
-        {view === "saved" && (
-          <SavedLetters
-            letters={letters}
-            onDelete={(id) => {
-              const next = letters.filter((letter) => letter.id !== id);
-              setLetters(next);
-              storageService.setLetters(next);
-            }}
-            onOpen={() => navigate("generator")}
-          />
-        )}
+        <Generator
+          templates={templates}
+          addresses={bureauAddresses}
+          client={client}
+        />
       </div>
-      {menuOpen && <button className="menu-overlay" onClick={() => setMenuOpen(false)} />}
+      {menuOpen && (
+        <button
+          className="menu-overlay"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
     </div>
   );
+}
+
+function App() {
+  const isAdminPage =
+    window.location.pathname.replace(/\/+$/, "") === "/admin" ||
+    new URLSearchParams(window.location.search).get("admin") === "1";
+
+  return isAdminPage ? <AdminPortal /> : <StudentGenerator />;
 }
 
 export default App;
