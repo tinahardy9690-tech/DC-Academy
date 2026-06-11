@@ -5,17 +5,13 @@ import {
   templateCategories,
 } from "./data";
 import type {
-  BureauAddress,
   ClientProfile,
   LetterTemplate,
-  SavedLetter,
   TemplateCategory,
 } from "./types";
 
-const keys = {
-  templates: "dc-nexgen-letter-templates-v1",
-  letters: "dc-nexgen-saved-letters-v1",
-};
+const templateStorageKey = "dc-nexgen-letter-templates-v1";
+const adminSessionKey = "dc-academy-admin-session";
 
 function parseStored<T>(key: string, fallback: T): T {
   try {
@@ -42,31 +38,124 @@ function normalizeTemplateCategory(category: string): TemplateCategory {
   return legacyCategoryMap[category] ?? "Miscellaneous";
 }
 
+function normalizeTemplates(templates: LetterTemplate[]): LetterTemplate[] {
+  return templates.map((template) => ({
+    ...template,
+    category: normalizeTemplateCategory(template.category),
+  }));
+}
+
+async function readJson<T>(
+  response: Response,
+  fallbackMessage: string,
+): Promise<T> {
+  const result = (await response.json().catch(() => null)) as
+    | (T & { error?: string })
+    | null;
+  if (!response.ok) {
+    throw new Error(result?.error || fallbackMessage);
+  }
+  return result as T;
+}
+
+export const templateService = {
+  async getTemplates(adminToken = ""): Promise<LetterTemplate[]> {
+    try {
+      const response = await fetch("/.netlify/functions/templates", {
+        headers: adminToken
+          ? { Authorization: `Bearer ${adminToken}` }
+          : undefined,
+      });
+      const result = await readJson<{ templates: LetterTemplate[] }>(
+        response,
+        "Unable to load shared templates.",
+      );
+      return normalizeTemplates(result.templates);
+    } catch (error) {
+      if (adminToken) throw error;
+      return starterTemplates;
+    }
+  },
+
+  async saveTemplates(
+    templates: LetterTemplate[],
+    adminToken: string,
+  ): Promise<void> {
+    const response = await fetch("/.netlify/functions/templates", {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${adminToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ templates }),
+    });
+    await readJson<{ success: boolean }>(
+      response,
+      "Unable to publish templates.",
+    );
+  },
+};
+
+export const adminService = {
+  getSession() {
+    return sessionStorage.getItem(adminSessionKey) ?? "";
+  },
+
+  async login(password: string) {
+    const response = await fetch("/.netlify/functions/admin-auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+    const result = await readJson<{ token: string }>(
+      response,
+      "Incorrect administrator password.",
+    );
+    sessionStorage.setItem(adminSessionKey, result.token);
+    return result.token;
+  },
+
+  logout() {
+    sessionStorage.removeItem(adminSessionKey);
+  },
+};
+
+export const localTemplateMigration = {
+  merge(sharedTemplates: LetterTemplate[]) {
+    const stored = localStorage.getItem(templateStorageKey);
+    if (!stored) return { templates: sharedTemplates, changed: false };
+
+    const localTemplates = normalizeTemplates(
+      parseStored<LetterTemplate[]>(templateStorageKey, []),
+    );
+    const merged = new Map(
+      sharedTemplates.map((template) => [template.id, template]),
+    );
+    let changed = false;
+
+    localTemplates.forEach((localTemplate) => {
+      const sharedTemplate = merged.get(localTemplate.id);
+      if (
+        !sharedTemplate ||
+        new Date(localTemplate.updatedAt).getTime() >
+          new Date(sharedTemplate.updatedAt).getTime()
+      ) {
+        merged.set(localTemplate.id, localTemplate);
+        changed = true;
+      }
+    });
+
+    return { templates: Array.from(merged.values()), changed };
+  },
+
+  clear() {
+    localStorage.removeItem(templateStorageKey);
+  },
+};
+
 export const storageService = {
-  getTemplates(): LetterTemplate[] {
-    const storedTemplates = parseStored(keys.templates, starterTemplates);
-    const templates = storedTemplates.map((template) => ({
-      ...template,
-      category: normalizeTemplateCategory(template.category),
-    }));
-    localStorage.setItem(keys.templates, JSON.stringify(templates));
-    return templates;
-  },
-  setTemplates(templates: LetterTemplate[]) {
-    localStorage.setItem(keys.templates, JSON.stringify(templates));
-  },
-  getBureauAddresses(): BureauAddress[] {
+  getBureauAddresses() {
     return bureauAddresses;
-  },
-  getLetters(): SavedLetter[] {
-    return parseStored(keys.letters, []);
-  },
-  setLetters(letters: SavedLetter[]) {
-    localStorage.setItem(keys.letters, JSON.stringify(letters));
-  },
-  resetDemo() {
-    localStorage.removeItem(keys.templates);
-    localStorage.removeItem(keys.letters);
   },
 };
 
