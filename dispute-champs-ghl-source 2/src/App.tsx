@@ -131,6 +131,19 @@ function App() {
             <Files />
             DC Letter Generator
           </span>
+          <a
+            className="topbar-client topbar-dashboard"
+            href="https://disputechamps.org/student-dash"
+            target="_top"
+            style={{
+              padding: "8px 12px",
+              color: "#0b6cd1",
+              textDecoration: "none",
+              borderRadius: "8px",
+            }}
+          >
+            ← Student Dashboard
+          </a>
         </div>
         {view === "generator" && (
           <Generator
