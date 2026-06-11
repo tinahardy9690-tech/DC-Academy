@@ -129,12 +129,8 @@ function App() {
         <div className="topbar">
           <span>
             <Files />
-            Letter Studio
+            DC Letter Generator
           </span>
-          <div className="topbar-client">
-            <span className="online-dot" />
-            GHL contact connected
-          </div>
         </div>
         {view === "generator" && (
           <Generator
