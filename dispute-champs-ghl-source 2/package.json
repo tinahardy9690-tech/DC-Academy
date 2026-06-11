@@ -10,7 +10,11 @@
     "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
+    "@tiptap/extension-highlight": "^3.26.0",
+    "@tiptap/extension-link": "^3.26.0",
     "@tiptap/extension-placeholder": "^3.26.0",
+    "@tiptap/extension-subscript": "^3.26.0",
+    "@tiptap/extension-superscript": "^3.26.0",
     "@tiptap/extension-text-align": "^3.26.0",
     "@tiptap/extension-text-style": "^3.26.0",
     "@tiptap/extension-underline": "^3.26.0",

@@ -8,7 +8,9 @@ Supabase is not required.
 
 - Template and credit-bureau selection
 - Automatic client/contact merge fields
-- TipTap rich-text editor
+- Advanced TipTap editor with font families, font sizes, line spacing, text
+  colors, multicolor highlights, emoji search, links, headings, quotes,
+  subscript, superscript, lists, indentation, alignment, and clear formatting
 - PDF download with US Letter sizing
 - Browser-based saved-letter history
 - Administrator template creation, editing, deletion, and activation
