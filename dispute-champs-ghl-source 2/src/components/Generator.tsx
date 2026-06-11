@@ -61,15 +61,6 @@ export function Generator({
   );
 
   useEffect(() => {
-    if (
-      activeTemplates.length > 0 &&
-      !activeTemplates.some((template) => template.category === category)
-    ) {
-      setCategory(activeTemplates[0].category);
-    }
-  }, [activeTemplates, category]);
-
-  useEffect(() => {
     if (!categoryTemplates.some((template) => template.id === templateId)) {
       setTemplateId(categoryTemplates[0]?.id ?? "");
     }
