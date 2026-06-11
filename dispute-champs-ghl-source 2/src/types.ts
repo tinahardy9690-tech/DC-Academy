@@ -43,17 +43,3 @@ export interface ClientProfile {
   phone: string;
   email: string;
 }
-
-export interface SavedLetter {
-  id: string;
-  clientId: string;
-  templateId: string;
-  templateName: string;
-  bureauAddressId: string;
-  bureauName: string;
-  content: string;
-  pdfUrl: string | null;
-  createdAt: string;
-}
-
-export type ViewName = "generator" | "templates" | "saved";
