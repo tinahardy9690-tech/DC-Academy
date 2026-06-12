@@ -50,6 +50,32 @@
   line-height: 1.45;
 }
 
+.admin-login-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 3px 4px;
+  padding: 10px 12px;
+  color: #66758b;
+  border: 1px solid #dce5ef;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.admin-login-link:hover {
+  color: #0b6cd1;
+  background: #f4f9ff;
+  border-color: #bcd8f3;
+}
+
+.admin-login-link svg {
+  width: 16px;
+  height: 16px;
+}
+
 .main-panel {
   margin-left: 318px;
 }
