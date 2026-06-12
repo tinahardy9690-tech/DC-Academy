@@ -9,6 +9,7 @@ import type {
   LibraryResourceInput,
 } from "../../src/libraryTypes.ts";
 import {
+  getAdminSessionSecret,
   getBearerToken,
   verifyAdminToken,
 } from "./_shared/auth.mts";
@@ -22,9 +23,13 @@ function resourceKey(id: string) {
 }
 
 function isAdminRequest(request: Request) {
-  const secret = process.env.ADMIN_SESSION_SECRET ?? "";
+  const password = process.env.ADMIN_PASSWORD ?? "";
   return Boolean(
-    secret && verifyAdminToken(getBearerToken(request), secret),
+    password &&
+      verifyAdminToken(
+        getBearerToken(request),
+        getAdminSessionSecret(password),
+      ),
   );
 }
 
