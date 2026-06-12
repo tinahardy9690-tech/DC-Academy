@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   FilePenLine,
   KeyRound,
+  LibraryBig,
   Menu,
   ShieldCheck,
   X,
@@ -9,6 +10,8 @@ import {
 import academyLogo from "./assets/dispute-champs-academy-logo.png";
 import { AdminPortal } from "./components/AdminPortal";
 import { Generator } from "./components/Generator";
+import { Library } from "./components/Library";
+import { LibraryAdmin } from "./components/LibraryAdmin";
 import { bureauAddresses, demoClient, starterTemplates } from "./data";
 import {
   getContactFromGhl,
@@ -83,6 +86,10 @@ function StudentGenerator() {
             <FilePenLine />
             Letter Generator
           </button>
+          <a className="sidebar-nav-link" href="/library">
+            <LibraryBig />
+            Download Library
+          </a>
         </nav>
 
         <section className="sidebar-workflow" aria-label="Letter generator steps">
@@ -144,9 +151,13 @@ function StudentGenerator() {
 }
 
 function App() {
+  const path = window.location.pathname.replace(/\/+$/, "") || "/";
   const isAdminPage =
-    window.location.pathname.replace(/\/+$/, "") === "/admin" ||
+    path === "/admin" ||
     new URLSearchParams(window.location.search).get("admin") === "1";
+
+  if (path === "/library/admin") return <LibraryAdmin />;
+  if (path === "/library") return <Library />;
 
   return isAdminPage ? <AdminPortal /> : <StudentGenerator />;
 }

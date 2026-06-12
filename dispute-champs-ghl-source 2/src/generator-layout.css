@@ -4,8 +4,40 @@
   overflow-y: auto;
 }
 
-.sidebar button {
+.sidebar button,
+.sidebar-nav-link {
   font-size: 15px;
+}
+
+.sidebar-nav-link {
+  width: 100%;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  color: #657288;
+  background: transparent;
+  border-radius: 9px;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: none;
+  transition: 160ms ease;
+}
+
+.sidebar-nav-link:hover {
+  color: var(--blue);
+  background: #f3f8fe;
+}
+
+.student-generator .sidebar-nav-link {
+  color: #50657d;
+}
+
+.student-generator .sidebar-nav-link:hover {
+  color: var(--blue);
+  background: #ebf8ff;
+  box-shadow: inset 0 0 0 1px #d4eafa;
 }
 
 .sidebar-workflow {
