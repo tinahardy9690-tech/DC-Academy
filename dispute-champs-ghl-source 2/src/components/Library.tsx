@@ -12,6 +12,7 @@ import {
   Filter,
   FolderOpen,
   GraduationCap,
+  KeyRound,
   Landmark,
   LibraryBig,
   Menu,
@@ -242,6 +243,15 @@ export function Library() {
               Downloads for enrolled students
             </span>
           </div>
+          <a
+            className="admin-login-link"
+            href="https://boisterous-bubblegum-82ed03.netlify.app/library/admin"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <KeyRound />
+            Admin Login
+          </a>
         </div>
       </aside>
 
