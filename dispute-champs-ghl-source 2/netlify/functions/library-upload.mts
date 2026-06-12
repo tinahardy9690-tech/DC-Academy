@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { getStore } from "@netlify/blobs";
 import {
+  getAdminSessionSecret,
   getBearerToken,
   verifyAdminToken,
 } from "./_shared/auth.mts";
@@ -9,9 +10,13 @@ const fileStore = getStore("dispute-champs-library-files");
 const maxFileSize = 5_000_000;
 
 function isAuthorized(request: Request) {
-  const secret = process.env.ADMIN_SESSION_SECRET ?? "";
+  const password = process.env.ADMIN_PASSWORD ?? "";
   return Boolean(
-    secret && verifyAdminToken(getBearerToken(request), secret),
+    password &&
+      verifyAdminToken(
+        getBearerToken(request),
+        getAdminSessionSecret(password),
+      ),
   );
 }
 
