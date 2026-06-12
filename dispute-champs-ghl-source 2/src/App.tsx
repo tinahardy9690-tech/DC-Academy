@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { FilePenLine, Files, Menu, ShieldCheck, X } from "lucide-react";
+import {
+  FilePenLine,
+  Files,
+  KeyRound,
+  Menu,
+  ShieldCheck,
+  X,
+} from "lucide-react";
 import academyLogo from "./assets/dispute-champs-academy-logo.png";
 import { AdminPortal } from "./components/AdminPortal";
 import { Generator } from "./components/Generator";
@@ -99,6 +106,15 @@ function StudentGenerator() {
               Download letters when finished
             </span>
           </div>
+          <a
+            className="admin-login-link"
+            href="https://boisterous-bubblegum-82ed03.netlify.app/admin"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <KeyRound />
+            Admin Login
+          </a>
         </div>
       </aside>
 
