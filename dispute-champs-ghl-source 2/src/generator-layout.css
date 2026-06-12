@@ -4,7 +4,8 @@
   overflow-y: auto;
 }
 
-.sidebar button {
+.sidebar button,
+.sidebar-nav-link {
   font-size: 15px;
 }
 
