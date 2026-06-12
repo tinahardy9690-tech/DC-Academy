@@ -60,7 +60,7 @@ function StudentGenerator() {
   }, []);
 
   return (
-    <div className="app-shell">
+    <div className="app-shell student-generator">
       <header className="mobile-header">
         <img
           className="mobile-logo"
