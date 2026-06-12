@@ -22,6 +22,12 @@ export function passwordMatches(candidate: string, expected: string) {
   return timingSafeEqual(candidateHash, expectedHash);
 }
 
+export function getAdminSessionSecret(password: string) {
+  return createHmac("sha256", "dc-admin-session")
+    .update(password)
+    .digest("hex");
+}
+
 export function createAdminToken(secret: string) {
   const payload = encode(
     JSON.stringify({
