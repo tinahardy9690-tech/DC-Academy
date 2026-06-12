@@ -1,5 +1,6 @@
 import {
   createAdminToken,
+  getAdminSessionSecret,
   passwordMatches,
 } from "./_shared/auth.mts";
 
@@ -9,8 +10,7 @@ export default async (request: Request) => {
   }
 
   const password = process.env.ADMIN_PASSWORD;
-  const sessionSecret = process.env.ADMIN_SESSION_SECRET;
-  if (!password || !sessionSecret) {
+  if (!password) {
     return Response.json(
       { error: "Administrator access has not been configured yet." },
       { status: 503 },
@@ -32,6 +32,6 @@ export default async (request: Request) => {
   }
 
   return Response.json({
-    token: createAdminToken(sessionSecret),
+    token: createAdminToken(getAdminSessionSecret(password)),
   });
 };
