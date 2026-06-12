@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { KeyRound, LogOut, ShieldCheck } from "lucide-react";
 import academyLogo from "../assets/dispute-champs-academy-logo.png";
 import { starterTemplates } from "../data";
@@ -18,6 +18,8 @@ export function AdminPortal() {
     useState<LetterTemplate[]>(starterTemplates);
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
+  const latestTemplatesRef = useRef(templates);
+  const saveQueueRef = useRef<Promise<void>>(Promise.resolve());
 
   useEffect(() => {
     if (!token) return;
@@ -31,7 +33,10 @@ export function AdminPortal() {
           await templateService.saveTemplates(migrated.templates, token);
           localTemplateMigration.clear();
         }
-        if (active) setTemplates(migrated.templates);
+        if (active) {
+          latestTemplatesRef.current = migrated.templates;
+          setTemplates(migrated.templates);
+        }
       })
       .catch(() => {
         if (active) {
@@ -68,15 +73,46 @@ export function AdminPortal() {
   }
 
   async function updateTemplates(nextTemplates: LetterTemplate[]) {
-    const previous = templates;
+    const previous = latestTemplatesRef.current;
+    latestTemplatesRef.current = nextTemplates;
     setTemplates(nextTemplates);
-    setStatus("Publishing template changes...");
+    setStatus("Template change queued for publishing...");
+
+    const saveOperation = saveQueueRef.current
+      .catch(() => undefined)
+      .then(async () => {
+        setBusy(true);
+        setStatus("Publishing template changes...");
+        await templateService.saveTemplates(nextTemplates, token);
+        const confirmedTemplates = await templateService.getTemplates(token);
+
+        if (latestTemplatesRef.current === nextTemplates) {
+          latestTemplatesRef.current = confirmedTemplates;
+          setTemplates(confirmedTemplates);
+          setStatus(
+            `${confirmedTemplates.length} templates safely stored and published to all students.`,
+          );
+        }
+      });
+
+    saveQueueRef.current = saveOperation;
+
     try {
-      await templateService.saveTemplates(nextTemplates, token);
-      setStatus("Template changes published to all students.");
-    } catch {
-      setTemplates(previous);
-      setStatus("The changes could not be published. Please try again.");
+      await saveOperation;
+    } catch (error) {
+      if (latestTemplatesRef.current === nextTemplates) {
+        latestTemplatesRef.current = previous;
+        setTemplates(previous);
+        setStatus(
+          error instanceof Error
+            ? error.message
+            : "The changes could not be published. Please try again.",
+        );
+      }
+    } finally {
+      if (saveQueueRef.current === saveOperation) {
+        setBusy(false);
+      }
     }
   }
 
