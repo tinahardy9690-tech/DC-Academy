@@ -80,7 +80,6 @@ export default async (request: Request) => {
     } | null;
     if (
       !Array.isArray(body?.templates) ||
-      body.templates.length > 1000 ||
       !body.templates.every(isValidTemplate)
     ) {
       return Response.json(
