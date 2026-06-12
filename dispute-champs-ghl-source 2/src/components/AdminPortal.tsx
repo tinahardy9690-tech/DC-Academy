@@ -37,7 +37,9 @@ export function AdminPortal() {
         if (active) {
           adminService.logout();
           setToken("");
-          setStatus("Your administrator session expired. Please sign in again.");
+          setStatus(
+            "Your previous session ended. Enter your administrator password to sign in.",
+          );
         }
       })
       .finally(() => {
@@ -53,7 +55,7 @@ export function AdminPortal() {
     setBusy(true);
     setStatus("");
     try {
-      const nextToken = await adminService.login(password);
+      const nextToken = await adminService.login(password.trim());
       setToken(nextToken);
       setPassword("");
     } catch (error) {
