@@ -2,6 +2,7 @@ import { getStore } from "@netlify/blobs";
 import { starterTemplates, templateCategories } from "../../src/data.ts";
 import type { LetterTemplate } from "../../src/types.ts";
 import {
+  getAdminSessionSecret,
   getBearerToken,
   verifyAdminToken,
 } from "./_shared/auth.mts";
@@ -44,9 +45,11 @@ function isValidTemplate(value: unknown): value is LetterTemplate {
 export default async (request: Request) => {
   if (request.method === "GET") {
     const templates = await getTemplates();
-    const secret = process.env.ADMIN_SESSION_SECRET ?? "";
+    const password = process.env.ADMIN_PASSWORD ?? "";
     const token = getBearerToken(request);
-    const isAdmin = secret && verifyAdminToken(token, secret);
+    const isAdmin =
+      password &&
+      verifyAdminToken(token, getAdminSessionSecret(password));
     if (token && !isAdmin) {
       return Response.json(
         { error: "Administrator session expired." },
@@ -61,10 +64,13 @@ export default async (request: Request) => {
   }
 
   if (request.method === "PUT") {
-    const secret = process.env.ADMIN_SESSION_SECRET;
+    const password = process.env.ADMIN_PASSWORD;
     if (
-      !secret ||
-      !verifyAdminToken(getBearerToken(request), secret)
+      !password ||
+      !verifyAdminToken(
+        getBearerToken(request),
+        getAdminSessionSecret(password),
+      )
     ) {
       return Response.json({ error: "Unauthorized." }, { status: 401 });
     }
