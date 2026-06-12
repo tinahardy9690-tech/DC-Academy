@@ -80,6 +80,23 @@
   margin-left: 318px;
 }
 
+.topbar {
+  justify-content: flex-end;
+}
+
+.topbar-dashboard {
+  padding: 10px 14px;
+  color: #0b6cd1;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.topbar-dashboard:hover {
+  background: #eef7ff;
+}
+
 .page-heading p {
   font-size: 15px;
 }
