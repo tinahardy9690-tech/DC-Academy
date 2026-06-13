@@ -8,6 +8,7 @@ import type {
   LibraryResource,
   LibraryResourceInput,
 } from "../../src/libraryTypes.ts";
+import { inferLibraryCategory } from "../../src/libraryCategoryRules.ts";
 import {
   getAdminSessionSecret,
   getBearerToken,
@@ -20,6 +21,27 @@ const resourcePrefix = "resources/";
 
 function resourceKey(id: string) {
   return `${resourcePrefix}${id}`;
+}
+
+async function correctImportedCategory(resource: LibraryResource) {
+  if (resource.category !== "Miscellaneous") return resource;
+  const category = inferLibraryCategory(resource.title, resource.fileName);
+  if (!category) return resource;
+
+  const correctedResource: LibraryResource = {
+    ...resource,
+    category,
+    updatedAt: new Date().toISOString(),
+  };
+  try {
+    await resourceStore.setJSON(
+      resourceKey(correctedResource.id),
+      correctedResource,
+    );
+    return correctedResource;
+  } catch {
+    return resource;
+  }
 }
 
 function isAdminRequest(request: Request) {
@@ -52,7 +74,7 @@ async function getAllResources() {
           type: "json",
           consistency: "strong",
         })) as LibraryResource | null;
-        return resource;
+        return resource ? correctImportedCategory(resource) : null;
       }),
     );
     resources.push(
@@ -134,10 +156,14 @@ function isValidInput(value: unknown): value is LibraryResourceInput {
 }
 
 function cleanInput(input: LibraryResourceInput) {
+  const category =
+    input.category === "Miscellaneous"
+      ? inferLibraryCategory(input.title, input.fileName) ?? input.category
+      : input.category;
   return {
     title: input.title.trim(),
     description: input.description.trim(),
-    category: input.category,
+    category,
     resourceType: input.resourceType,
     tags: Array.from(
       new Set(input.tags.map((tag) => tag.trim()).filter(Boolean)),
