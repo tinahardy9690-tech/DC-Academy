@@ -1,65 +1,47 @@
-<!-- ============================================================
-     DISPUTE CHAMPS ACADEMY — Homepage Sections 2–13
-     Drop this inside your GHL page between your header and footer.
-     ============================================================ -->
-
+<!-- DISPUTE CHAMPS ACADEMY — Homepage Sections 2-13 — GHL Safe Version -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Manrope:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-/* ── Root tokens ─────────────────────────────────────────── */
 :root {
-  --blue:       #0b6cd1;
-  --blue-dark:  #075ab2;
-  --green:      #0bae66;
+  --blue: #0b6cd1;
+  --blue-dark: #075ab2;
+  --green: #0bae66;
   --green-dark: #078c52;
-  --aqua:       #ebf8ff;
-  --orange:     #FF6F33;
-  --orange-dk:  #e55a1f;
-  --navy:       #0d1b34;
-  --body:       #1e2d45;
-  --muted:      #5a6a82;
-  --line:       #dde6f0;
-  --white:      #ffffff;
-  --shadow-sm:  0 4px 16px rgba(11,108,209,.10);
-  --shadow-md:  0 12px 40px rgba(11,108,209,.15);
-  --shadow-lg:  0 24px 64px rgba(11,108,209,.18);
-  --radius:     16px;
-  --radius-sm:  10px;
+  --aqua: #ebf8ff;
+  --orange: #FF6F33;
+  --orange-dk: #e55a1f;
+  --navy: #0d1b34;
+  --body: #1e2d45;
+  --muted: #5a6a82;
+  --line: #dde6f0;
+  --white: #ffffff;
+  --shadow-sm: 0 4px 16px rgba(11,108,209,.10);
+  --shadow-md: 0 12px 40px rgba(11,108,209,.15);
+  --shadow-lg: 0 24px 64px rgba(11,108,209,.18);
+  --radius: 16px;
+  --radius-sm: 10px;
   font-family: "DM Sans", Arial, sans-serif;
   color: var(--body);
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── Scroll-reveal base ──────────────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity .7s ease, transform .7s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
-.reveal-left  { opacity:0; transform:translateX(-50px); transition: opacity .7s ease, transform .7s ease; }
-.reveal-right { opacity:0; transform:translateX(50px);  transition: opacity .7s ease, transform .7s ease; }
-.reveal-left.visible, .reveal-right.visible { opacity:1; transform:none; }
+/* Scroll reveal */
+.rv { opacity: 0; transform: translateY(36px); transition: opacity .6s ease, transform .6s ease; }
+.rv.on { opacity: 1; transform: none; }
+.rvl { opacity: 0; transform: translateX(-40px); transition: opacity .6s ease, transform .6s ease; }
+.rvl.on { opacity: 1; transform: none; }
+.rvr { opacity: 0; transform: translateX(40px); transition: opacity .6s ease, transform .6s ease; }
+.rvr.on { opacity: 1; transform: none; }
 
-/* ── Shared section padding ──────────────────────────────── */
-.dca-section {
-  padding: 96px 24px;
-  max-width: 1160px;
-  margin: 0 auto;
-}
-.dca-wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.dca-section { padding: 80px 24px; max-width: 1160px; margin: 0 auto; }
 
-/* ── Typography helpers ──────────────────────────────────── */
+/* Typography */
 .eyebrow {
   display: inline-block;
   font-family: "Manrope", sans-serif;
-  font-size: .75rem;
+  font-size: .72rem;
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -67,30 +49,24 @@
   background: rgba(11,174,102,.10);
   padding: 4px 14px;
   border-radius: 50px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
-.eyebrow--orange { color: var(--orange); background: rgba(255,111,51,.10); }
-.eyebrow--blue   { color: var(--blue);   background: rgba(11,108,209,.10); }
-
-h2.section-title {
+.eyebrow.org { color: var(--orange); background: rgba(255,111,51,.10); }
+.eyebrow.blu { color: var(--blue); background: rgba(11,108,209,.10); }
+h2.st {
   font-family: "Manrope", sans-serif;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.9rem, 3.8vw, 2.9rem);
   font-weight: 800;
   line-height: 1.15;
   color: var(--navy);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
-h2.section-title span { color: var(--blue); }
-.section-sub {
-  font-size: 1.125rem;
-  color: var(--muted);
-  line-height: 1.7;
-  max-width: 580px;
-}
-.center { text-align: center; }
-.center .section-sub { margin: 0 auto; }
+h2.st span { color: var(--blue); }
+.sub { font-size: 1.05rem; color: var(--muted); line-height: 1.7; max-width: 560px; }
+.ctr { text-align: center; }
+.ctr .sub { margin: 0 auto; }
 
-/* ── Buttons ─────────────────────────────────────────────── */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -101,1308 +77,792 @@ h2.section-title span { color: var(--blue); }
   border: none;
   cursor: pointer;
   border-radius: 50px;
-  padding: 16px 34px;
+  padding: 15px 32px;
   text-decoration: none;
   transition: transform .2s, box-shadow .2s, background .2s;
 }
 .btn:hover { transform: translateY(-2px); }
-.btn-primary {
-  background: var(--orange);
-  color: var(--white);
-  box-shadow: 0 8px 24px rgba(255,111,51,.38);
-}
-.btn-primary:hover { background: var(--orange-dk); box-shadow: 0 12px 32px rgba(255,111,51,.45); }
-.btn-ghost {
-  background: transparent;
-  color: var(--blue);
-  border: 2px solid var(--blue);
-}
-.btn-ghost:hover { background: var(--blue); color: var(--white); }
+.btn-p { background: var(--orange); color: #fff; box-shadow: 0 8px 24px rgba(255,111,51,.35); }
+.btn-p:hover { background: var(--orange-dk); }
+.btn-g { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.4); }
+.btn-g:hover { background: rgba(255,255,255,.12); }
 
-/* ════════════════════════════════════════════════════════════
-   § 2 — HERO
-   ════════════════════════════════════════════════════════════ */
+/* SVG icon base */
+.ico { display: inline-flex; align-items: center; justify-content: center; }
+.ico svg { display: block; }
+
+/* ===== HERO ===== */
 #dca-hero {
-  background: linear-gradient(135deg, var(--navy) 0%, #0e2a55 60%, #0b3d7a 100%);
-  padding: 110px 24px 90px;
+  background: linear-gradient(135deg, #0d1b34 0%, #0e2a55 60%, #0b3d7a 100%);
+  padding: 100px 24px 80px;
   position: relative;
   overflow: hidden;
 }
 #dca-hero::before {
   content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 80% 20%, rgba(11,174,102,.18) 0%, transparent 50%),
-    radial-gradient(circle at 10% 80%, rgba(11,108,209,.25) 0%, transparent 45%);
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(11,174,102,.15) 0%, transparent 50%),
+              radial-gradient(circle at 10% 80%, rgba(11,108,209,.22) 0%, transparent 45%);
   pointer-events: none;
 }
-.hero-inner {
-  max-width: 1160px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-  position: relative;
-  z-index: 1;
+.hero-in {
+  max-width: 1160px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center; position: relative; z-index: 1;
 }
-.hero-copy .eyebrow { margin-bottom: 22px; }
 .hero-title {
   font-family: "Manrope", sans-serif;
-  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-  font-weight: 900;
-  line-height: 1.12;
-  color: var(--white);
-  margin-bottom: 24px;
+  font-size: clamp(2.1rem, 4.2vw, 3.3rem);
+  font-weight: 900; line-height: 1.12;
+  color: #fff; margin-bottom: 22px;
 }
-.hero-title .accent { color: var(--green); }
-.hero-title .accent-o { color: var(--orange); }
-.hero-sub {
-  font-size: 1.15rem;
-  color: rgba(255,255,255,.75);
-  line-height: 1.7;
-  margin-bottom: 36px;
-  max-width: 500px;
-}
-.hero-cta-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-.hero-trust {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: rgba(255,255,255,.6);
-  font-size: .9rem;
-}
-.hero-trust .stars { color: #f5c518; letter-spacing: 2px; }
+.hero-title .g { color: var(--green); }
+.hero-title .o { color: var(--orange); }
+.hero-sub { font-size: 1.1rem; color: rgba(255,255,255,.75); line-height: 1.7; margin-bottom: 34px; max-width: 480px; }
+.hero-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.hero-trust { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,.6); font-size: .88rem; }
+.hero-stars { color: #f5c518; letter-spacing: 2px; }
 
-/* Hero visual card */
 .hero-visual {
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.12);
-  border-radius: 24px;
-  padding: 36px;
-  backdrop-filter: blur(12px);
+  border-radius: 22px; padding: 32px;
 }
-.hero-stat-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-.hero-stat {
-  background: rgba(255,255,255,.07);
-  border-radius: var(--radius-sm);
-  padding: 20px;
-  text-align: center;
-}
-.hero-stat-num {
-  font-family: "Manrope", sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1;
-}
-.hero-stat-label {
-  font-size: .8rem;
-  color: rgba(255,255,255,.55);
-  margin-top: 4px;
-}
+.hero-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+.hero-stat { background: rgba(255,255,255,.07); border-radius: var(--radius-sm); padding: 18px; text-align: center; }
+.hero-stat-num { font-family: "Manrope", sans-serif; font-size: 1.9rem; font-weight: 800; color: #fff; line-height: 1; }
+.hero-stat-lbl { font-size: .78rem; color: rgba(255,255,255,.52); margin-top: 4px; }
 .hero-badge {
-  background: linear-gradient(135deg, var(--green) 0%, #08c972 100%);
-  border-radius: var(--radius-sm);
-  padding: 18px 22px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  background: linear-gradient(135deg, var(--green), #08c972);
+  border-radius: var(--radius-sm); padding: 16px 20px;
+  display: flex; align-items: center; gap: 14px;
 }
-.hero-badge-icon { font-size: 2rem; }
-.hero-badge-text { color: var(--white); font-weight: 600; font-size: .95rem; line-height: 1.4; }
-.hero-badge-text strong { display: block; font-size: 1.15rem; }
+.hero-badge-icon {
+  width: 42px; height: 42px; background: rgba(255,255,255,.18);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.hero-badge-icon svg { width: 22px; height: 22px; fill: #fff; }
+.hero-badge-text { color: #fff; font-weight: 600; font-size: .92rem; line-height: 1.4; }
+.hero-badge-text strong { display: block; font-size: 1.1rem; }
 
-/* ════════════════════════════════════════════════════════════
-   § 3 — PROBLEM / AGITATION
-   ════════════════════════════════════════════════════════════ */
-#dca-problem {
-  background: var(--white);
-  padding: 96px 0;
-}
-.problem-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  margin-top: 56px;
-}
+/* ===== PROBLEM ===== */
+#dca-problem { background: #fff; padding: 80px 0; }
+.problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
 .pain-card {
   background: #fff7f4;
   border: 1.5px solid rgba(255,111,51,.18);
-  border-radius: var(--radius);
-  padding: 36px 30px;
-  position: relative;
-  overflow: hidden;
+  border-radius: var(--radius); padding: 32px 26px;
+  position: relative; overflow: hidden;
   transition: transform .3s, box-shadow .3s;
 }
-.pain-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.pain-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
 .pain-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
   background: linear-gradient(90deg, var(--orange), #ffad87);
 }
-.pain-icon { font-size: 2.4rem; margin-bottom: 18px; display: block; }
-.pain-card h3 {
-  font-family: "Manrope", sans-serif;
-  font-weight: 700;
-  font-size: 1.15rem;
-  color: var(--navy);
-  margin-bottom: 10px;
+.pain-icon-wrap {
+  width: 52px; height: 52px; border-radius: 12px;
+  background: rgba(255,111,51,.12);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
 }
-.pain-card p { color: var(--muted); line-height: 1.65; font-size: .95rem; }
+.pain-icon-wrap svg { width: 26px; height: 26px; stroke: var(--orange); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.pain-card h3 { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
+.pain-card p { color: var(--muted); line-height: 1.65; font-size: .93rem; }
 
-/* ════════════════════════════════════════════════════════════
-   § 4 — SOCIAL PROOF QUICK HIT
-   ════════════════════════════════════════════════════════════ */
-#dca-proof-bar {
-  background: linear-gradient(135deg, var(--blue) 0%, #0854ad 100%);
-  padding: 56px 24px;
-}
+/* ===== PROOF BAR ===== */
+#dca-proof-bar { background: linear-gradient(135deg, var(--blue), #0854ad); padding: 52px 24px; }
 .proof-bar-inner {
-  max-width: 1160px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  text-align: center;
+  max-width: 1160px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 36px; text-align: center;
 }
-.proof-stat { color: var(--white); }
-.proof-stat-num {
-  font-family: "Manrope", sans-serif;
-  font-size: 2.6rem;
-  font-weight: 900;
-  line-height: 1;
-  color: var(--white);
-}
+.proof-stat-num { font-family: "Manrope", sans-serif; font-size: 2.5rem; font-weight: 900; color: #fff; line-height: 1; }
 .proof-stat-num span { color: var(--green); }
-.proof-stat-label { font-size: .9rem; color: rgba(255,255,255,.7); margin-top: 6px; }
-
-/* Testimonial strip */
-.testimonial-strip {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  max-width: 1160px;
-  margin: 48px auto 0;
-  padding: 0 24px;
+.proof-stat-lbl { font-size: .88rem; color: rgba(255,255,255,.68); margin-top: 5px; }
+.testi-strip {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 20px; max-width: 1160px; margin: 40px auto 0; padding: 0 24px;
 }
 .mini-testi {
-  background: rgba(255,255,255,.10);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: var(--radius);
-  padding: 28px;
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.16);
+  border-radius: var(--radius); padding: 24px;
+  display: flex; gap: 14px; align-items: flex-start;
 }
-.testi-avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.t-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
   background: linear-gradient(135deg, var(--green), #08c972);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Manrope", sans-serif;
-  font-weight: 800;
-  font-size: 1.2rem;
-  color: var(--white);
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff;
 }
-.testi-body { flex: 1; }
-.testi-stars { color: #f5c518; margin-bottom: 6px; font-size: .9rem; }
-.testi-quote { color: rgba(255,255,255,.85); font-size: .95rem; line-height: 1.6; margin-bottom: 10px; }
-.testi-name { color: rgba(255,255,255,.55); font-size: .82rem; font-weight: 600; }
+.t-stars { color: #f5c518; margin-bottom: 5px; font-size: .88rem; }
+.t-quote { color: rgba(255,255,255,.82); font-size: .92rem; line-height: 1.6; margin-bottom: 8px; }
+.t-name { color: rgba(255,255,255,.5); font-size: .8rem; font-weight: 600; }
 
-/* ════════════════════════════════════════════════════════════
-   § 5 — SOLUTION
-   ════════════════════════════════════════════════════════════ */
-#dca-solution {
-  background: var(--aqua);
-  padding: 96px 0;
-}
-.solution-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-.solution-points { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+/* ===== SOLUTION ===== */
+#dca-solution { background: var(--aqua); padding: 80px 0; }
+.sol-in { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.sol-points { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
 .sol-point {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  background: var(--white);
-  border-radius: var(--radius-sm);
-  padding: 20px;
-  box-shadow: var(--shadow-sm);
-  transition: transform .25s;
+  display: flex; gap: 14px; align-items: flex-start;
+  background: #fff; border-radius: var(--radius-sm); padding: 18px;
+  box-shadow: var(--shadow-sm); transition: transform .25s;
 }
-.sol-point:hover { transform: translateX(6px); }
+.sol-point:hover { transform: translateX(5px); }
 .sol-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
+  width: 42px; height: 42px; border-radius: 10px;
   background: linear-gradient(135deg, var(--blue), #2e8de8);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
 }
-.sol-text h4 {
-  font-family: "Manrope", sans-serif;
-  font-weight: 700;
-  color: var(--navy);
-  font-size: 1rem;
-  margin-bottom: 4px;
-}
-.sol-text p { font-size: .9rem; color: var(--muted); line-height: 1.55; }
+.sol-icon svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sol-text h4 { font-family: "Manrope", sans-serif; font-weight: 700; color: var(--navy); font-size: .97rem; margin-bottom: 3px; }
+.sol-text p { font-size: .88rem; color: var(--muted); line-height: 1.55; }
 
-/* Right visual */
-.solution-visual {
-  background: var(--white);
-  border-radius: 24px;
-  padding: 40px;
-  box-shadow: var(--shadow-lg);
-  position: relative;
+.sol-visual {
+  background: #fff; border-radius: 22px; padding: 36px;
+  box-shadow: var(--shadow-lg); position: relative;
 }
-.solution-visual::after {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: 26px;
-  background: linear-gradient(135deg, var(--blue), var(--green));
-  z-index: -1;
+.sol-visual::after {
+  content: ""; position: absolute; inset: -3px; border-radius: 24px;
+  background: linear-gradient(135deg, var(--blue), var(--green)); z-index: -1;
 }
-.visual-label {
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 20px;
-}
-.score-bar-wrap { margin-bottom: 16px; }
-.score-bar-label { display: flex; justify-content: space-between; font-size: .88rem; color: var(--body); margin-bottom: 6px; }
-.score-bar-track {
-  height: 10px;
-  background: var(--line);
-  border-radius: 50px;
-  overflow: hidden;
-}
-.score-bar-fill {
-  height: 100%;
-  border-radius: 50px;
-  background: linear-gradient(90deg, var(--blue), var(--green));
-  width: 0;
-  transition: width 1.4s cubic-bezier(.4,0,.2,1) .3s;
-}
+.vis-lbl { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+.sbar-wrap { margin-bottom: 14px; }
+.sbar-lbl { display: flex; justify-content: space-between; font-size: .85rem; color: var(--body); margin-bottom: 5px; }
+.sbar-track { height: 9px; background: var(--line); border-radius: 50px; overflow: hidden; }
+.sbar-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, var(--blue), var(--green)); width: 0; transition: width 1.3s cubic-bezier(.4,0,.2,1); }
 .score-result {
-  margin-top: 28px;
-  background: linear-gradient(135deg, var(--green), #08c972);
-  border-radius: var(--radius-sm);
-  padding: 20px;
-  text-align: center;
-  color: var(--white);
+  margin-top: 24px; background: linear-gradient(135deg, var(--green), #08c972);
+  border-radius: var(--radius-sm); padding: 18px; text-align: center; color: #fff;
 }
-.score-result-num {
-  font-family: "Manrope", sans-serif;
-  font-size: 2.4rem;
-  font-weight: 900;
-}
-.score-result-text { font-size: .9rem; opacity: .85; }
+.score-num { font-family: "Manrope", sans-serif; font-size: 2.2rem; font-weight: 900; }
+.score-lbl { font-size: .88rem; opacity: .85; }
 
-/* ════════════════════════════════════════════════════════════
-   § 6 — CURRICULUM
-   ════════════════════════════════════════════════════════════ */
-#dca-curriculum { background: var(--white); padding: 96px 0; }
-.curriculum-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 56px;
-}
-.module-card {
-  border: 1.5px solid var(--line);
-  border-radius: var(--radius);
-  padding: 32px 26px;
+/* ===== CURRICULUM ===== */
+#dca-curriculum { background: #fff; padding: 80px 0; }
+.curr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 48px; }
+.mod-card {
+  border: 1.5px solid var(--line); border-radius: var(--radius); padding: 28px 24px;
   transition: border-color .25s, box-shadow .25s, transform .25s;
-  cursor: default;
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
-.module-card:hover {
-  border-color: var(--blue);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
-}
-.module-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
+.mod-card:hover { border-color: var(--blue); box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.mod-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
   background: linear-gradient(90deg, var(--blue), var(--green));
-  transform: scaleX(0);
-  transition: transform .3s ease;
+  transform: scaleX(0); transition: transform .3s;
 }
-.module-card:hover::before { transform: scaleX(1); }
-.module-num {
-  font-family: "Manrope", sans-serif;
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 14px;
-}
-.module-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
-.module-card h3 {
-  font-family: "Manrope", sans-serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--navy);
-  margin-bottom: 10px;
-}
-.module-card p { font-size: .9rem; color: var(--muted); line-height: 1.65; }
-.module-outcome {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: .8rem;
-  font-weight: 600;
-  color: var(--green);
-  background: rgba(11,174,102,.08);
-  padding: 4px 12px;
-  border-radius: 50px;
-  margin-top: 14px;
+.mod-card:hover::before { transform: scaleX(1); }
+.mod-num { font-family: "Manrope", sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+.mod-icon { width: 44px; height: 44px; border-radius: 11px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; }
+.mod-icon svg { width: 22px; height: 22px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.mi-blue { background: rgba(11,108,209,.10); } .mi-blue svg { stroke: var(--blue); }
+.mi-green { background: rgba(11,174,102,.10); } .mi-green svg { stroke: var(--green); }
+.mi-orange { background: rgba(255,111,51,.10); } .mi-orange svg { stroke: var(--orange); }
+.mod-card h3 { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--navy); margin-bottom: 8px; }
+.mod-card p { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+.mod-outcome {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: .78rem; font-weight: 600; color: var(--green);
+  background: rgba(11,174,102,.08); padding: 4px 11px; border-radius: 50px; margin-top: 12px;
 }
 
-/* ════════════════════════════════════════════════════════════
-   § 7 — WHO IS THIS FOR
-   ════════════════════════════════════════════════════════════ */
-#dca-who { background: var(--aqua); padding: 96px 0; }
-.who-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-top: 56px;
-}
+/* ===== WHO ===== */
+#dca-who { background: var(--aqua); padding: 80px 0; }
+.who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 48px; }
 .who-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 44px 38px;
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  overflow: hidden;
+  background: #fff; border-radius: var(--radius); padding: 40px 34px;
+  box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
   transition: transform .3s, box-shadow .3s;
 }
-.who-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-.who-card .accent-stripe {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 5px;
+.who-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.who-stripe { position: absolute; top: 0; left: 0; right: 0; height: 5px; }
+.who-card:nth-child(1) .who-stripe { background: linear-gradient(90deg, var(--blue), #2e8de8); }
+.who-card:nth-child(2) .who-stripe { background: linear-gradient(90deg, var(--green), #08c972); }
+.who-icon-wrap { width: 56px; height: 56px; border-radius: 14px; margin-bottom: 18px; display: flex; align-items: center; justify-content: center; }
+.who-icon-wrap svg { width: 28px; height: 28px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.who-card:nth-child(1) .who-icon-wrap { background: rgba(11,108,209,.10); } .who-card:nth-child(1) .who-icon-wrap svg { stroke: var(--blue); }
+.who-card:nth-child(2) .who-icon-wrap { background: rgba(11,174,102,.10); } .who-card:nth-child(2) .who-icon-wrap svg { stroke: var(--green); }
+.who-card h3 { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1.35rem; color: var(--navy); margin-bottom: 14px; }
+.who-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.who-list li { display: flex; gap: 11px; align-items: flex-start; font-size: .93rem; color: var(--body); line-height: 1.55; }
+.chk {
+  flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--green); display: flex; align-items: center; justify-content: center; margin-top: 1px;
 }
-.who-card:nth-child(1) .accent-stripe { background: linear-gradient(90deg, var(--blue), #2e8de8); }
-.who-card:nth-child(2) .accent-stripe { background: linear-gradient(90deg, var(--green), #08c972); }
-.who-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
-.who-card h3 {
-  font-family: "Manrope", sans-serif;
-  font-weight: 800;
-  font-size: 1.4rem;
-  color: var(--navy);
-  margin-bottom: 16px;
-}
-.who-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-.who-list li {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  font-size: .95rem;
-  color: var(--body);
-  line-height: 1.55;
-}
-.who-list li::before {
-  content: "✓";
-  flex-shrink: 0;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--green);
-  color: var(--white);
-  font-size: .72rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1px;
-}
+.chk svg { width: 11px; height: 11px; stroke: #fff; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 
-/* ════════════════════════════════════════════════════════════
-   § 8 — INSTRUCTOR
-   ════════════════════════════════════════════════════════════ */
-#dca-instructor { background: var(--white); padding: 96px 0; }
-.instructor-inner {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 72px;
-  align-items: center;
+/* ===== INSTRUCTOR ===== */
+#dca-instructor { background: #fff; padding: 80px 0; }
+.inst-in { display: grid; grid-template-columns: 360px 1fr; gap: 64px; align-items: center; }
+.inst-img {
+  position: relative; border-radius: 22px; overflow: hidden; box-shadow: var(--shadow-lg);
 }
-.instructor-img-wrap {
-  position: relative;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-.instructor-img-wrap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(11,28,60,.7) 100%);
-}
-.instructor-placeholder {
-  width: 100%;
-  aspect-ratio: 4/5;
+.inst-placeholder {
+  width: 100%; aspect-ratio: 4/5;
   background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
 }
-.instructor-placeholder span:first-child { font-size: 5rem; }
-.instructor-placeholder span:last-child {
-  font-family: "Manrope", sans-serif;
-  font-weight: 700;
-  color: rgba(255,255,255,.6);
-  font-size: .85rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+.inst-avatar-svg { width: 90px; height: 90px; opacity: .5; }
+.inst-placeholder-lbl { font-family: "Manrope", sans-serif; font-weight: 700; color: rgba(255,255,255,.55); font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; }
+.inst-badge {
+  position: absolute; bottom: 22px; left: 22px; right: 22px; z-index: 2;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+  border-radius: var(--radius-sm); padding: 13px 16px;
 }
-.instructor-img-badge {
-  position: absolute;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
-  z-index: 2;
-  background: rgba(255,255,255,.12);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: var(--radius-sm);
-  padding: 14px 18px;
+.inst-name { font-family: "Manrope", sans-serif; font-weight: 800; color: #fff; font-size: 1.05rem; }
+.inst-title { color: rgba(255,255,255,.65); font-size: .8rem; margin-top: 2px; }
+.creds { display: flex; gap: 10px; flex-wrap: wrap; margin: 24px 0; }
+.cred {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 13px; border-radius: 50px; font-size: .78rem; font-weight: 600;
 }
-.instructor-img-badge .name {
-  font-family: "Manrope", sans-serif;
-  font-weight: 800;
-  color: var(--white);
-  font-size: 1.1rem;
-}
-.instructor-img-badge .title {
-  color: rgba(255,255,255,.7);
-  font-size: .83rem;
-  margin-top: 2px;
-}
-.instructor-credentials {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin: 28px 0;
-}
-.cred-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 7px 14px;
-  border-radius: 50px;
-  font-size: .8rem;
-  font-weight: 600;
-}
-.cred-badge--blue   { background: rgba(11,108,209,.10); color: var(--blue); }
-.cred-badge--green  { background: rgba(11,174,102,.10); color: var(--green-dark); }
-.cred-badge--orange { background: rgba(255,111,51,.10); color: var(--orange-dk); }
-.instructor-bio { color: var(--body); line-height: 1.75; font-size: 1rem; margin-bottom: 16px; }
+.cred svg { width: 13px; height: 13px; flex-shrink: 0; }
+.cred-b { background: rgba(11,108,209,.10); color: var(--blue); } .cred-b svg { stroke: var(--blue); fill: none; stroke-width: 2.5; }
+.cred-g { background: rgba(11,174,102,.10); color: var(--green-dark); } .cred-g svg { stroke: var(--green-dark); fill: none; stroke-width: 2.5; }
+.cred-o { background: rgba(255,111,51,.10); color: var(--orange-dk); } .cred-o svg { stroke: var(--orange-dk); fill: none; stroke-width: 2.5; }
+.inst-bio { color: var(--body); line-height: 1.75; font-size: .97rem; margin-bottom: 14px; }
 
-/* ════════════════════════════════════════════════════════════
-   § 9 — FULL TESTIMONIALS
-   ════════════════════════════════════════════════════════════ */
-#dca-testimonials {
-  background: linear-gradient(160deg, #0d1b34 0%, #0e2e58 100%);
-  padding: 96px 0;
-}
-#dca-testimonials .section-title { color: var(--white); }
-#dca-testimonials .section-sub   { color: rgba(255,255,255,.6); }
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 56px;
-}
+/* ===== TESTIMONIALS ===== */
+#dca-testimonials { background: linear-gradient(160deg, #0d1b34 0%, #0e2e58 100%); padding: 80px 0; }
+#dca-testimonials .st { color: #fff; }
+#dca-testimonials .sub { color: rgba(255,255,255,.58); }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 48px; }
 .testi-card {
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: var(--radius);
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius); padding: 28px;
+  display: flex; flex-direction: column; gap: 16px;
   transition: transform .3s, background .3s;
 }
-.testi-card:hover { transform: translateY(-6px); background: rgba(255,255,255,.10); }
-.testi-header { display: flex; justify-content: space-between; align-items: flex-start; }
-.testi-rating { color: #f5c518; font-size: 1rem; }
-.testi-card .quote-mark { font-size: 3rem; color: rgba(255,255,255,.12); line-height: .8; }
-.testi-card .quote { color: rgba(255,255,255,.82); line-height: 1.7; font-size: .97rem; flex: 1; }
-.testi-footer { display: flex; align-items: center; gap: 14px; }
-.testi-card .avatar {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Manrope", sans-serif;
-  font-weight: 800;
-  font-size: 1.1rem;
-  color: var(--white);
-  flex-shrink: 0;
-}
-.av-blue   { background: linear-gradient(135deg, var(--blue), #2e8de8); }
-.av-green  { background: linear-gradient(135deg, var(--green), #08c972); }
-.av-orange { background: linear-gradient(135deg, var(--orange), #ffad87); }
-.testi-card .person-name { font-weight: 700; color: var(--white); font-size: .95rem; }
-.testi-card .person-type { font-size: .8rem; color: rgba(255,255,255,.5); }
+.testi-card:hover { transform: translateY(-5px); background: rgba(255,255,255,.10); }
+.testi-hdr { display: flex; justify-content: space-between; align-items: flex-start; }
+.testi-rating { color: #f5c518; font-size: .97rem; }
+.quote-icon { opacity: .14; }
+.quote-icon svg { width: 36px; height: 36px; fill: #fff; }
+.testi-quote { color: rgba(255,255,255,.80); line-height: 1.7; font-size: .94rem; flex: 1; }
+.testi-ftr { display: flex; align-items: center; gap: 12px; }
+.t-av { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1rem; color: #fff; flex-shrink: 0; }
+.av-b { background: linear-gradient(135deg, var(--blue), #2e8de8); }
+.av-g { background: linear-gradient(135deg, var(--green), #08c972); }
+.av-o { background: linear-gradient(135deg, var(--orange), #ffad87); }
+.person-name { font-weight: 700; color: #fff; font-size: .92rem; }
+.person-type { font-size: .78rem; color: rgba(255,255,255,.48); }
 
-/* ════════════════════════════════════════════════════════════
-   § 10 — WHAT'S INSIDE (Tools & Features)
-   ════════════════════════════════════════════════════════════ */
-#dca-tools { background: var(--white); padding: 96px 0; }
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-  margin-top: 56px;
-}
+/* ===== TOOLS ===== */
+#dca-tools { background: #fff; padding: 80px 0; }
+.tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
 .tool-card {
-  display: flex;
-  gap: 22px;
-  align-items: flex-start;
-  border: 1.5px solid var(--line);
-  border-radius: var(--radius);
-  padding: 30px;
+  display: flex; gap: 20px; align-items: flex-start;
+  border: 1.5px solid var(--line); border-radius: var(--radius); padding: 26px;
   transition: border-color .25s, box-shadow .25s, transform .25s;
 }
 .tool-card:hover { border-color: var(--green); box-shadow: 0 8px 28px rgba(11,174,102,.12); transform: translateY(-3px); }
-.tool-icon-wrap {
-  width: 54px;
-  height: 54px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  flex-shrink: 0;
-}
-.ti-blue   { background: rgba(11,108,209,.10); }
-.ti-green  { background: rgba(11,174,102,.10); }
-.ti-orange { background: rgba(255,111,51,.10); }
-.ti-navy   { background: rgba(13,27,52,.08); }
-.tool-text h4 {
-  font-family: "Manrope", sans-serif;
-  font-weight: 700;
-  color: var(--navy);
-  font-size: 1.05rem;
-  margin-bottom: 7px;
-}
-.tool-text p { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+.tool-icon { width: 50px; height: 50px; border-radius: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tool-icon svg { width: 24px; height: 24px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ti-b { background: rgba(11,108,209,.10); } .ti-b svg { stroke: var(--blue); }
+.ti-g { background: rgba(11,174,102,.10); } .ti-g svg { stroke: var(--green); }
+.ti-o { background: rgba(255,111,51,.10); } .ti-o svg { stroke: var(--orange); }
+.ti-n { background: rgba(13,27,52,.08); } .ti-n svg { stroke: var(--navy); }
+.tool-text h4 { font-family: "Manrope", sans-serif; font-weight: 700; color: var(--navy); font-size: 1rem; margin-bottom: 6px; }
+.tool-text p { font-size: .88rem; color: var(--muted); line-height: 1.6; }
 
-/* ════════════════════════════════════════════════════════════
-   § 11 — PRICING
-   ════════════════════════════════════════════════════════════ */
-#dca-pricing {
-  background: var(--aqua);
-  padding: 96px 0;
-}
-.pricing-inner {
-  display: flex;
-  justify-content: center;
-  margin-top: 56px;
-}
+/* ===== PRICING ===== */
+#dca-pricing { background: var(--aqua); padding: 80px 0; }
+.price-wrap { display: flex; justify-content: center; margin-top: 48px; }
 .price-card {
-  background: var(--white);
-  border-radius: 28px;
-  padding: 56px 52px;
-  box-shadow: var(--shadow-lg);
-  max-width: 540px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
+  background: #fff; border-radius: 26px; padding: 52px 48px;
+  box-shadow: var(--shadow-lg); max-width: 520px; width: 100%;
+  position: relative; overflow: hidden; text-align: center;
 }
 .price-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 6px;
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
   background: linear-gradient(90deg, var(--blue), var(--green));
 }
-.price-popular {
-  display: inline-block;
-  background: var(--orange);
-  color: var(--white);
-  font-family: "Manrope", sans-serif;
-  font-weight: 700;
-  font-size: .78rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  padding: 6px 18px;
-  border-radius: 50px;
-  margin-bottom: 28px;
+.price-pop {
+  display: inline-block; background: var(--orange); color: #fff;
+  font-family: "Manrope", sans-serif; font-weight: 700; font-size: .76rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 5px 16px; border-radius: 50px; margin-bottom: 24px;
 }
-.price-name {
-  font-family: "Manrope", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--navy);
-  margin-bottom: 10px;
-}
-.price-amount {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 4px;
-  margin-bottom: 6px;
-}
-.price-dollar { font-family: "Manrope", sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--navy); padding-top: 10px; }
-.price-num    { font-family: "Manrope", sans-serif; font-size: 4.5rem; font-weight: 900; color: var(--navy); line-height: 1; }
-.price-per    { font-size: .95rem; color: var(--muted); align-self: flex-end; padding-bottom: 12px; }
-.price-desc   { color: var(--muted); font-size: .95rem; margin-bottom: 36px; }
-.price-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 14px; margin-bottom: 38px; }
-.price-features li {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  font-size: .97rem;
-  color: var(--body);
-}
-.price-features li::before {
-  content: "✓";
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--green);
-  color: var(--white);
-  font-size: .72rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.price-cta { width: 100%; justify-content: center; font-size: 1.1rem; padding: 18px; }
-.price-guarantee {
-  margin-top: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: .85rem;
-  color: var(--muted);
-}
-.price-guarantee .shield { font-size: 1.1rem; }
+.price-name { font-family: "Manrope", sans-serif; font-size: 1.45rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+.price-amt { display: flex; align-items: flex-start; justify-content: center; gap: 3px; margin-bottom: 5px; }
+.price-dollar { font-family: "Manrope", sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--navy); padding-top: 9px; }
+.price-num { font-family: "Manrope", sans-serif; font-size: 4.2rem; font-weight: 900; color: var(--navy); line-height: 1; }
+.price-per { font-size: .92rem; color: var(--muted); align-self: flex-end; padding-bottom: 11px; }
+.price-desc { color: var(--muted); font-size: .92rem; margin-bottom: 32px; }
+.price-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 13px; margin-bottom: 34px; }
+.price-features li { display: flex; gap: 11px; align-items: center; font-size: .95rem; color: var(--body); }
+.price-chk { width: 22px; height: 22px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.price-chk svg { width: 11px; height: 11px; stroke: #fff; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.price-cta { width: 100%; justify-content: center; font-size: 1.08rem; padding: 17px; margin-top: 4px; }
+.price-guar { margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: .83rem; color: var(--muted); }
+.price-guar svg { width: 18px; height: 18px; stroke: var(--green); fill: none; stroke-width: 2; flex-shrink: 0; }
 
-/* ════════════════════════════════════════════════════════════
-   § 12 — FAQ
-   ════════════════════════════════════════════════════════════ */
-#dca-faq { background: var(--white); padding: 96px 0; }
-.faq-list { max-width: 780px; margin: 56px auto 0; display: flex; flex-direction: column; gap: 14px; }
-.faq-item {
-  border: 1.5px solid var(--line);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  transition: border-color .2s;
-}
+/* ===== FAQ ===== */
+#dca-faq { background: #fff; padding: 80px 0; }
+.faq-list { max-width: 760px; margin: 48px auto 0; display: flex; flex-direction: column; gap: 12px; }
+.faq-item { border: 1.5px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; transition: border-color .2s; }
 .faq-item.open { border-color: var(--blue); }
-.faq-question {
-  width: 100%;
-  background: var(--white);
-  border: none;
-  padding: 22px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  cursor: pointer;
-  text-align: left;
-  font-family: "Manrope", sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--navy);
+.faq-q {
+  width: 100%; background: #fff; border: none;
+  padding: 20px 22px; display: flex; justify-content: space-between; align-items: center; gap: 14px;
+  cursor: pointer; text-align: left;
+  font-family: "Manrope", sans-serif; font-weight: 700; font-size: .97rem; color: var(--navy);
   transition: background .2s;
 }
-.faq-question:hover { background: rgba(11,108,209,.04); }
-.faq-item.open .faq-question { background: rgba(11,108,209,.04); color: var(--blue); }
-.faq-chevron {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--aqua);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.faq-q:hover { background: rgba(11,108,209,.04); }
+.faq-item.open .faq-q { background: rgba(11,108,209,.04); color: var(--blue); }
+.faq-chv {
+  width: 26px; height: 26px; border-radius: 50%; background: var(--aqua);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   transition: transform .3s, background .2s;
-  font-size: .75rem;
 }
-.faq-item.open .faq-chevron { transform: rotate(180deg); background: var(--blue); color: var(--white); }
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .4s ease, padding .3s;
-}
-.faq-answer-inner {
-  padding: 0 24px 22px;
-  color: var(--muted);
-  line-height: 1.7;
-  font-size: .97rem;
-}
+.faq-chv svg { width: 13px; height: 13px; stroke: var(--blue); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.faq-item.open .faq-chv { transform: rotate(180deg); background: var(--blue); }
+.faq-item.open .faq-chv svg { stroke: #fff; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+.faq-a-inner { padding: 0 22px 20px; color: var(--muted); line-height: 1.7; font-size: .95rem; }
 
-/* ════════════════════════════════════════════════════════════
-   § 13 — FINAL CTA
-   ════════════════════════════════════════════════════════════ */
-#dca-final-cta {
-  background: linear-gradient(135deg, var(--navy) 0%, #0d2d5e 50%, #0b3d7a 100%);
-  padding: 110px 24px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+/* ===== FINAL CTA ===== */
+#dca-final {
+  background: linear-gradient(135deg, #0d1b34 0%, #0d2d5e 50%, #0b3d7a 100%);
+  padding: 100px 24px; text-align: center; position: relative; overflow: hidden;
 }
-#dca-final-cta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(11,174,102,.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(11,108,209,.20) 0%, transparent 50%);
+#dca-final::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(11,174,102,.14) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(11,108,209,.18) 0%, transparent 50%);
   pointer-events: none;
 }
-.final-cta-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
-.final-cta-inner h2 {
-  font-family: "Manrope", sans-serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 900;
-  color: var(--white);
-  line-height: 1.18;
-  margin-bottom: 20px;
-}
-.final-cta-inner h2 span { color: var(--green); }
-.final-cta-inner p { font-size: 1.1rem; color: rgba(255,255,255,.7); margin-bottom: 40px; line-height: 1.65; }
-.final-cta-row { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; }
-.btn-lg { padding: 20px 44px; font-size: 1.15rem; }
-.trust-pills { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+.final-in { position: relative; z-index: 1; max-width: 660px; margin: 0 auto; }
+.final-in h2 { font-family: "Manrope", sans-serif; font-size: clamp(1.9rem, 3.8vw, 2.9rem); font-weight: 900; color: #fff; line-height: 1.18; margin-bottom: 18px; }
+.final-in h2 span { color: var(--green); }
+.final-in p { font-size: 1.05rem; color: rgba(255,255,255,.68); margin-bottom: 36px; line-height: 1.65; }
+.final-row { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.trust-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
 .trust-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: .83rem;
-  color: rgba(255,255,255,.6);
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.12);
-  padding: 7px 16px;
-  border-radius: 50px;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .8rem; color: rgba(255,255,255,.58);
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+  padding: 6px 14px; border-radius: 50px;
 }
+.trust-pill svg { width: 13px; height: 13px; flex-shrink: 0; stroke: rgba(255,255,255,.58); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-/* ── Responsive ──────────────────────────────────────────── */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
-  .hero-inner         { grid-template-columns: 1fr; gap: 40px; }
-  .hero-visual        { display: none; }
-  .problem-grid       { grid-template-columns: 1fr; }
-  .proof-bar-inner    { grid-template-columns: repeat(2,1fr); }
-  .testimonial-strip  { grid-template-columns: 1fr; }
-  .solution-inner     { grid-template-columns: 1fr; gap: 40px; }
-  .curriculum-grid    { grid-template-columns: 1fr; }
-  .who-grid           { grid-template-columns: 1fr; }
-  .instructor-inner   { grid-template-columns: 1fr; }
-  .instructor-img-wrap{ max-width: 340px; }
-  .testimonials-grid  { grid-template-columns: 1fr; }
-  .tools-grid         { grid-template-columns: 1fr; }
-  .price-card         { padding: 40px 28px; }
+  .hero-in { grid-template-columns: 1fr; gap: 36px; }
+  .hero-visual { display: none; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .proof-bar-inner { grid-template-columns: repeat(2,1fr); }
+  .testi-strip { grid-template-columns: 1fr; }
+  .sol-in { grid-template-columns: 1fr; gap: 36px; }
+  .curr-grid { grid-template-columns: 1fr; }
+  .who-grid { grid-template-columns: 1fr; }
+  .inst-in { grid-template-columns: 1fr; }
+  .inst-img { max-width: 320px; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .price-card { padding: 36px 24px; }
 }
 @media (max-width: 540px) {
   .proof-bar-inner { grid-template-columns: repeat(2,1fr); }
-  .hero-cta-row    { flex-direction: column; align-items: flex-start; }
+  .hero-cta-row { flex-direction: column; align-items: flex-start; }
+  .final-row { flex-direction: column; }
 }
 </style>
 
-<!-- ══════════════════════════════════════════════════════════
-     § 2 — HERO
-     ══════════════════════════════════════════════════════════ -->
+<!-- ============================================================
+     SECTION 2 — HERO
+     ============================================================ -->
 <section id="dca-hero">
-  <div class="hero-inner">
-    <div class="hero-copy reveal">
+  <div class="hero-in">
+    <div class="rv" style="transition-delay:0s">
       <span class="eyebrow">Credit Repair Education</span>
       <h1 class="hero-title">
         Dispute Credit Errors<br>
-        <span class="accent">Like a Champion.</span><br>
-        <span class="accent-o">Win Every Time.</span>
+        <span class="g">Like a Champion.</span><br>
+        <span class="o">Win Every Time.</span>
       </h1>
-      <p class="hero-sub">
-        Dispute Champs Academy teaches individuals and credit repair business owners the exact strategies to identify, challenge, and remove credit errors — fast.
-      </p>
+      <p class="hero-sub">Dispute Champs Academy teaches individuals and credit repair business owners the exact strategies to identify, challenge, and remove credit errors &#8212; fast.</p>
       <div class="hero-cta-row">
-        <a href="#dca-pricing" class="btn btn-primary">Start for $39.99/mo →</a>
+        <a href="#dca-pricing" class="btn btn-p">Start for $39.99/mo &#8250;</a>
         <div class="hero-trust">
-          <span class="stars">★★★★★</span>
+          <span class="hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <span>Trusted by 2,000+ students</span>
         </div>
       </div>
     </div>
-    <div class="hero-visual reveal" style="transition-delay:.2s">
+    <div class="hero-visual rv" style="transition-delay:.2s">
       <div class="hero-stat-grid">
-        <div class="hero-stat">
-          <div class="hero-stat-num">97%</div>
-          <div class="hero-stat-label">Success Rate</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">2K+</div>
-          <div class="hero-stat-label">Students Enrolled</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">150+</div>
-          <div class="hero-stat-label">Letter Templates</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">30</div>
-          <div class="hero-stat-label">Day Guarantee</div>
-        </div>
+        <div class="hero-stat"><div class="hero-stat-num">97%</div><div class="hero-stat-lbl">Success Rate</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">2K+</div><div class="hero-stat-lbl">Students Enrolled</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">150+</div><div class="hero-stat-lbl">Letter Templates</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">30</div><div class="hero-stat-lbl">Day Guarantee</div></div>
       </div>
       <div class="hero-badge">
-        <div class="hero-badge-icon">🏆</div>
-        <div class="hero-badge-text">
-          <strong>Score Improvements</strong>
-          Students report average gains of 80–150 points
+        <div class="hero-badge-icon">
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
+        <div class="hero-badge-text"><strong>Score Improvements</strong>Students report average gains of 80&#8211;150 points</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     § 3 — PROBLEM / AGITATION
-     ══════════════════════════════════════════════════════════ -->
+<!-- ============================================================
+     SECTION 3 — PROBLEM
+     ============================================================ -->
 <section id="dca-problem">
   <div class="dca-section">
-    <div class="center reveal">
-      <span class="eyebrow eyebrow--orange">Sound Familiar?</span>
-      <h2 class="section-title">The Credit Repair Struggle<br>Is <span>Real</span></h2>
-      <p class="section-sub">Millions of Americans have errors on their credit reports. Most don't know how to fight back — and pay the price every single day.</p>
+    <div class="ctr rv">
+      <span class="eyebrow org">Sound Familiar?</span>
+      <h2 class="st">The Credit Repair Struggle<br>Is <span>Real</span></h2>
+      <p class="sub">Millions of Americans have errors on their credit reports. Most don&#8217;t know how to fight back &#8212; and pay the price every single day.</p>
     </div>
     <div class="problem-grid">
-      <div class="pain-card reveal" style="transition-delay:.1s">
-        <span class="pain-icon">😤</span>
+      <div class="pain-card rv" style="transition-delay:.08s">
+        <div class="pain-icon-wrap">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
         <h3>Wrong Letters, Zero Results</h3>
-        <p>Generic dispute letters get ignored. Bureaus reject vague claims and nothing changes — leaving you frustrated and stuck.</p>
+        <p>Generic dispute letters get ignored. Bureaus reject vague claims and nothing changes &#8212; leaving you frustrated and stuck.</p>
       </div>
-      <div class="pain-card reveal" style="transition-delay:.2s">
-        <span class="pain-icon">💸</span>
+      <div class="pain-card rv" style="transition-delay:.16s">
+        <div class="pain-icon-wrap">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
         <h3>Paying Thousands for Services You Can Do Yourself</h3>
-        <p>Credit repair companies charge $100–$200/month for work you could master in a weekend — once someone shows you how.</p>
+        <p>Credit repair companies charge $100&#8211;$200/month for work you could master in a weekend &#8212; once someone shows you how.</p>
       </div>
-      <div class="pain-card reveal" style="transition-delay:.3s">
-        <span class="pain-icon">😰</span>
+      <div class="pain-card rv" style="transition-delay:.24s">
+        <div class="pain-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
         <h3>Confusing Process, No Clear Path</h3>
-        <p>FCRA law, bureau timelines, debt validation — it's overwhelming without a guide. Most people give up before they see results.</p>
+        <p>FCRA law, bureau timelines, debt validation &#8212; it&#8217;s overwhelming without a guide. Most people give up before they see results.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     § 4 — SOCIAL PROOF BAR
-     ══════════════════════════════════════════════════════════ -->
+<!-- ============================================================
+     SECTION 4 — SOCIAL PROOF BAR
+     ============================================================ -->
 <section id="dca-proof-bar">
-  <div class="proof-bar-inner reveal">
-    <div class="proof-stat">
-      <div class="proof-stat-num">2,000<span>+</span></div>
-      <div class="proof-stat-label">Students Enrolled</div>
-    </div>
-    <div class="proof-stat">
-      <div class="proof-stat-num">97<span>%</span></div>
-      <div class="proof-stat-label">Satisfaction Rate</div>
-    </div>
-    <div class="proof-stat">
-      <div class="proof-stat-num">150<span>+</span></div>
-      <div class="proof-stat-label">Dispute Templates</div>
-    </div>
-    <div class="proof-stat">
-      <div class="proof-stat-num">4.9<span>★</span></div>
-      <div class="proof-stat-label">Average Rating</div>
-    </div>
+  <div class="proof-bar-inner rv">
+    <div><div class="proof-stat-num">2,000<span>+</span></div><div class="proof-stat-lbl">Students Enrolled</div></div>
+    <div><div class="proof-stat-num">97<span>%</span></div><div class="proof-stat-lbl">Satisfaction Rate</div></div>
+    <div><div class="proof-stat-num">150<span>+</span></div><div class="proof-stat-lbl">Dispute Templates</div></div>
+    <div><div class="proof-stat-num">4.9<span>&#9733;</span></div><div class="proof-stat-lbl">Average Rating</div></div>
   </div>
-  <div class="testimonial-strip">
-    <div class="mini-testi reveal reveal-left" style="transition-delay:.15s">
-      <div class="testi-avatar">JM</div>
-      <div class="testi-body">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-quote">"My score jumped 112 points in 90 days. This course is the real deal — the letter generator alone is worth 10x the price."</div>
-        <div class="testi-name">— James M., Individual Student</div>
+  <div class="testi-strip">
+    <div class="mini-testi rv" style="transition-delay:.1s">
+      <div class="t-avatar">JM</div>
+      <div>
+        <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="t-quote">&#8220;My score jumped 112 points in 90 days. This course is the real deal &#8212; the letter generator alone is worth 10x the price.&#8221;</div>
+        <div class="t-name">&#8212; James M., Individual Student</div>
       </div>
     </div>
-    <div class="mini-testi reveal reveal-right" style="transition-delay:.25s">
-      <div class="testi-avatar">SP</div>
-      <div class="testi-body">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-quote">"I launched my credit repair business after completing this program. Now I have 18 clients and growing. Best investment I've made."</div>
-        <div class="testi-name">— Sandra P., Credit Repair Business Owner</div>
+    <div class="mini-testi rv" style="transition-delay:.2s">
+      <div class="t-avatar">SP</div>
+      <div>
+        <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="t-quote">&#8220;I launched my credit repair business after completing this program. Now I have 18 clients and growing. Best investment I&#8217;ve made.&#8221;</div>
+        <div class="t-name">&#8212; Sandra P., Credit Repair Business Owner</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     § 5 — SOLUTION
-     ══════════════════════════════════════════════════════════ -->
+<!-- ============================================================
+     SECTION 5 — SOLUTION
+     ============================================================ -->
 <section id="dca-solution">
   <div class="dca-section">
-    <div class="solution-inner">
-      <div class="reveal reveal-left">
+    <div class="sol-in">
+      <div class="rvl">
         <span class="eyebrow">The Dispute Champs Way</span>
-        <h2 class="section-title">Stop Guessing.<br>Start <span>Winning.</span></h2>
-        <p class="section-sub">We give you a proven, step-by-step system — not theory. Every strategy is tested, every template is battle-tested.</p>
-        <div class="solution-points">
+        <h2 class="st">Stop Guessing.<br>Start <span>Winning.</span></h2>
+        <p class="sub">We give you a proven, step-by-step system &#8212; not theory. Every strategy is tested, every template is battle-tested.</p>
+        <div class="sol-points">
           <div class="sol-point">
-            <div class="sol-icon">🎯</div>
-            <div class="sol-text">
-              <h4>Precision Dispute Strategies</h4>
-              <p>Know exactly which errors to target, which law to cite, and which bureau to contact first.</p>
-            </div>
+            <div class="sol-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="22" y1="22" x2="16.65" y2="16.65"/></svg></div>
+            <div class="sol-text"><h4>Precision Dispute Strategies</h4><p>Know exactly which errors to target, which law to cite, and which bureau to contact first.</p></div>
           </div>
           <div class="sol-point">
-            <div class="sol-icon">📄</div>
-            <div class="sol-text">
-              <h4>Done-For-You Letter Templates</h4>
-              <p>150+ professionally written dispute letters — personalized to your client with one click.</p>
-            </div>
+            <div class="sol-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="sol-text"><h4>Done-For-You Letter Templates</h4><p>150+ professionally written dispute letters &#8212; personalized to your client with one click.</p></div>
           </div>
           <div class="sol-point">
-            <div class="sol-icon">⚡</div>
-            <div class="sol-text">
-              <h4>Fast-Track Results</h4>
-              <p>Our students see verifiable score improvements within 30–90 days using our methods.</p>
-            </div>
+            <div class="sol-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div class="sol-text"><h4>Fast-Track Results</h4><p>Our students see verifiable score improvements within 30&#8211;90 days using our methods.</p></div>
           </div>
         </div>
       </div>
-      <div class="solution-visual reveal reveal-right" id="score-visual">
-        <div class="visual-label">Average Student Score Journey</div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Payment History</span><span>+45 pts</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" data-width="88%"></div></div>
+      <div class="sol-visual rvr" id="score-visual">
+        <div class="vis-lbl">Average Student Score Journey</div>
+        <div class="sbar-wrap">
+          <div class="sbar-lbl"><span>Payment History</span><span>+45 pts</span></div>
+          <div class="sbar-track"><div class="sbar-fill" data-w="88%"></div></div>
         </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Collections Removed</span><span>+38 pts</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" data-width="72%" style="transition-delay:.2s"></div></div>
+        <div class="sbar-wrap">
+          <div class="sbar-lbl"><span>Collections Removed</span><span>+38 pts</span></div>
+          <div class="sbar-track"><div class="sbar-fill" data-w="72%"></div></div>
         </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Inquiries Disputed</span><span>+22 pts</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" data-width="55%" style="transition-delay:.4s"></div></div>
+        <div class="sbar-wrap">
+          <div class="sbar-lbl"><span>Inquiries Disputed</span><span>+22 pts</span></div>
+          <div class="sbar-track"><div class="sbar-fill" data-w="55%"></div></div>
         </div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-label"><span>Charge-Offs Removed</span><span>+15 pts</span></div>
-          <div class="score-bar-track"><div class="score-bar-fill" data-width="40%" style="transition-delay:.6s"></div></div>
+        <div class="sbar-wrap">
+          <div class="sbar-lbl"><span>Charge-Offs Removed</span><span>+15 pts</span></div>
+          <div class="sbar-track"><div class="sbar-fill" data-w="40%"></div></div>
         </div>
         <div class="score-result">
-          <div class="score-result-num">+120 pts</div>
-          <div class="score-result-text">Average student improvement in 90 days</div>
+          <div class="score-num">+120 pts</div>
+          <div class="score-lbl">Average student improvement in 90 days</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     § 6 — CURRICULUM
-     ══════════════════════════════════════════════════════════ -->
+<!-- ============================================================
+     SECTION 6 — CURRICULUM
+     ============================================================ -->
 <section id="dca-curriculum">
   <div class="dca-section">
-    <div class="center reveal">
-      <span class="eyebrow eyebrow--blue">What You'll Learn</span>
-      <h2 class="section-title">Your Complete Credit<br>Repair <span>Roadmap</span></h2>
-      <p class="section-sub">Six power-packed modules that take you from zero knowledge to confident dispute champion.</p>
+    <div class="ctr rv">
+      <span class="eyebrow blu">What You&#8217;ll Learn</span>
+      <h2 class="st">Your Complete Credit<br>Repair <span>Roadmap</span></h2>
+      <p class="sub">Six power-packed modules that take you from zero knowledge to confident dispute champion.</p>
     </div>
-    <div class="curriculum-grid">
-      <div class="module-card reveal" style="transition-delay:.05s">
-        <div class="module-num">Module 01</div>
-        <span class="module-icon">📋</span>
+    <div class="curr-grid">
+      <div class="mod-card rv" style="transition-delay:.05s">
+        <div class="mod-num">Module 01</div>
+        <div class="mod-icon mi-blue"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
         <h3>Credit Report Mastery</h3>
         <p>Learn how to pull, read, and decode all three bureau reports. Know exactly what counts against you and why.</p>
-        <span class="module-outcome">✓ Read any report in minutes</span>
+        <span class="mod-outcome">&#10003; Read any report in minutes</span>
       </div>
-      <div class="module-card reveal" style="transition-delay:.1s">
-        <div class="module-num">Module 02</div>
-        <span class="module-icon">⚖️</span>
-        <h3>FCRA & Your Legal Rights</h3>
+      <div class="mod-card rv" style="transition-delay:.1s">
+        <div class="mod-num">Module 02</div>
+        <div class="mod-icon mi-blue"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>FCRA &amp; Your Legal Rights</h3>
         <p>Understand the Fair Credit Reporting Act, your rights as a consumer, and how to use the law as your weapon.</p>
-        <span class="module-outcome">✓ Dispute with legal authority</span>
+        <span class="mod-outcome">&#10003; Dispute with legal authority</span>
       </div>
-      <div class="module-card reveal" style="transition-delay:.15s">
-        <div class="module-num">Module 03</div>
-        <span class="module-icon">✉️</span>
+      <div class="mod-card rv" style="transition-delay:.15s">
+        <div class="mod-icon mi-green"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="mod-num">Module 03</div>
         <h3>The Dispute Letter System</h3>
-        <p>Master the art of writing dispute letters that bureaus and creditors can't ignore — with our proven templates.</p>
-        <span class="module-outcome">✓ Win disputes consistently</span>
+        <p>Master the art of writing dispute letters that bureaus and creditors can&#8217;t ignore &#8212; with our proven templates.</p>
+        <span class="mod-outcome">&#10003; Win disputes consistently</span>
       </div>
-      <div class="module-card reveal" style="transition-delay:.2s">
-        <div class="module-num">Module 04</div>
-        <span class="module-icon">🏦</span>
-        <h3>Dealing with Creditors & Collectors</h3>
-        <p>Debt validation, pay-for-delete, goodwill letters — every negotiation tool you need to resolve accounts.</p>
-        <span class="module-outcome">✓ Negotiate from strength</span>
+      <div class="mod-card rv" style="transition-delay:.2s">
+        <div class="mod-num">Module 04</div>
+        <div class="mod-icon mi-green"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>Dealing with Creditors &amp; Collectors</h3>
+        <p>Debt validation, pay-for-delete, goodwill letters &#8212; every negotiation tool you need to resolve accounts.</p>
+        <span class="mod-outcome">&#10003; Negotiate from strength</span>
       </div>
-      <div class="module-card reveal" style="transition-delay:.25s">
-        <div class="module-num">Module 05</div>
-        <span class="module-icon">📈</span>
+      <div class="mod-card rv" style="transition-delay:.25s">
+        <div class="mod-num">Module 05</div>
+        <div class="mod-icon mi-orange"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
         <h3>Score-Building Strategy</h3>
-        <p>Beyond disputes — learn the credit-building habits that compound your score increases month after month.</p>
-        <span class="module-outcome">✓ Build lasting credit health</span>
+        <p>Beyond disputes &#8212; learn the credit-building habits that compound your score increases month after month.</p>
+        <span class="mod-outcome">&#10003; Build lasting credit health</span>
       </div>
-      <div class="module-card reveal" style="transition-delay:.3s">
-        <div class="module-num">Module 06</div>
-        <span class="module-icon">🚀</span>
+      <div class="mod-card rv" style="transition-delay:.3s">
+        <div class="mod-num">Module 06</div>
+        <div class="mod-icon mi-orange"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
         <h3>Launch Your Credit Repair Business</h3>
         <p>Compliance, client management, pricing, and using Dispute Champs tools to serve clients professionally.</p>
-        <span class="module-outcome">✓ Start earning immediately</span>
+        <span class="mod-outcome">&#10003; Start earning immediately</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     § 7 — WHO IS THIS FOR
-     ══════════════════════════════════════════════════════════ -->
+<!-- ============================================================
+     SECTION 7 — WHO IS THIS FOR
+     ============================================================ -->
 <section id="dca-who">
   <div class="dca-section">
-    <div class="center reveal">
+    <div class="ctr rv">
       <span class="eyebrow">Is This For Me?</span>
-      <h2 class="section-title">Built for Two Types<br>of <span>Champions</span></h2>
-      <p class="section-sub">Whether you want to fix your own credit or build a business helping others, this academy was designed for you.</p>
+      <h2 class="st">Built for Two Types<br>of <span>Champions</span></h2>
+      <p class="sub">Whether you want to fix your own credit or build a business helping others, this academy was designed for you.</p>
     </div>
     <div class="who-grid">
-      <div class="who-card reveal reveal-left" style="transition-delay:.1s">
-        <div class="accent-stripe"></div>
-        <span class="who-icon">🙋</span>
-        <h3>Individuals & Consumers</h3>
+      <div class="who-card rvl" style="transition-delay:.1s">
+        <div class="who-stripe"></div>
+        <div class="who-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h3>Individuals &amp; Consumers</h3>
         <ul class="who-list">
-          <li>You have errors on your credit report slowing you down</li>
-          <li>You've been denied loans, cards, or apartments due to credit</li>
-          <li>You want to fix your credit yourself without paying high fees</li>
-          <li>You're ready to take control and see real results in 90 days</li>
-          <li>You want tools that do the heavy lifting — not more guesswork</li>
+          <li><span class="chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>You have errors on your credit report slowing you down</li>
+          <li><span class="chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>You&#8217;ve been denied loans, cards, or apartments due to credit</li>
+          <li><span class="chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>You want to fix your credit yourself without paying high fees</li>
+          <li><span class="chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>You&#8217;re ready to take control and see real results in 90 days</li>
+          <li><span class="chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>You want tools that do the heavy lifting &#8212; not more guesswork</li>
         </ul>
       </div>
-      <div class="who-card reveal reveal-right" style="transition-delay:.2s">
-        <div class="accent-stripe"></div>
-        <span class="who-icon">💼</span>
+      <div class="who-card rvr" style="transition-delay:.2s">
+        <div class="who-stripe"></div>
+        <div class="who-icon-wrap"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
         <h3>Credit Repair Business Owners</h3>
         <ul class="who-list">
-          <li>You want to launch or scale a compliant credit repair business</li>
-          <li>You need professional-grade dispute tools for your clients</li>
-          <li>You want a letter generator your whole team can use</li>
-          <li>You're tired of manual processes slowing down results</li>
-          <li>You want training you can share with your staff</li>
+          <li><span class="chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>You want to launch or scale a compliant credit repair business</li>
+          <li><span class="chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>You need professional-grade dispute tools for your clients</li>
+          <li><span class="chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>You want a letter generator your whole team can use</li>
+          <li><span class="chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>You&#8217;re tired of manual processes slowing down results</li>
+          <li><span class="chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>You want training you can share with your staff</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     § 8 — INSTRUCTOR
-     ══════════════════════════════════════════════════════════ -->
+<!-- ============================================================
+     SECTION 8 — INSTRUCTOR
+     ============================================================ -->
 <section id="dca-instructor">
   <div class="dca-section">
-    <div class="instructor-inner">
-      <div class="instructor-img-wrap reveal reveal-left">
-        <div class="instructor-placeholder">
-          <span>👤</span>
-          <span>Add Your Photo</span>
-        </div>
-        <div class="instructor-img-badge">
-          <div class="name">Your Name Here</div>
-          <div class="title">Founder, Dispute Champs Academy</div>
+    <div class="inst-in">
+      <div class="rvl">
+        <div class="inst-img">
+          <div class="inst-placeholder">
+            <svg class="inst-avatar-svg" viewBox="0 0 100 100" fill="rgba(255,255,255,.4)"><circle cx="50" cy="35" r="22"/><path d="M10 90 Q10 65 50 65 Q90 65 90 90"/></svg>
+            <span class="inst-placeholder-lbl">Add Your Photo</span>
+          </div>
+          <div class="inst-badge">
+            <div class="inst-name">Your Name Here</div>
+            <div class="inst-title">Founder, Dispute Champs Academy</div>
+          </div>
         </div>
       </div>
-      <div class="reveal reveal-right" style="transition-delay:.15s">
+      <div class="rvr" style="transition-delay:.15s">
         <span class="eyebrow">Meet Your Instructor</span>
-        <h2 class="section-title">Real Experience.<br><span>Real Results.</span></h2>
-        <div class="instructor-credentials">
-          <span class="cred-badge cred-badge--blue">🏅 Certified Credit Specialist</span>
-          <span class="cred-badge cred-badge--green">✅ FCRA Compliance Expert</span>
-          <span class="cred-badge cred-badge--orange">🔥 2,000+ Students Trained</span>
+        <h2 class="st">Real Experience.<br><span>Real Results.</span></h2>
+        <div class="creds">
+          <span class="cred cred-b"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Certified Credit Specialist</span>
+          <span class="cred cred-g"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>FCRA Compliance Expert</span>
+          <span class="cred cred-o"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>2,000+ Students Trained</span>
         </div>
-        <p class="instructor-bio">
-          After years in the credit repair industry, I watched countless people get ripped off, misled, and left with no results. I built Dispute Champs Academy because I knew there was a better way — one built on real strategy, legal knowledge, and professional tools that actually work.
-        </p>
-        <p class="instructor-bio">
-          Every module in this academy comes from real disputes I've won for real clients. I'm not teaching theory — I'm teaching you what works in the real world, right now.
-        </p>
-        <a href="#dca-pricing" class="btn btn-primary" style="margin-top:8px">Learn From the Best →</a>
+        <p class="inst-bio">After years in the credit repair industry, I watched countless people get ripped off, misled, and left with no results. I built Dispute Champs Academy because I knew there was a better way &#8212; one built on real strategy, legal knowledge, and professional tools that actually work.</p>
+        <p class="inst-bio">Every module in this academy comes from real disputes I&#8217;ve won for real clients. I&#8217;m not teaching theory &#8212; I&#8217;m teaching you what works in the real world, right now.</p>
+        <a href="#dca-pricing" class="btn btn-p" style="margin-top:8px">Learn From the Best &#8250;</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     § 9 — FULL TESTIMONIALS
-     ══════════════════════════════════════════════════════════ -->
+<!-- ============================================================
+     SECTION 9 — TESTIMONIALS
+     ============================================================ -->
 <section id="dca-testimonials">
-  <div class="dca-section center">
+  <div class="dca-section ctr">
     <span class="eyebrow">Student Results</span>
-    <h2 class="section-title reveal">Real Students.<br>Real Transformations.</h2>
-    <p class="section-sub reveal" style="transition-delay:.1s;color:rgba(255,255,255,.6)">These aren't made-up numbers. These are real people who followed the system and changed their financial lives.</p>
-    <div class="testimonials-grid">
-      <div class="testi-card reveal" style="transition-delay:.1s">
-        <div class="testi-header">
-          <div class="testi-rating">★★★★★</div>
-          <div class="quote-mark">"</div>
+    <h2 class="st rv">Real Students.<br>Real Transformations.</h2>
+    <p class="sub rv" style="transition-delay:.1s;color:rgba(255,255,255,.6)">These aren&#8217;t made-up numbers. These are real people who followed the system and changed their financial lives.</p>
+    <div class="testi-grid">
+      <div class="testi-card rv" style="transition-delay:.1s">
+        <div class="testi-hdr">
+          <div class="testi-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="quote-icon"><svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg></div>
         </div>
-        <p class="quote">I went from a 528 to a 671 in just 4 months. I removed 6 collections and 3 late payments using the exact templates from this course. I couldn't believe how straightforward it was once someone explained it properly.</p>
-        <div class="testi-footer">
-          <div class="avatar av-blue">DT</div>
-          <div>
-            <div class="person-name">Darnell T.</div>
-            <div class="person-type">Individual Student · Atlanta, GA</div>
-          </div>
-        </div>
+        <p class="testi-quote">I went from a 528 to a 671 in just 4 months. I removed 6 collections and 3 late payments using the exact templates from this course. I couldn&#8217;t believe how straightforward it was once someone explained it properly.</p>
+        <div class="testi-ftr"><div class="t-av av-b">DT</div><div><div class="person-name">Darnell T.</div><div class="person-type">Individual Student &#183; Atlanta, GA</div></div></div>
       </div>
-      <div class="testi-card reveal" style="transition-delay:.2s">
-        <div class="testi-header">
-          <div class="testi-rating">★★★★★</div>
-          <div class="quote-mark">"</div>
+      <div class="testi-card rv" style="transition-delay:.2s">
+        <div class="testi-hdr">
+          <div class="testi-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="quote-icon"><svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg></div>
         </div>
-        <p class="quote">I started my credit repair business 6 months ago after completing this program. I now have 24 active clients paying me $150/month each. Dispute Champs Academy paid for itself in the first week.</p>
-        <div class="testi-footer">
-          <div class="avatar av-green">MR</div>
-          <div>
-            <div class="person-name">Maria R.</div>
-            <div class="person-type">Business Owner · Houston, TX</div>
-          </div>
-        </div>
+        <p class="testi-quote">I started my credit repair business 6 months ago after completing this program. I now have 24 active clients paying me $150/month each. Dispute Champs Academy paid for itself in the first week.</p>
+        <div class="testi-ftr"><div class="t-av av-g">MR</div><div><div class="person-name">Maria R.</div><div class="person-type">Business Owner &#183; Houston, TX</div></div></div>
       </div>
-      <div class="testi-card reveal" style="transition-delay:.3s">
-        <div class="testi-header">
-          <div class="testi-rating">★★★★★</div>
-          <div class="quote-mark">"</div>
+      <div class="testi-card rv" style="transition-delay:.3s">
+        <div class="testi-hdr">
+          <div class="testi-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="quote-icon"><svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg></div>
         </div>
-        <p class="quote">The letter generator alone saves me 3 hours per client. My dispute success rate jumped from about 40% to over 85% since I switched to the Dispute Champs system. My clients are seeing results faster than ever.</p>
-        <div class="testi-footer">
-          <div class="avatar av-orange">KC</div>
-          <div>
-            <div class="person-name">Kevin C.</div>
-            <div class="person-type">Credit Repair Agency · Chicago, IL</div>
-          </div>
-        </div>
+        <p class="testi-quote">The letter generator alone saves me 3 hours per client. My dispute success rate jumped from about 40% to over 85% since I switched to the Dispute Champs system. My clients are seeing results faster than ever.</p>
+        <div class="testi-ftr"><div class="t-av av-o">KC</div><div><div class="person-name">Kevin C.</div><div class="person-type">Credit Repair Agency &#183; Chicago, IL</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     § 10 — WHAT'S INSIDE
-     ══════════════════════════════════════════════════════════ -->
+<!-- ============================================================
+     SECTION 10 — WHAT'S INSIDE
+     ============================================================ -->
 <section id="dca-tools">
   <div class="dca-section">
-    <div class="center reveal">
-      <span class="eyebrow eyebrow--blue">Everything You Get</span>
-      <h2 class="section-title">A Complete Arsenal —<br>Not Just a <span>Course</span></h2>
-      <p class="section-sub">Your membership includes professional tools used by top credit repair businesses — available the moment you enroll.</p>
+    <div class="ctr rv">
+      <span class="eyebrow blu">Everything You Get</span>
+      <h2 class="st">A Complete Arsenal &#8212;<br>Not Just a <span>Course</span></h2>
+      <p class="sub">Your membership includes professional tools used by top credit repair businesses &#8212; available the moment you enroll.</p>
     </div>
     <div class="tools-grid">
-      <div class="tool-card reveal" style="transition-delay:.1s">
-        <div class="tool-icon-wrap ti-blue">✉️</div>
-        <div class="tool-text">
-          <h4>AI-Powered Dispute Letter Generator</h4>
-          <p>Generate personalized, bureau-specific dispute letters in seconds. Your contact info merges automatically — no copy-pasting required.</p>
-        </div>
+      <div class="tool-card rv" style="transition-delay:.08s">
+        <div class="tool-icon ti-b"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="tool-text"><h4>Dispute Letter Generator</h4><p>Generate personalized, bureau-specific dispute letters in seconds. Contact info merges automatically &#8212; no copy-pasting required.</p></div>
       </div>
-      <div class="tool-card reveal" style="transition-delay:.15s">
-        <div class="tool-icon-wrap ti-green">📚</div>
-        <div class="tool-text">
-          <h4>150+ Template Download Library</h4>
-          <p>Every dispute scenario covered — collections, late payments, charge-offs, inquiries, identity theft, and more. New templates added monthly.</p>
-        </div>
+      <div class="tool-card rv" style="transition-delay:.13s">
+        <div class="tool-icon ti-g"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <div class="tool-text"><h4>150+ Template Download Library</h4><p>Every dispute scenario covered &#8212; collections, late payments, charge-offs, inquiries, identity theft, and more. New templates added monthly.</p></div>
       </div>
-      <div class="tool-card reveal" style="transition-delay:.2s">
-        <div class="tool-icon-wrap ti-orange">🎓</div>
-        <div class="tool-text">
-          <h4>Step-by-Step Video Training</h4>
-          <p>Six comprehensive modules with clear, actionable lessons. Learn at your own pace, revisit any time, on any device.</p>
-        </div>
+      <div class="tool-card rv" style="transition-delay:.18s">
+        <div class="tool-icon ti-o"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+        <div class="tool-text"><h4>Step-by-Step Video Training</h4><p>Six comprehensive modules with clear, actionable lessons. Learn at your own pace, revisit any time, on any device.</p></div>
       </div>
-      <div class="tool-card reveal" style="transition-delay:.25s">
-        <div class="tool-icon-wrap ti-navy">📊</div>
-        <div class="tool-text">
-          <h4>Bureau Address & Tracking System</h4>
-          <p>Always send to the right department. Our updated bureau address database ensures your disputes land exactly where they need to.</p>
-        </div>
+      <div class="tool-card rv" style="transition-delay:.23s">
+        <div class="tool-icon ti-n"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="tool-text"><h4>Bureau Address &amp; Tracking System</h4><p>Always send to the right department. Our updated bureau address database ensures your disputes land exactly where they need to.</p></div>
       </div>
-      <div class="tool-card reveal" style="transition-delay:.3s">
-        <div class="tool-icon-wrap ti-blue">🔒</div>
-        <div class="tool-text">
-          <h4>FCRA Compliance Guides</h4>
-          <p>Know your rights at every step. Downloadable compliance checklists protect you and your clients throughout the dispute process.</p>
-        </div>
+      <div class="tool-card rv" style="transition-delay:.28s">
+        <div class="tool-icon ti-b"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="tool-text"><h4>FCRA Compliance Guides</h4><p>Know your rights at every step. Downloadable compliance checklists protect you and your clients throughout the dispute process.</p></div>
       </div>
-      <div class="tool-card reveal" style="transition-delay:.35s">
-        <div class="tool-icon-wrap ti-green">💬</div>
-        <div class="tool-text">
-          <h4>Student Community & Support</h4>
-          <p>Access to a private community of students and business owners. Get answers, share wins, and grow alongside fellow champions.</p>
-        </div>
+      <div class="tool-card rv" style="transition-delay:.33s">
+        <div class="tool-icon ti-g"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="tool-text"><h4>Student Community &amp; Support</h4><p>Access to a private community of students and business owners. Get answers, share wins, and grow alongside fellow champions.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     § 11 — PRICING
-     ══════════════════════════════════════════════════════════ -->
+<!-- ============================================================
+     SECTION 11 — PRICING
+     ============================================================ -->
 <section id="dca-pricing">
-  <div class="dca-section center">
-    <span class="eyebrow eyebrow--orange">Simple, Transparent Pricing</span>
-    <h2 class="section-title reveal">One Price.<br>Everything <span>Included.</span></h2>
-    <p class="section-sub reveal" style="transition-delay:.1s">No upsells. No hidden fees. Cancel anytime.</p>
-    <div class="pricing-inner">
-      <div class="price-card reveal" style="transition-delay:.15s">
-        <span class="price-popular">Most Popular</span>
+  <div class="dca-section ctr">
+    <span class="eyebrow org">Simple, Transparent Pricing</span>
+    <h2 class="st rv">One Price.<br>Everything <span>Included.</span></h2>
+    <p class="sub rv" style="transition-delay:.1s">No upsells. No hidden fees. Cancel anytime.</p>
+    <div class="price-wrap">
+      <div class="price-card rv" style="transition-delay:.15s">
+        <span class="price-pop">Most Popular</span>
         <div class="price-name">Dispute Champs Academy</div>
-        <div class="price-amount">
+        <div class="price-amt">
           <span class="price-dollar">$</span>
           <span class="price-num">39</span>
           <span class="price-per">.99/mo</span>
         </div>
         <p class="price-desc">Full access to everything. Cancel anytime.</p>
         <ul class="price-features">
-          <li>6-Module Credit Repair Training Program</li>
-          <li>Dispute Letter Generator (unlimited letters)</li>
-          <li>150+ Downloadable Letter Templates</li>
-          <li>All 3-Bureau Address Database</li>
-          <li>FCRA Compliance Guides & Checklists</li>
-          <li>Business Launch Toolkit</li>
-          <li>Private Student Community</li>
-          <li>New Content Added Monthly</li>
+          <li><span class="price-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>6-Module Credit Repair Training Program</li>
+          <li><span class="price-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Dispute Letter Generator (unlimited letters)</li>
+          <li><span class="price-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>150+ Downloadable Letter Templates</li>
+          <li><span class="price-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>All 3-Bureau Address Database</li>
+          <li><span class="price-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>FCRA Compliance Guides &amp; Checklists</li>
+          <li><span class="price-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Business Launch Toolkit</li>
+          <li><span class="price-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Private Student Community</li>
+          <li><span class="price-chk"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>New Content Added Monthly</li>
         </ul>
-        <a href="#" class="btn btn-primary price-cta">Enroll Now — $39.99/mo →</a>
-        <div class="price-guarantee">
-          <span class="shield">🛡️</span>
+        <a href="#" class="btn btn-p price-cta">Enroll Now &#8212; $39.99/mo &#8250;</a>
+        <div class="price-guar">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <span>30-day money-back guarantee. No questions asked.</span>
         </div>
       </div>
@@ -1410,191 +870,110 @@ h2.section-title span { color: var(--blue); }
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     § 12 — FAQ
-     ══════════════════════════════════════════════════════════ -->
+<!-- ============================================================
+     SECTION 12 — FAQ
+     ============================================================ -->
 <section id="dca-faq">
   <div class="dca-section">
-    <div class="center reveal">
+    <div class="ctr rv">
       <span class="eyebrow">Questions Answered</span>
-      <h2 class="section-title">Everything You Need<br>to <span>Know</span></h2>
+      <h2 class="st">Everything You Need<br>to <span>Know</span></h2>
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <button class="faq-question">
-          Do I need any experience to start this course?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Absolutely not. Dispute Champs Academy is designed from the ground up for complete beginners. We start with the basics of reading a credit report and build from there. If you can follow step-by-step instructions, you can do this.
-          </div>
-        </div>
+        <button class="faq-q">Do I need any experience to start this course?<span class="faq-chv"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Absolutely not. Dispute Champs Academy is designed from the ground up for complete beginners. We start with the basics of reading a credit report and build from there. If you can follow step-by-step instructions, you can do this.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question">
-          How long until I see results?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Most students begin the dispute process within their first week. Bureau responses are legally required within 30 days. Our students typically see their first score improvements within 30–60 days and significant changes by 90 days.
-          </div>
-        </div>
+        <button class="faq-q">How long until I see results?<span class="faq-chv"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Most students begin the dispute process within their first week. Bureau responses are legally required within 30 days. Our students typically see their first score improvements within 30&#8211;60 days and significant changes by 90 days.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question">
-          Can I use this to run a credit repair business?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Yes — Module 6 is specifically designed for business owners. The letter generator and template library are professional tools you can use with clients. We also cover CROA compliance so you run a legal, protected business.
-          </div>
-        </div>
+        <button class="faq-q">Can I use this to run a credit repair business?<span class="faq-chv"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes &#8212; Module 6 is specifically designed for business owners. The letter generator and template library are professional tools you can use with clients. We also cover CROA compliance so you run a legal, protected business.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question">
-          What if I want to cancel?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            You can cancel your membership at any time with no penalties. We also offer a 30-day money-back guarantee — if you're not satisfied within your first 30 days, we'll refund you in full, no questions asked.
-          </div>
-        </div>
+        <button class="faq-q">What if I want to cancel?<span class="faq-chv"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">You can cancel your membership at any time with no penalties. We also offer a 30-day money-back guarantee &#8212; if you&#8217;re not satisfied within your first 30 days, we&#8217;ll refund you in full, no questions asked.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question">
-          Is the letter generator included in the membership?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Yes. Full access to the Dispute Letter Generator is included in your $39.99/month membership. Generate unlimited personalized dispute letters for yourself or your clients, download as PDF, and send immediately.
-          </div>
-        </div>
+        <button class="faq-q">Is the letter generator included in the membership?<span class="faq-chv"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes. Full access to the Dispute Letter Generator is included in your $39.99/month membership. Generate unlimited personalized dispute letters for yourself or your clients, download as PDF, and send immediately.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question">
-          Are the dispute methods legal?
-          <span class="faq-chevron">▼</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            100%. Everything we teach is grounded in the Fair Credit Reporting Act (FCRA) and Fair Debt Collection Practices Act (FDCPA). We teach you to exercise your legal rights as a consumer — there is nothing illegal or unethical about disputing inaccurate information on your credit report.
-          </div>
-        </div>
+        <button class="faq-q">Are the dispute methods legal?<span class="faq-chv"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">100%. Everything we teach is grounded in the Fair Credit Reporting Act (FCRA) and Fair Debt Collection Practices Act (FDCPA). We teach you to exercise your legal rights as a consumer &#8212; there is nothing illegal or unethical about disputing inaccurate information on your credit report.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     § 13 — FINAL CTA
-     ══════════════════════════════════════════════════════════ -->
-<section id="dca-final-cta">
-  <div class="final-cta-inner reveal">
+<!-- ============================================================
+     SECTION 13 — FINAL CTA
+     ============================================================ -->
+<section id="dca-final">
+  <div class="final-in rv">
     <h2>Your Credit Score<br>Is <span>Fixable.</span> Start Tonight.</h2>
-    <p>Join 2,000+ students who stopped accepting bad credit and started fighting back — with the tools, training, and templates to win.</p>
-    <div class="final-cta-row">
-      <a href="#dca-pricing" class="btn btn-primary btn-lg">Start for $39.99/mo →</a>
-      <a href="#dca-curriculum" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.35)">See What's Inside</a>
+    <p>Join 2,000+ students who stopped accepting bad credit and started fighting back &#8212; with the tools, training, and templates to win.</p>
+    <div class="final-row">
+      <a href="#dca-pricing" class="btn btn-p" style="font-size:1.1rem;padding:18px 40px">Start for $39.99/mo &#8250;</a>
+      <a href="#dca-curriculum" class="btn btn-g">See What&#8217;s Inside</a>
     </div>
     <div class="trust-pills">
-      <span class="trust-pill">🛡️ 30-Day Guarantee</span>
-      <span class="trust-pill">✅ Cancel Anytime</span>
-      <span class="trust-pill">🔒 Secure Checkout</span>
-      <span class="trust-pill">⚡ Instant Access</span>
+      <span class="trust-pill"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>30-Day Guarantee</span>
+      <span class="trust-pill"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Cancel Anytime</span>
+      <span class="trust-pill"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Secure Checkout</span>
+      <span class="trust-pill"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Instant Access</span>
     </div>
   </div>
 </section>
 
 <script>
-(function () {
-  /* ── Scroll reveal ───────────────────────────────────────── */
-  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
+(function(){
+  // Scroll reveal — single observer, lightweight
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => io.observe(el));
+  },{threshold:0.1});
+  document.querySelectorAll('.rv,.rvl,.rvr').forEach(function(el){ obs.observe(el); });
 
-  /* ── Animated score bars ─────────────────────────────────── */
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.score-bar-fill').forEach(bar => {
-          bar.style.width = bar.dataset.width;
+  // Score bars — fire once when visible
+  var barsTriggered = false;
+  var barObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !barsTriggered){
+        barsTriggered = true;
+        document.querySelectorAll('.sbar-fill').forEach(function(b,i){
+          setTimeout(function(){ b.style.width = b.dataset.w; }, i * 180);
         });
-        barObserver.unobserve(e.target);
+        barObs.disconnect();
       }
     });
-  }, { threshold: 0.3 });
-  const scoreVisual = document.getElementById('score-visual');
-  if (scoreVisual) barObserver.observe(scoreVisual);
+  },{threshold:0.3});
+  var sv = document.getElementById('score-visual');
+  if(sv) barObs.observe(sv);
 
-  /* ── FAQ accordion ───────────────────────────────────────── */
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item    = btn.closest('.faq-item');
-      const answer  = item.querySelector('.faq-answer');
-      const isOpen  = item.classList.contains('open');
-
-      // close all
-      document.querySelectorAll('.faq-item.open').forEach(o => {
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.parentElement;
+      var ans = item.querySelector('.faq-a');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){
         o.classList.remove('open');
-        o.querySelector('.faq-answer').style.maxHeight = '0';
+        o.querySelector('.faq-a').style.maxHeight = '0';
       });
-
-      // open clicked if it was closed
-      if (!isOpen) {
-        item.classList.add('open');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      }
+      if(!isOpen){ item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
     });
   });
 
-  /* ── Smooth scroll for anchor links ─────────────────────── */
-  document.querySelectorAll('a[href^="#dca-"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#dca-"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var t = document.querySelector(a.getAttribute('href'));
+      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
     });
   });
-
-  /* ── Animated counters ───────────────────────────────────── */
-  function animateCounter(el, target, duration) {
-    let start = 0;
-    const step = timestamp => {
-      if (!start) start = timestamp;
-      const progress = Math.min((timestamp - start) / duration, 1);
-      el.textContent = Math.floor(progress * target).toLocaleString() + (el.dataset.suffix || '');
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }
-  const counterObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const nums = e.target.querySelectorAll('.proof-stat-num');
-        nums.forEach(n => {
-          const raw = n.textContent.replace(/[^0-9.]/g, '');
-          const suffix = n.querySelector('span') ? n.querySelector('span').textContent : '';
-          if (raw) animateCounter(n, parseFloat(raw), 1400);
-        });
-        counterObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.4 });
-  const proofBar = document.querySelector('.proof-bar-inner');
-  if (proofBar) counterObs.observe(proofBar);
 })();
 </script>
