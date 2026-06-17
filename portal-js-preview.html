@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DC Portal JS Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Inter, -apple-system, sans-serif; background: #f8fafc; }
+
+/* ── SIMULATED GHL PAGE BELOW THE INJECTED BARS ── */
+.fake-ghl-page { padding: 32px; }
+.fake-ghl-page h2 { font-size: 22px; font-weight: 700; color: #0a1628; margin-bottom: 16px; }
+.fake-course-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.fake-course-card {
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.fake-course-card .card-top { height: 4px; background: linear-gradient(90deg,#0b6cd1,#0bae66); }
+.fake-course-card .card-body { padding: 18px 20px; }
+.fake-course-card h3 { font-size: 15px; font-weight: 700; color: #0a1628; margin-bottom: 6px; }
+.fake-course-card p { font-size: 12px; color: #64748b; line-height: 1.6; margin-bottom: 14px; }
+.progress-track { background: #e2e8f0; border-radius: 50px; height: 8px; overflow: hidden; margin-bottom: 5px; }
+.progress-fill { background: #0bae66; border-radius: 50px; height: 100%; }
+.progress-label { font-size: 11px; color: #94a3b8; }
+
+/* label callouts */
+.callout {
+  position: absolute;
+  background: #0a1628;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 99999;
+}
+.callout::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 100%;
+  border: 6px solid transparent;
+  border-top-color: #0a1628;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     INJECTED BY injectPortalBar()
+     This div gets prepended to <body> as the very first element
+     ============================================================ -->
+<div id="dc-portal-bar" style="
+  width:100%;
+  background:#0b6cd1;
+  border-bottom:3px solid #FF6F33;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+  position:relative;
+  z-index:9999;
+  box-sizing:border-box;
+">
+  <div id="dc-bar-inner" style="
+    max-width:1200px;
+    margin:0 auto;
+    padding:12px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    box-sizing:border-box;
+  ">
+    <div id="dc-bar-left" style="display:flex;align-items:center;gap:10px;">
+      <div id="dc-logo-circle" style="
+        width:38px;height:38px;
+        background:#ffffff;
+        color:#0b6cd1;
+        border-radius:50%;
+        display:flex;align-items:center;justify-content:center;
+        font-weight:900;font-size:14px;letter-spacing:.5px;
+        flex-shrink:0;
+      ">DC</div>
+      <div>
+        <div id="dc-bar-title" style="color:#ffffff;font-weight:700;font-size:15px;line-height:1.2;">Dispute Champs Academy</div>
+        <div id="dc-bar-sub" style="color:rgba(255,255,255,0.7);font-size:11px;font-weight:400;letter-spacing:.5px;text-transform:uppercase;">Student Learning Portal</div>
+      </div>
+    </div>
+    <a id="dc-dashboard-btn" href="#" style="
+      display:inline-flex;align-items:center;gap:6px;
+      background:#FF6F33;
+      color:#ffffff;
+      font-weight:700;font-size:13px;
+      padding:9px 20px;
+      border-radius:50px;
+      text-decoration:none;
+      white-space:nowrap;
+      box-shadow:0 4px 14px rgba(255,111,51,0.4);
+      transition:transform .15s ease,box-shadow .15s ease;
+    "
+    onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 22px rgba(255,111,51,0.5)'"
+    onmouseout="this.style.transform='';this.style.boxShadow='0 4px 14px rgba(255,111,51,0.4)'"
+    >Go to Student Dashboard &rarr;</a>
+  </div>
+</div>
+
+<!-- ============================================================
+     INJECTED BY injectWelcomeBanner()
+     Inserted immediately after #dc-portal-bar on course/dashboard/portal pages
+     ============================================================ -->
+<div id="dc-welcome-banner" style="
+  width:100%;
+  background:linear-gradient(135deg,#0b6cd1 0%,#0947a0 100%);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+  box-sizing:border-box;
+">
+  <div id="dc-welcome-inner" style="
+    max-width:1200px;
+    margin:0 auto;
+    padding:20px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    box-sizing:border-box;
+  ">
+    <div>
+      <div id="dc-welcome-title" style="color:#ffffff;font-weight:700;font-size:18px;margin-bottom:4px;">Welcome back, Champion! 🏆</div>
+      <div id="dc-welcome-sub" style="color:rgba(255,255,255,0.75);font-size:13px;max-width:480px;">Continue your credit repair training. Every lesson brings you closer to mastery.</div>
+    </div>
+    <a href="#" id="dc-welcome-btn" style="
+      display:inline-flex;align-items:center;
+      background:rgba(255,255,255,0.15);
+      border:1.5px solid rgba(255,255,255,0.5);
+      color:#ffffff;
+      font-weight:600;font-size:13px;
+      padding:9px 20px;
+      border-radius:50px;
+      text-decoration:none;
+      white-space:nowrap;
+      transition:background .15s ease;
+    "
+    onmouseover="this.style.background='rgba(255,255,255,0.25)'"
+    onmouseout="this.style.background='rgba(255,255,255,0.15)'"
+    >Student Dashboard &rarr;</a>
+  </div>
+</div>
+
+<!-- ============================================================
+     SIMULATED GHL PORTAL PAGE CONTENT (what's already on the page)
+     ============================================================ -->
+<div class="fake-ghl-page">
+  <h2>My Courses</h2>
+  <div class="fake-course-grid">
+
+    <div class="fake-course-card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3>Credit Repair Fundamentals</h3>
+        <p>Master the basics of credit repair, bureaus, and dispute strategies.</p>
+        <div class="progress-track"><div class="progress-fill" style="width:68%"></div></div>
+        <div class="progress-label">68% complete</div>
+      </div>
+    </div>
+
+    <div class="fake-course-card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3>Metro 2 Compliance</h3>
+        <p>Deep dive into Metro 2 format standards and compliance reporting.</p>
+        <div class="progress-track"><div class="progress-fill" style="width:100%"></div></div>
+        <div class="progress-label">100% complete</div>
+      </div>
+    </div>
+
+    <div class="fake-course-card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3>Business Credit Mastery</h3>
+        <p>Build and leverage business credit profiles for maximum approval.</p>
+        <div class="progress-track"><div class="progress-fill" style="width:32%"></div></div>
+        <div class="progress-label">32% complete</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- annotation boxes -->
+  <div style="margin-top:40px;background:#fff;border:1.5px solid #e2e8f0;border-radius:14px;padding:24px;">
+    <h2 style="font-size:16px;margin-bottom:16px;color:#0a1628;">What this JS injects — at a glance</h2>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+
+      <div style="display:flex;align-items:flex-start;gap:14px;padding:14px;background:#ebf8ff;border-radius:10px;border-left:4px solid #0b6cd1;">
+        <div style="font-size:22px;flex-shrink:0;">1️⃣</div>
+        <div>
+          <div style="font-weight:700;color:#0a1628;font-size:13px;margin-bottom:4px;">Portal Bar (always shown)</div>
+          <div style="font-size:12px;color:#475569;line-height:1.6;">Blue top bar with the <strong>DC circle logo</strong>, "Dispute Champs Academy" title, "Student Learning Portal" subtitle, and an <strong>orange pill button</strong> → "Go to Student Dashboard". Prepended as the very first element in &lt;body&gt;.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:14px;padding:14px;background:#f0fff8;border-radius:10px;border-left:4px solid #0bae66;">
+        <div style="font-size:22px;flex-shrink:0;">2️⃣</div>
+        <div>
+          <div style="font-weight:700;color:#0a1628;font-size:13px;margin-bottom:4px;">Welcome Banner (course / dashboard / portal pages only)</div>
+          <div style="font-size:12px;color:#475569;line-height:1.6;">Blue gradient banner below the portal bar — "Welcome back, Champion! 🏆" with a motivational subtitle and a ghost-style <strong>"Student Dashboard →"</strong> button. Only appears when the URL path contains <em>course</em>, <em>dashboard</em>, <em>portal</em>, or is the root <em>/</em>.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:14px;padding:14px;background:#fff5f0;border-radius:10px;border-left:4px solid #FF6F33;">
+        <div style="font-size:22px;flex-shrink:0;">3️⃣</div>
+        <div>
+          <div style="font-weight:700;color:#0a1628;font-size:13px;margin-bottom:4px;">Safe injection — runs once</div>
+          <div style="font-size:12px;color:#475569;line-height:1.6;">Both functions check <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;">document.getElementById()</code> before injecting, so they never duplicate even if GHL reloads the script. Waits for <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;">DOMContentLoaded</code> if the page isn't ready yet.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
