@@ -36,40 +36,41 @@
 #dca-main-row{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
 
 #dca-tools-wrap{background:var(--white);border-radius:18px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(15,23,42,.05);padding:24px}
-#dca-tools-wrap .tw-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-#dca-tools-wrap .tw-head h2{font-size:15px;font-weight:800;color:var(--ink)}
+#dca-tools-wrap .tw-head{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:24px}
+#dca-tools-wrap .tw-head h2{font-size:28px;font-weight:900;color:var(--blue);letter-spacing:-.02em}
 #dca-tools-wrap .tw-head span{font-size:11px;font-weight:700;color:var(--green);background:rgba(11,174,102,.09);padding:4px 10px;border-radius:6px;letter-spacing:.06em;text-transform:uppercase}
 
 .dca-tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 
-.dca-tc{position:relative;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;border:1.5px solid var(--line)}
-.dca-tc:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(15,23,42,.12);transition:transform .25s,box-shadow .25s}
+.dca-tc{position:relative;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;border:1.5px solid var(--line);cursor:pointer;transition:transform .25s,box-shadow .25s}
+.dca-tc:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(15,23,42,.14)}
+.dca-tc:active{transform:translateY(-2px) scale(.98);box-shadow:0 6px 18px rgba(15,23,42,.10)}
 .dca-tc.blue-card{background:linear-gradient(145deg,#ebf8ff 0%,#cce5ff 100%);border-color:#b3d4f8}
 .dca-tc.green-card{background:linear-gradient(145deg,#f0fff8 0%,#c8f5e0 100%);border-color:#a8eacc}
 .dca-tc.orange-card{background:linear-gradient(145deg,#fff5f0 0%,#ffd9c4 100%);border-color:#ffcaac}
 .dca-tc.teal-card{background:linear-gradient(145deg,#ebf8ff 0%,#c0dff5 100%);border-color:#a0cce8}
 
-.dca-tc-inner{padding:28px 70px 28px 40px;display:flex;flex-direction:column;flex:1;position:relative;z-index:2}
+.dca-tc-inner{padding:36px 88px 36px 44px;display:flex;flex-direction:column;flex:1;position:relative;z-index:2;min-height:220px}
 
-.dca-tc-icon-wrap{display:flex;align-items:center;margin-bottom:18px}
-.dca-tc-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;flex-shrink:0;transition:transform .3s ease}
+.dca-tc-icon-wrap{display:flex;align-items:center;margin-bottom:22px}
+.dca-tc-icon{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;flex-shrink:0;transition:transform .3s ease}
 .dca-tc:hover .dca-tc-icon{transform:scale(1.1) rotate(-6deg)}
-.dca-tc-icon svg{width:22px;height:22px}
+.dca-tc-icon svg{width:30px;height:30px}
 .blue-card .dca-tc-icon{background:rgba(11,108,209,.12);color:var(--blue)}
 .green-card .dca-tc-icon{background:rgba(11,174,102,.12);color:var(--green)}
 .orange-card .dca-tc-icon{background:rgba(255,111,51,.12);color:var(--orange)}
 .teal-card .dca-tc-icon{background:rgba(22,127,180,.12);color:#167fb4}
 
-.dca-tc h3{font-size:18px;font-weight:900;color:var(--ink);letter-spacing:-.02em;margin-bottom:8px;position:relative;z-index:1}
-.dca-tc p{font-size:12px;color:var(--muted);line-height:1.65;flex:1;margin-bottom:76px;position:relative;z-index:1}
+.dca-tc h3{font-size:22px;font-weight:900;color:var(--ink);letter-spacing:-.02em;margin-bottom:10px;position:relative;z-index:1}
+.dca-tc p{font-size:14px;color:var(--muted);line-height:1.7;flex:1;margin-bottom:86px;position:relative;z-index:1}
 
-.dca-tc-btn{position:absolute;bottom:36px;right:22px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#fff;transition:transform .22s;z-index:3}
+.dca-tc-btn{position:absolute;bottom:38px;right:26px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;transition:transform .22s,box-shadow .22s;z-index:3}
 .blue-card .dca-tc-btn{background:var(--blue)}
 .green-card .dca-tc-btn{background:var(--green)}
 .orange-card .dca-tc-btn{background:var(--orange)}
 .teal-card .dca-tc-btn{background:#167fb4}
-.dca-tc-btn:hover{transform:scale(1.15)}
-.dca-tc-btn svg{width:16px;height:16px}
+.dca-tc-btn:hover{transform:scale(1.15);box-shadow:0 6px 18px rgba(0,0,0,.2)}
+.dca-tc-btn svg{width:18px;height:18px}
 
 .dca-bottom-card{background:#fff;border-radius:18px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(15,23,42,.05);padding:0;margin-top:18px;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:160px}
 .dca-bc-photo{display:none}
