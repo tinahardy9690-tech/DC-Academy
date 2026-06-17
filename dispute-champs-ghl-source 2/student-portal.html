@@ -49,7 +49,7 @@
 .dca-tc.orange-card{background:linear-gradient(145deg,#fff5f0 0%,#ffd9c4 100%);border-color:#ffcaac}
 .dca-tc.teal-card{background:linear-gradient(145deg,#ebf8ff 0%,#c0dff5 100%);border-color:#a0cce8}
 
-.dca-tc-inner{padding:28px 70px 28px 26px;display:flex;flex-direction:column;flex:1;position:relative;z-index:2}
+.dca-tc-inner{padding:28px 70px 28px 40px;display:flex;flex-direction:column;flex:1;position:relative;z-index:2}
 
 .dca-tc-icon-wrap{display:flex;align-items:center;margin-bottom:18px}
 .dca-tc-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;flex-shrink:0;transition:transform .3s ease}
@@ -61,9 +61,9 @@
 .teal-card .dca-tc-icon{background:rgba(22,127,180,.12);color:#167fb4}
 
 .dca-tc h3{font-size:18px;font-weight:900;color:var(--ink);letter-spacing:-.02em;margin-bottom:8px;position:relative;z-index:1}
-.dca-tc p{font-size:12px;color:var(--muted);line-height:1.65;flex:1;margin-bottom:56px;position:relative;z-index:1}
+.dca-tc p{font-size:12px;color:var(--muted);line-height:1.65;flex:1;margin-bottom:76px;position:relative;z-index:1}
 
-.dca-tc-btn{position:absolute;bottom:22px;right:22px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#fff;transition:transform .22s;z-index:3}
+.dca-tc-btn{position:absolute;bottom:36px;right:22px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#fff;transition:transform .22s;z-index:3}
 .blue-card .dca-tc-btn{background:var(--blue)}
 .green-card .dca-tc-btn{background:var(--green)}
 .orange-card .dca-tc-btn{background:var(--orange)}
@@ -71,15 +71,15 @@
 .dca-tc-btn:hover{transform:scale(1.15)}
 .dca-tc-btn svg{width:16px;height:16px}
 
-.dca-bottom-card{background:#fff;border-radius:18px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(15,23,42,.05);padding:0;margin-top:18px;display:flex;align-items:stretch;overflow:hidden;min-height:160px}
-.dca-bc-photo{width:200px;flex-shrink:0;object-fit:cover;object-position:center top;display:block;order:2;border-radius:50%;margin:20px 24px 20px 0;align-self:center}
-.dca-bc-content{flex:1;padding:36px 36px 36px 10%;display:flex;flex-direction:column;justify-content:center;order:1}
+.dca-bottom-card{background:#fff;border-radius:18px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(15,23,42,.05);padding:0;margin-top:18px;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:160px}
+.dca-bc-photo{display:none}
+.dca-bc-content{padding:36px 48px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .dca-mentor-badge{display:inline-flex;align-items:center;gap:6px;background:none;color:var(--muted);font-size:11px;font-weight:400;padding:0;border-radius:0;margin-bottom:10px;width:fit-content;letter-spacing:.08em;text-transform:uppercase}
 .dca-mentor-badge span{display:none}
 .dca-bc-content h3{font-size:22px;font-weight:900;color:var(--ink);margin-bottom:18px;line-height:1.2}
 .dca-mentor-btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 16px;background:var(--blue);color:#fff !important;border-radius:50%;transition:transform .2s;width:fit-content}
 .dca-mentor-btn:hover{transform:translateY(-2px)}
-.dca-mentor-btn svg{width:22px;height:22px}
+.dca-mentor-btn svg{width:28px;height:28px}
 
 @media(max-width:1100px){#dca-stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){
