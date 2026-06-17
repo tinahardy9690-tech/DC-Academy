@@ -50,7 +50,7 @@
 .dca-sc-info strong{display:block;font-size:20px;font-weight:900;color:var(--ink);line-height:1}
 .dca-sc-info span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
 
-#dca-main-row{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start}
+#dca-main-row{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
 
 #dca-tools-wrap{background:var(--white);border-radius:18px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(15,23,42,.05);padding:24px}
 #dca-tools-wrap .tw-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
@@ -94,42 +94,28 @@
 .dca-tc-btn:hover{transform:scale(1.15)}
 .dca-tc-btn svg{width:16px;height:16px}
 
-.dca-credit-cta{border-radius:18px;overflow:hidden;position:relative;box-shadow:0 4px 20px rgba(15,23,42,.12);opacity:0;transform:translateY(16px);transition:opacity .6s .1s ease,transform .6s .1s ease;display:block}
-.dca-credit-cta.visible{opacity:1;transform:translateY(0)}
-.dca-credit-cta .cta-img{width:100%;height:200px;object-fit:cover;object-position:center top;display:block}
-.dca-credit-cta .cta-body{background:linear-gradient(145deg,#0b1f4f,#0b6cd1);padding:22px 22px 24px}
-.dca-credit-cta .cta-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:10px}
-.dca-credit-cta .cta-eyebrow span{width:6px;height:6px;border-radius:50%;background:var(--green);animation:dca-blink 1.5s ease-in-out infinite}
-.dca-credit-cta h3{font-size:17px;font-weight:900;color:#fff;line-height:1.2;letter-spacing:-.02em;margin-bottom:8px}
-.dca-credit-cta h3 em{font-style:normal;color:#7dd3fc}
-.dca-credit-cta p{font-size:12px;color:rgba(255,255,255,.72);line-height:1.65;margin-bottom:18px}
-.dca-credit-cta .cta-perks{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
-.dca-credit-cta .cta-perk{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:rgba(255,255,255,.85)}
-.dca-credit-cta .cta-perk-dot{width:18px;height:18px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex-shrink:0}
-.dca-credit-cta .cta-perk-dot svg{width:10px;height:10px;color:#fff}
-.dca-credit-cta .cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;background:var(--orange);color:#fff !important;font-size:13px;font-weight:900;border-radius:10px;transition:transform .2s,box-shadow .2s;animation:dca-glow 2.5s ease-in-out infinite}
-@keyframes dca-glow{0%,100%{box-shadow:0 4px 16px rgba(255,111,51,.3)}50%{box-shadow:0 4px 28px rgba(255,111,51,.58)}}
-.dca-credit-cta .cta-btn:hover{transform:translateY(-2px)}
-.dca-credit-cta .cta-btn svg{width:14px;height:14px}
-
-.dca-mentor{background:linear-gradient(145deg,#064e2e,#0bae66);border-radius:18px;padding:24px;position:relative;overflow:hidden;margin-top:16px}
-.dca-mentor::before{content:'';position:absolute;top:-30px;right:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.06)}
-.dca-mentor-photo{display:block;width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid rgba(255,255,255,.25);margin-bottom:12px;animation:dca-float 5s ease-in-out infinite;position:relative;z-index:1}
-.dca-mentor-badge{display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:#fff;font-size:9px;font-weight:900;padding:5px 9px;border-radius:999px;margin-bottom:10px;position:relative;z-index:1}
+.dca-bottom-card{background:var(--white);border-radius:18px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(15,23,42,.05);padding:28px 32px;margin-top:18px;display:flex;align-items:center;gap:28px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.dca-bottom-card.visible{opacity:1;transform:translateY(0)}
+.dca-bc-photo{width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid var(--line);flex-shrink:0;animation:dca-float 5s ease-in-out infinite}
+.dca-bc-content{flex:1}
+.dca-mentor-badge{display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:#fff;font-size:9px;font-weight:900;padding:5px 9px;border-radius:999px;margin-bottom:10px}
 .dca-mentor-badge span{width:5px;height:5px;border-radius:50%;background:#fff;animation:dca-blink 1.5s ease-in-out infinite}
-.dca-mentor h3{font-size:15px;font-weight:900;color:#fff;margin-bottom:3px;position:relative;z-index:1}
-.dca-mentor small{display:block;font-size:10px;color:rgba(255,255,255,.65);margin-bottom:12px;position:relative;z-index:1}
-.dca-mentor p{font-size:11px;color:rgba(255,255,255,.75);line-height:1.6;margin-bottom:16px;position:relative;z-index:1}
-.dca-mentor-btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:12px;background:var(--orange);color:#fff !important;font-size:12px;font-weight:800;border-radius:9px;position:relative;z-index:1;transition:transform .2s;animation:dca-glow 2.5s ease-in-out infinite}
+.dca-bc-content h3{font-size:16px;font-weight:900;color:var(--ink);margin-bottom:2px}
+.dca-bc-content small{display:block;font-size:11px;color:var(--muted);margin-bottom:10px}
+.dca-bc-content p{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.55}
+.dca-mentor-btn{display:inline-flex;align-items:center;gap:7px;padding:11px 20px;background:var(--orange);color:#fff !important;font-size:12px;font-weight:800;border-radius:9px;transition:transform .2s;animation:dca-glow 2.5s ease-in-out infinite}
+@keyframes dca-glow{0%,100%{box-shadow:0 4px 16px rgba(255,111,51,.3)}50%{box-shadow:0 4px 28px rgba(255,111,51,.58)}}
 .dca-mentor-btn:hover{transform:translateY(-2px)}
 .dca-mentor-btn svg{width:13px;height:13px}
-
-#dca-right{display:flex;flex-direction:column}
+.dca-bc-divider{height:1px;background:var(--line);margin:16px 0}
+.dca-bc-cas{font-size:11px;color:var(--muted)}
+.dca-bc-cas a{color:var(--blue);font-weight:700}
+.dca-bc-cas a:hover{text-decoration:underline}
+@media(max-width:600px){.dca-bottom-card{flex-direction:column;align-items:flex-start;gap:16px}}
 
 @media(max-width:1100px){
   #dca-stats{grid-template-columns:repeat(2,1fr)}
   #dca-main-row{grid-template-columns:1fr}
-  #dca-right{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 }
 @media(max-width:900px){
   #dca-portal{left:0;width:100%;margin-left:0}
@@ -291,47 +277,21 @@
         </div>
       </div>
 
-      <div id="dca-right">
+    </div>
 
-        <a class="dca-credit-cta" href="https://www.casdispute.com/" target="_blank" rel="noopener">
-          <img class="cta-img" src="https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2c9e7dfc5dba9abb1e28eb.png" alt="Credit Approval Solutions" style="width:100%;height:200px;object-fit:cover;object-position:center top;display:block">
-          <div class="cta-body">
-            <div class="cta-eyebrow"><span></span> Credit Solutions</div>
-            <h3>Stop Letting Bad Credit <em>Dictate Your Life</em></h3>
-            <p>Advanced Metro 2 compliance and strategic disputes to remove inaccurate collections, late payments, and bankruptcies.</p>
-            <div class="cta-perks">
-              <div class="cta-perk">
-                <div class="cta-perk-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-                Bankruptcies Can Be Disputed
-              </div>
-              <div class="cta-perk">
-                <div class="cta-perk-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-                Collections &amp; Late Payments Removed
-              </div>
-              <div class="cta-perk">
-                <div class="cta-perk-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-                Get Credit Approval Solutions
-              </div>
-            </div>
-            <div class="cta-btn">
-              Get Credit Approval Now
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </div>
-          </div>
+    <div class="dca-bottom-card">
+      <img class="dca-bc-photo" src="https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2c9e7dfc5dba9abb1e28eb.png" alt="Tina Talk's Credit">
+      <div class="dca-bc-content">
+        <div class="dca-mentor-badge"><span></span> ONE-ON-ONE MENTORSHIP</div>
+        <h3>Tina Talk's Credit</h3>
+        <small>Founder &amp; Lead Credit Educator</small>
+        <p>Book a private session for personalized credit strategy and guidance.</p>
+        <a class="dca-mentor-btn" href="https://api.leadconnectorhq.com/widget/booking/zLvaJWeDZBFZCa2SRuav" target="_blank" rel="noopener noreferrer">
+          Schedule My Session
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-
-        <div class="dca-mentor">
-          <img class="dca-mentor-photo" src="https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2c9e7dfc5dba9abb1e28eb.png" alt="Tina Talks Credit">
-          <div class="dca-mentor-badge"><span></span> ONE-ON-ONE</div>
-          <h3>Tina Talk's Credit</h3>
-          <small>Founder &amp; Lead Credit Educator</small>
-          <p>Book a 45-minute private mentorship session. Bring your questions and goals for personalized strategy and guidance.</p>
-          <a class="dca-mentor-btn" href="https://api.leadconnectorhq.com/widget/booking/zLvaJWeDZBFZCa2SRuav" target="_blank" rel="noopener noreferrer">
-            Schedule My Session
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-
+        <div class="dca-bc-divider"></div>
+        <p class="dca-bc-cas">Need credit repair? <a href="https://www.casdispute.com/" target="_blank" rel="noopener">Credit Approval Solutions &rarr;</a></p>
       </div>
     </div>
   </div>
@@ -346,7 +306,7 @@
     var open=nav.getAttribute('data-open')==='true';
     nav.setAttribute('data-open',open?'false':'true');
   });
-  var els=document.querySelectorAll('.dca-sc,.dca-tc,.dca-credit-cta');
+  var els=document.querySelectorAll('.dca-sc,.dca-tc,.dca-bottom-card');
   if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('visible');});return;}
   var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.12});
   els.forEach(function(el){obs.observe(el);});
