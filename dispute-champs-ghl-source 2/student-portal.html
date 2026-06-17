@@ -94,24 +94,17 @@
 .dca-tc-btn:hover{transform:scale(1.15)}
 .dca-tc-btn svg{width:16px;height:16px}
 
-.dca-bottom-card{background:var(--white);border-radius:18px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(15,23,42,.05);padding:28px 32px;margin-top:18px;display:flex;align-items:center;gap:28px;opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease}
-.dca-bottom-card.visible{opacity:1;transform:translateY(0)}
-.dca-bc-photo{width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid var(--line);flex-shrink:0;animation:dca-float 5s ease-in-out infinite}
-.dca-bc-content{flex:1}
-.dca-mentor-badge{display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:#fff;font-size:9px;font-weight:900;padding:5px 9px;border-radius:999px;margin-bottom:10px}
+.dca-bottom-card{background:#ebf8ff;border-radius:18px;border:1px solid #b3d4f8;box-shadow:0 2px 12px rgba(11,108,209,.10);padding:0;margin-top:18px;display:flex;align-items:stretch;overflow:hidden;min-height:160px}
+.dca-bc-photo{width:240px;flex-shrink:0;object-fit:cover;object-position:center top;display:block;order:2}
+.dca-bc-content{flex:1;padding:32px 36px;display:flex;flex-direction:column;justify-content:center;order:1}
+.dca-mentor-badge{display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:#fff;font-size:9px;font-weight:900;padding:5px 9px;border-radius:999px;margin-bottom:12px;width:fit-content}
 .dca-mentor-badge span{width:5px;height:5px;border-radius:50%;background:#fff;animation:dca-blink 1.5s ease-in-out infinite}
-.dca-bc-content h3{font-size:16px;font-weight:900;color:var(--ink);margin-bottom:2px}
-.dca-bc-content small{display:block;font-size:11px;color:var(--muted);margin-bottom:10px}
-.dca-bc-content p{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.55}
-.dca-mentor-btn{display:inline-flex;align-items:center;gap:7px;padding:11px 20px;background:var(--orange);color:#fff !important;font-size:12px;font-weight:800;border-radius:9px;transition:transform .2s;animation:dca-glow 2.5s ease-in-out infinite}
-@keyframes dca-glow{0%,100%{box-shadow:0 4px 16px rgba(255,111,51,.3)}50%{box-shadow:0 4px 28px rgba(255,111,51,.58)}}
+.dca-bc-content h3{font-size:22px;font-weight:900;color:var(--ink);margin-bottom:16px;line-height:1.2}
+.dca-mentor-btn{display:inline-flex;align-items:center;gap:7px;padding:11px 20px;background:var(--blue);color:#fff !important;font-size:12px;font-weight:800;border-radius:9px;transition:transform .2s;width:fit-content}
 .dca-mentor-btn:hover{transform:translateY(-2px)}
 .dca-mentor-btn svg{width:13px;height:13px}
-.dca-bc-divider{height:1px;background:var(--line);margin:16px 0}
-.dca-bc-cas{font-size:11px;color:var(--muted)}
-.dca-bc-cas a{color:var(--blue);font-weight:700}
-.dca-bc-cas a:hover{text-decoration:underline}
-@media(max-width:600px){.dca-bottom-card{flex-direction:column;align-items:flex-start;gap:16px}}
+@keyframes dca-glow{0%,100%{box-shadow:0 4px 16px rgba(255,111,51,.3)}50%{box-shadow:0 4px 28px rgba(255,111,51,.58)}}
+@media(max-width:600px){.dca-bottom-card{flex-direction:column}.dca-bc-photo{width:100%;height:220px;order:1}.dca-bc-content{order:2;padding:24px}}
 
 @media(max-width:1100px){
   #dca-stats{grid-template-columns:repeat(2,1fr)}
@@ -280,19 +273,15 @@
     </div>
 
     <div class="dca-bottom-card">
-      <img class="dca-bc-photo" src="https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2c9e7dfc5dba9abb1e28eb.png" alt="Tina Talk's Credit">
       <div class="dca-bc-content">
         <div class="dca-mentor-badge"><span></span> ONE-ON-ONE MENTORSHIP</div>
-        <h3>Tina Talk's Credit</h3>
-        <small>Founder &amp; Lead Credit Educator</small>
-        <p>Book a private session for personalized credit strategy and guidance.</p>
+        <h3>Book a Private Mentorship Session</h3>
         <a class="dca-mentor-btn" href="https://api.leadconnectorhq.com/widget/booking/zLvaJWeDZBFZCa2SRuav" target="_blank" rel="noopener noreferrer">
           Schedule My Session
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <div class="dca-bc-divider"></div>
-        <p class="dca-bc-cas">Need credit repair? <a href="https://www.casdispute.com/" target="_blank" rel="noopener">Credit Approval Solutions &rarr;</a></p>
       </div>
+      <img class="dca-bc-photo" src="https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2c9e7dfc5dba9abb1e28eb.png" alt="Tina Talk's Credit">
     </div>
   </div>
 </div>
