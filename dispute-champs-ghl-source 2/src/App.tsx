@@ -114,7 +114,7 @@ function StudentGenerator() {
           </div>
           <a
             className="admin-login-link"
-            href="https://boisterous-bubblegum-82ed03.netlify.app/admin"
+            href="/admin"
             target="_blank"
             rel="noreferrer"
           >
