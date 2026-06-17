@@ -36,7 +36,7 @@
 @keyframes dca-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
 #dca-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
-.dca-sc{background:var(--white);border-radius:16px;padding:20px 22px;border:1px solid var(--line);box-shadow:0 2px 10px rgba(15,23,42,.05);display:flex;align-items:center;gap:16px;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.dca-sc{background:var(--white);border-radius:16px;padding:20px 22px;border:1px solid var(--line);box-shadow:0 2px 10px rgba(15,23,42,.05);display:flex;align-items:center;gap:16px;opacity:1;transform:translateY(0);transition:opacity .5s ease,transform .5s ease}
 .dca-sc.visible{opacity:1;transform:translateY(0)}
 .dca-sc:nth-child(2){transition-delay:.08s}
 .dca-sc:nth-child(3){transition-delay:.16s}
@@ -59,7 +59,7 @@
 
 .dca-tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 
-.dca-tc{position:relative;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;border:1.5px solid var(--line);opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease,box-shadow .25s ease}
+.dca-tc{position:relative;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;border:1.5px solid var(--line);opacity:1;transform:translateY(0);transition:opacity .5s ease,transform .5s ease,box-shadow .25s ease}
 .dca-tc.visible{opacity:1;transform:translateY(0)}
 .dca-tc:nth-child(2){transition-delay:.1s}
 .dca-tc:nth-child(3){transition-delay:.2s}
@@ -94,7 +94,7 @@
 .dca-tc-btn:hover{transform:scale(1.15)}
 .dca-tc-btn svg{width:16px;height:16px}
 
-.dca-bottom-card{background:var(--white);border-radius:18px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(15,23,42,.05);padding:28px 32px;margin-top:18px;display:flex;align-items:center;gap:28px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.dca-bottom-card{background:var(--white);border-radius:18px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(15,23,42,.05);padding:28px 32px;margin-top:18px;display:flex;align-items:center;gap:28px;opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease}
 .dca-bottom-card.visible{opacity:1;transform:translateY(0)}
 .dca-bc-photo{width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid var(--line);flex-shrink:0;animation:dca-float 5s ease-in-out infinite}
 .dca-bc-content{flex:1}
