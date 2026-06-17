@@ -1,0 +1,354 @@
+<style>
+#dca-portal{--blue:#0b6cd1;--green:#0bae66;--orange:#ff6f33;--mint:#ebf8ff;--ink:#0f172a;--muted:#64748b;--line:#e2eaf3;--bg:#f0f4f9;--white:#fff;position:relative;left:50%;width:100vw;max-width:none;margin:0 0 0 -50vw;padding:0;overflow-x:hidden;background:var(--bg);font-family:Inter,Arial,sans-serif;color:var(--ink)}
+#dca-portal,#dca-portal *{box-sizing:border-box;margin:0;padding:0}
+#dca-portal a{text-decoration:none}
+
+#dca-nav{width:100%;background:var(--white);border-bottom:1px solid var(--line);box-shadow:0 1px 8px rgba(15,23,42,.05);position:sticky;top:0;z-index:100}
+#dca-nav .ni{width:min(1320px,calc(100% - 40px));margin:0 auto;height:68px;display:flex;align-items:center;gap:28px}
+#dca-nav .ni-logo img{width:170px;height:auto;display:block}
+#dca-nav .ni-sep{width:1px;height:32px;background:var(--line)}
+#dca-nav .ni-links{display:flex;align-items:center;gap:4px;flex:1}
+#dca-nav .ni-links a{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--muted);transition:all .17s}
+#dca-nav .ni-links a:hover{color:var(--blue);background:var(--mint)}
+#dca-nav .ni-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+#dca-nav .ni-status{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--green);background:rgba(11,174,102,.09);padding:7px 13px;border-radius:8px}
+#dca-nav .ni-status span{width:7px;height:7px;border-radius:50%;background:var(--green);animation:dca-blink 1.5s ease-in-out infinite}
+@keyframes dca-blink{0%,100%{opacity:1}50%{opacity:.25}}
+#dca-nav .ni-toggle{display:none;width:38px;height:34px;border:1px solid var(--line);border-radius:7px;background:var(--white);padding:7px;cursor:pointer;margin-left:auto}
+#dca-nav .ni-toggle span{display:block;width:100%;height:2px;background:var(--ink);border-radius:2px;margin:4px 0}
+
+#dca-body{width:min(1320px,calc(100% - 40px));margin:0 auto;padding:28px 0 64px}
+
+#dca-hero{width:100%;background:linear-gradient(135deg,#0b1f4f 0%,var(--blue) 60%,#1a8fd1 100%);border-radius:22px;padding:38px 44px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;margin-bottom:20px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(11,108,209,.28)}
+#dca-hero::before{content:'';position:absolute;top:-60px;right:200px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+#dca-hero::after{content:'';position:absolute;bottom:-80px;left:-40px;width:220px;height:220px;border-radius:50%;background:rgba(11,174,102,.08);pointer-events:none}
+#dca-hero .hero-text{position:relative;z-index:2}
+#dca-hero .hero-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:12px}
+#dca-hero .hero-eyebrow span{width:6px;height:6px;border-radius:50%;background:var(--green);animation:dca-blink 1.5s ease-in-out infinite}
+#dca-hero h1{font-size:clamp(26px,3.2vw,40px);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-.03em;margin-bottom:10px}
+#dca-hero h1 em{font-style:normal;color:#7dd3fc}
+#dca-hero p{font-size:14px;color:rgba(255,255,255,.7);line-height:1.65;max-width:520px;margin-bottom:22px}
+#dca-hero .hero-cta{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;font-size:13px;font-weight:800;padding:12px 22px;border-radius:10px;box-shadow:0 6px 20px rgba(255,111,51,.35);transition:transform .2s,box-shadow .2s}
+#dca-hero .hero-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,111,51,.45)}
+#dca-hero .hero-cta svg{width:15px;height:15px}
+#dca-hero .hero-logo-wrap{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;width:200px;flex-shrink:0}
+#dca-hero .hero-logo-wrap img{width:180px;max-height:120px;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,.25));animation:dca-float 5s ease-in-out infinite}
+@keyframes dca-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+#dca-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.dca-sc{background:var(--white);border-radius:16px;padding:20px 22px;border:1px solid var(--line);box-shadow:0 2px 10px rgba(15,23,42,.05);display:flex;align-items:center;gap:16px;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.dca-sc.visible{opacity:1;transform:translateY(0)}
+.dca-sc:nth-child(2){transition-delay:.08s}
+.dca-sc:nth-child(3){transition-delay:.16s}
+.dca-sc:nth-child(4){transition-delay:.24s}
+.dca-sc-ring{width:48px;height:48px;flex-shrink:0;position:relative}
+.dca-sc-ring svg{width:48px;height:48px;transform:rotate(-90deg)}
+.dca-sc-ring .ring-bg{fill:none;stroke:var(--line);stroke-width:5}
+.dca-sc-ring .ring-fill{fill:none;stroke-width:5;stroke-linecap:round;stroke-dasharray:126;stroke-dashoffset:126;transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1) .3s}
+.dca-sc.visible .ring-fill{stroke-dashoffset:var(--offset,63)}
+.dca-sc-ring .ring-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:var(--ink)}
+.dca-sc-info strong{display:block;font-size:20px;font-weight:900;color:var(--ink);line-height:1}
+.dca-sc-info span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+
+#dca-main-row{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start}
+
+#dca-tools-wrap{background:var(--white);border-radius:18px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(15,23,42,.05);padding:24px}
+#dca-tools-wrap .tw-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+#dca-tools-wrap .tw-head h2{font-size:15px;font-weight:800;color:var(--ink)}
+#dca-tools-wrap .tw-head span{font-size:11px;font-weight:700;color:var(--green);background:rgba(11,174,102,.09);padding:4px 10px;border-radius:6px;letter-spacing:.06em;text-transform:uppercase}
+
+.dca-tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+
+.dca-tc{position:relative;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;border:1.5px solid var(--line);opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease,box-shadow .25s ease}
+.dca-tc.visible{opacity:1;transform:translateY(0)}
+.dca-tc:nth-child(2){transition-delay:.1s}
+.dca-tc:nth-child(3){transition-delay:.2s}
+.dca-tc:nth-child(4){transition-delay:.3s}
+.dca-tc:hover{transform:translateY(-6px) !important;box-shadow:0 16px 40px rgba(15,23,42,.12)}
+
+.dca-tc.blue-card{background:linear-gradient(145deg,#ebf8ff 0%,#cce5ff 100%);border-color:#b3d4f8}
+.dca-tc.green-card{background:linear-gradient(145deg,#f0fff8 0%,#c8f5e0 100%);border-color:#a8eacc}
+.dca-tc.orange-card{background:linear-gradient(145deg,#fff5f0 0%,#ffd9c4 100%);border-color:#ffcaac}
+.dca-tc.teal-card{background:linear-gradient(145deg,#ebf8ff 0%,#c0dff5 100%);border-color:#a0cce8}
+
+.dca-tc-inner{padding:28px 26px;display:flex;flex-direction:column;flex:1;position:relative;z-index:2}
+
+.dca-tc-icon-wrap{display:flex;align-items:center;margin-bottom:18px}
+.dca-tc-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;flex-shrink:0;transition:transform .3s ease}
+.dca-tc:hover .dca-tc-icon{transform:scale(1.1) rotate(-6deg)}
+.dca-tc-icon svg{width:22px;height:22px}
+
+.blue-card .dca-tc-icon{background:rgba(11,108,209,.12);color:var(--blue)}
+.green-card .dca-tc-icon{background:rgba(11,174,102,.12);color:var(--green)}
+.orange-card .dca-tc-icon{background:rgba(255,111,51,.12);color:var(--orange)}
+.teal-card .dca-tc-icon{background:rgba(22,127,180,.12);color:#167fb4}
+
+.dca-tc h3{font-size:18px;font-weight:900;color:var(--ink);letter-spacing:-.02em;margin-bottom:8px;position:relative;z-index:1}
+.dca-tc p{font-size:12px;color:var(--muted);line-height:1.65;flex:1;margin-bottom:22px;position:relative;z-index:1}
+
+.dca-tc-btn{position:absolute;bottom:22px;right:22px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#fff;transition:transform .22s;z-index:3}
+.blue-card .dca-tc-btn{background:var(--blue)}
+.green-card .dca-tc-btn{background:var(--green)}
+.orange-card .dca-tc-btn{background:var(--orange)}
+.teal-card .dca-tc-btn{background:#167fb4}
+.dca-tc-btn:hover{transform:scale(1.15)}
+.dca-tc-btn svg{width:16px;height:16px}
+
+.dca-credit-cta{border-radius:18px;overflow:hidden;position:relative;box-shadow:0 4px 20px rgba(15,23,42,.12);opacity:0;transform:translateY(16px);transition:opacity .6s .1s ease,transform .6s .1s ease;display:block}
+.dca-credit-cta.visible{opacity:1;transform:translateY(0)}
+.dca-credit-cta .cta-img{width:100%;height:200px;object-fit:cover;object-position:center top;display:block}
+.dca-credit-cta .cta-body{background:linear-gradient(145deg,#0b1f4f,#0b6cd1);padding:22px 22px 24px}
+.dca-credit-cta .cta-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:10px}
+.dca-credit-cta .cta-eyebrow span{width:6px;height:6px;border-radius:50%;background:var(--green);animation:dca-blink 1.5s ease-in-out infinite}
+.dca-credit-cta h3{font-size:17px;font-weight:900;color:#fff;line-height:1.2;letter-spacing:-.02em;margin-bottom:8px}
+.dca-credit-cta h3 em{font-style:normal;color:#7dd3fc}
+.dca-credit-cta p{font-size:12px;color:rgba(255,255,255,.72);line-height:1.65;margin-bottom:18px}
+.dca-credit-cta .cta-perks{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
+.dca-credit-cta .cta-perk{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:rgba(255,255,255,.85)}
+.dca-credit-cta .cta-perk-dot{width:18px;height:18px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex-shrink:0}
+.dca-credit-cta .cta-perk-dot svg{width:10px;height:10px;color:#fff}
+.dca-credit-cta .cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;background:var(--orange);color:#fff !important;font-size:13px;font-weight:900;border-radius:10px;transition:transform .2s,box-shadow .2s;animation:dca-glow 2.5s ease-in-out infinite}
+@keyframes dca-glow{0%,100%{box-shadow:0 4px 16px rgba(255,111,51,.3)}50%{box-shadow:0 4px 28px rgba(255,111,51,.58)}}
+.dca-credit-cta .cta-btn:hover{transform:translateY(-2px)}
+.dca-credit-cta .cta-btn svg{width:14px;height:14px}
+
+.dca-mentor{background:linear-gradient(145deg,#064e2e,#0bae66);border-radius:18px;padding:24px;position:relative;overflow:hidden;margin-top:16px}
+.dca-mentor::before{content:'';position:absolute;top:-30px;right:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.06)}
+.dca-mentor-photo{display:block;width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid rgba(255,255,255,.25);margin-bottom:12px;animation:dca-float 5s ease-in-out infinite;position:relative;z-index:1}
+.dca-mentor-badge{display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:#fff;font-size:9px;font-weight:900;padding:5px 9px;border-radius:999px;margin-bottom:10px;position:relative;z-index:1}
+.dca-mentor-badge span{width:5px;height:5px;border-radius:50%;background:#fff;animation:dca-blink 1.5s ease-in-out infinite}
+.dca-mentor h3{font-size:15px;font-weight:900;color:#fff;margin-bottom:3px;position:relative;z-index:1}
+.dca-mentor small{display:block;font-size:10px;color:rgba(255,255,255,.65);margin-bottom:12px;position:relative;z-index:1}
+.dca-mentor p{font-size:11px;color:rgba(255,255,255,.75);line-height:1.6;margin-bottom:16px;position:relative;z-index:1}
+.dca-mentor-btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:12px;background:var(--orange);color:#fff !important;font-size:12px;font-weight:800;border-radius:9px;position:relative;z-index:1;transition:transform .2s;animation:dca-glow 2.5s ease-in-out infinite}
+.dca-mentor-btn:hover{transform:translateY(-2px)}
+.dca-mentor-btn svg{width:13px;height:13px}
+
+#dca-right{display:flex;flex-direction:column}
+
+@media(max-width:1100px){
+  #dca-stats{grid-template-columns:repeat(2,1fr)}
+  #dca-main-row{grid-template-columns:1fr}
+  #dca-right{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+}
+@media(max-width:900px){
+  #dca-portal{left:0;width:100%;margin-left:0}
+  #dca-body{width:calc(100% - 32px);padding:20px 0 50px}
+  #dca-nav .ni{width:calc(100% - 32px);height:60px;flex-wrap:wrap;padding:6px 0}
+  #dca-nav .ni-links{display:none;width:100%;flex:0 0 100%;flex-direction:column;gap:4px;padding:6px 0}
+  #dca-nav[data-open="true"] .ni-links{display:flex}
+  #dca-nav .ni-links a{padding:11px 14px;border-radius:8px;background:#f8fbff;font-size:13px}
+  #dca-nav .ni-toggle{display:block}
+  #dca-nav .ni-sep{display:none}
+  #dca-hero{grid-template-columns:1fr;padding:28px 24px}
+  #dca-hero .hero-logo-wrap{display:none}
+}
+@media(max-width:640px){
+  #dca-stats{grid-template-columns:1fr 1fr}
+  .dca-tools-grid{grid-template-columns:1fr}
+  #dca-right{grid-template-columns:1fr}
+}
+</style>
+
+<div id="dca-portal">
+
+  <div id="dca-nav">
+    <div class="ni">
+      <a class="ni-logo" href="https://disputechamps.org/home" target="_top">
+        <img src="https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2cd68c8a3c98ce56594aa1.png" alt="Dispute Champs Academy">
+      </a>
+      <div class="ni-sep"></div>
+      <nav class="ni-links">
+        <a href="https://disputechamps.org/home-3547" target="_top">Home</a>
+        <a href="https://disputechamps.org/about-8453" target="_top">About</a>
+        <a href="https://disputechamps.org/contact-1612" target="_top">Contact</a>
+        <a href="https://disputechamps.org/student-dashboard-login-on" target="_top">Student Dashboard</a>
+      </nav>
+      <div class="ni-right">
+        <div class="ni-status"><span></span> Portal Active</div>
+      </div>
+      <button class="ni-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+
+  <div id="dca-body">
+
+    <div id="dca-hero">
+      <div class="hero-text">
+        <div class="hero-eyebrow"><span></span> Student Portal</div>
+        <h1>Welcome to <em>Dispute Champs</em> Academy</h1>
+        <p>Your tools, resources, and community are all right here. Pick what you need and get to work on your credit journey today.</p>
+        <a class="hero-cta" href="https://disputechamps.app.clientclub.net/" target="_blank" rel="noopener">
+          Go to My Courses
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="hero-logo-wrap">
+        <img src="https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2cd68c8a3c98ce56594aa1.png" alt="Dispute Champs Academy">
+      </div>
+    </div>
+
+    <div id="dca-stats">
+      <div class="dca-sc" style="--offset:39">
+        <div class="dca-sc-ring">
+          <svg viewBox="0 0 48 48"><circle class="ring-bg" cx="24" cy="24" r="20"/><circle class="ring-fill" cx="24" cy="24" r="20" stroke="#0b6cd1"/></svg>
+          <div class="ring-pct">69%</div>
+        </div>
+        <div class="dca-sc-info"><strong>3,200+</strong><span>Members Enrolled</span></div>
+      </div>
+      <div class="dca-sc" style="--offset:22">
+        <div class="dca-sc-ring">
+          <svg viewBox="0 0 48 48"><circle class="ring-bg" cx="24" cy="24" r="20"/><circle class="ring-fill" cx="24" cy="24" r="20" stroke="#0bae66"/></svg>
+          <div class="ring-pct">83%</div>
+        </div>
+        <div class="dca-sc-info"><strong>18,500+</strong><span>Letters Generated</span></div>
+      </div>
+      <div class="dca-sc" style="--offset:32">
+        <div class="dca-sc-ring">
+          <svg viewBox="0 0 48 48"><circle class="ring-bg" cx="24" cy="24" r="20"/><circle class="ring-fill" cx="24" cy="24" r="20" stroke="#ff6f33"/></svg>
+          <div class="ring-pct">75%</div>
+        </div>
+        <div class="dca-sc-info"><strong>+110pts</strong><span>Avg Score Lift</span></div>
+      </div>
+      <div class="dca-sc" style="--offset:8">
+        <div class="dca-sc-ring">
+          <svg viewBox="0 0 48 48"><circle class="ring-bg" cx="24" cy="24" r="20"/><circle class="ring-fill" cx="24" cy="24" r="20" stroke="#167fb4"/></svg>
+          <div class="ring-pct">94%</div>
+        </div>
+        <div class="dca-sc-info"><strong>98%</strong><span>Satisfaction Rate</span></div>
+      </div>
+    </div>
+
+    <div id="dca-main-row">
+
+      <div id="dca-tools-wrap">
+        <div class="tw-head">
+          <h2>DC Tools</h2>
+          <span>Quick Launch</span>
+        </div>
+        <div class="dca-tools-grid">
+
+          <div class="dca-tc blue-card">
+            <div class="dca-tc-inner">
+              <div class="dca-tc-icon-wrap">
+                <div class="dca-tc-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>
+                </div>
+              </div>
+              <h3>DC Generator</h3>
+              <p>Build professional credit dispute letters using Academy templates. Personalize and download in minutes.</p>
+              <a class="dca-tc-btn" href="https://boisterous-bubblegum-82ed03.netlify.app/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="dca-tc green-card">
+            <div class="dca-tc-inner">
+              <div class="dca-tc-icon-wrap">
+                <div class="dca-tc-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </div>
+              </div>
+              <h3>DC Library</h3>
+              <p>Browse templates, guides, worksheets, reference documents, e-books, and all Academy downloads.</p>
+              <a class="dca-tc-btn" href="https://boisterous-bubblegum-82ed03.netlify.app/library" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="dca-tc orange-card">
+            <div class="dca-tc-inner">
+              <div class="dca-tc-icon-wrap">
+                <div class="dca-tc-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></svg>
+                </div>
+              </div>
+              <h3>DC Tool Kit</h3>
+              <p>Interactive research tools, Metro 2 references, credit education widgets, and resource databases.</p>
+              <a class="dca-tc-btn" href="https://majestic-malabi-257700.netlify.app/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="dca-tc teal-card">
+            <div class="dca-tc-inner">
+              <div class="dca-tc-icon-wrap">
+                <div class="dca-tc-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                </div>
+              </div>
+              <h3>My Courses</h3>
+              <p>Return to your Academy portal to access enrolled course content, lessons, and your student account.</p>
+              <a class="dca-tc-btn" href="https://disputechamps.app.clientclub.net/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="dca-right">
+
+        <a class="dca-credit-cta" href="https://www.casdispute.com/" target="_blank" rel="noopener">
+          <img class="cta-img" src="https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2c9e7dfc5dba9abb1e28eb.png" alt="Credit Approval Solutions" style="width:100%;height:200px;object-fit:cover;object-position:center top;display:block">
+          <div class="cta-body">
+            <div class="cta-eyebrow"><span></span> Credit Solutions</div>
+            <h3>Stop Letting Bad Credit <em>Dictate Your Life</em></h3>
+            <p>Advanced Metro 2 compliance and strategic disputes to remove inaccurate collections, late payments, and bankruptcies.</p>
+            <div class="cta-perks">
+              <div class="cta-perk">
+                <div class="cta-perk-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+                Bankruptcies Can Be Disputed
+              </div>
+              <div class="cta-perk">
+                <div class="cta-perk-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+                Collections &amp; Late Payments Removed
+              </div>
+              <div class="cta-perk">
+                <div class="cta-perk-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+                Get Credit Approval Solutions
+              </div>
+            </div>
+            <div class="cta-btn">
+              Get Credit Approval Now
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <div class="dca-mentor">
+          <img class="dca-mentor-photo" src="https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2c9e7dfc5dba9abb1e28eb.png" alt="Tina Talks Credit">
+          <div class="dca-mentor-badge"><span></span> ONE-ON-ONE</div>
+          <h3>Tina Talk's Credit</h3>
+          <small>Founder &amp; Lead Credit Educator</small>
+          <p>Book a 45-minute private mentorship session. Bring your questions and goals for personalized strategy and guidance.</p>
+          <a class="dca-mentor-btn" href="https://api.leadconnectorhq.com/widget/booking/zLvaJWeDZBFZCa2SRuav" target="_blank" rel="noopener noreferrer">
+            Schedule My Session
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest('#dca-nav .ni-toggle');
+    if(!btn)return;
+    var nav=btn.closest('#dca-nav');
+    var open=nav.getAttribute('data-open')==='true';
+    nav.setAttribute('data-open',open?'false':'true');
+  });
+  var els=document.querySelectorAll('.dca-sc,.dca-tc,.dca-credit-cta');
+  if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('visible');});return;}
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.12});
+  els.forEach(function(el){obs.observe(el);});
+})();
+</script>
