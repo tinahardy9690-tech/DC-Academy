@@ -7,7 +7,6 @@ import {
   ShieldCheck,
   X,
 } from "lucide-react";
-const academyLogo = "https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2cd68c8a3c98ce56594aa1.png";
 import { AdminPortal } from "./components/AdminPortal";
 import { Generator } from "./components/Generator";
 import { Library } from "./components/Library";
@@ -19,6 +18,8 @@ import {
   templateService,
 } from "./services";
 import type { ClientProfile, LetterTemplate } from "./types";
+
+const academyLogo = "https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2cd68c8a3c98ce56594aa1.png";
 
 const generatorSteps = [
   {
