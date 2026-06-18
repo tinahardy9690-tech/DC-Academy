@@ -136,7 +136,7 @@ h2.st span { color: var(--blue); }
 .score-ring-wrap { position: relative; width: 120px; height: 120px; margin: 0 auto 14px; }
 .score-ring-wrap svg { width: 120px; height: 120px; transform: rotate(-90deg); }
 .score-ring-bg { fill: none; stroke: rgba(255,255,255,.12); stroke-width: 10; }
-.score-ring-fill { fill: none; stroke: var(--green); stroke-width: 10; stroke-linecap: round; stroke-dasharray: 339; stroke-dashoffset: 95; transition: stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1); }
+.score-ring-fill { fill: none; stroke: var(--green); stroke-width: 10; stroke-linecap: round; stroke-dasharray: 339; stroke-dashoffset: 183; transition: stroke-dashoffset 2.4s cubic-bezier(.4,0,.2,1); }
 .score-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .score-num-big { font-family: "Manrope", sans-serif; font-size: 2rem; font-weight: 900; color: #fff; line-height: 1; }
 .score-lbl-sm { font-size: .7rem; color: rgba(255,255,255,.5); letter-spacing: .08em; text-transform: uppercase; margin-top: 2px; }
@@ -439,6 +439,82 @@ h2.st span { color: var(--blue); }
 /* =================================================
    RESPONSIVE
    ================================================= */
+/* ── BREATHING / MOTION ANIMATIONS ── */
+@keyframes breathe {
+  0%,100% { transform: translateY(0) scale(1); box-shadow: 0 4px 16px rgba(11,108,209,.10); }
+  50% { transform: translateY(-5px) scale(1.01); box-shadow: 0 16px 40px rgba(11,108,209,.22); }
+}
+@keyframes pulseGlow {
+  0%,100% { box-shadow: 0 8px 24px rgba(255,111,51,.35); }
+  50% { box-shadow: 0 14px 40px rgba(255,111,51,.65); }
+}
+@keyframes pulseGlowBlue {
+  0%,100% { box-shadow: 0 8px 24px rgba(11,108,209,.28); }
+  50% { box-shadow: 0 14px 40px rgba(11,108,209,.55); }
+}
+@keyframes floatSlow {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes statPop {
+  0%,100% { transform: scale(1); color: var(--navy); }
+  50% { transform: scale(1.07); color: var(--blue); }
+}
+@keyframes heroBgShift {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes ringPulse {
+  0%,100% { filter: drop-shadow(0 0 4px rgba(11,174,102,.4)); }
+  50% { filter: drop-shadow(0 0 14px rgba(11,174,102,.9)); }
+}
+@keyframes badgeFloat {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-4px) rotate(-1deg); }
+  66% { transform: translateY(-2px) rotate(1deg); }
+}
+@keyframes borderPulse {
+  0%,100% { border-color: rgba(11,108,209,.15); }
+  50% { border-color: rgba(11,108,209,.45); }
+}
+@keyframes scoreCardGlow {
+  0%,100% { background: rgba(255,255,255,.07); box-shadow: 0 0 0 rgba(11,174,102,0); }
+  50% { background: rgba(255,255,255,.12); box-shadow: 0 0 30px rgba(11,174,102,.18); }
+}
+@keyframes deltaPulse {
+  0%,100% { background: rgba(11,174,102,.18); }
+  50% { background: rgba(11,174,102,.35); }
+}
+
+/* Apply animations */
+.btn-p { animation: pulseGlow 2.8s ease-in-out infinite; }
+.btn-b { animation: pulseGlowBlue 2.8s ease-in-out infinite; }
+.hero-score-card { animation: scoreCardGlow 3s ease-in-out infinite; }
+.score-ring-wrap { animation: ringPulse 2.5s ease-in-out infinite; }
+.score-delta { animation: deltaPulse 2.5s ease-in-out infinite; }
+.law-card { animation: breathe 4s ease-in-out infinite; }
+.law-card:nth-child(2) { animation-delay: .6s; }
+.law-card:nth-child(3) { animation-delay: 1.2s; }
+.active-lesson-card { animation: floatSlow 3.5s ease-in-out infinite; }
+.mentor-card { animation: floatSlow 4s ease-in-out infinite; animation-delay: .5s; }
+.tool-card-dash { animation: breathe 4.5s ease-in-out infinite; }
+.tool-card-dash:nth-child(2) { animation-delay: .5s; }
+.tool-card-dash:nth-child(3) { animation-delay: 1s; }
+.tool-card-dash:nth-child(4) { animation-delay: 1.5s; }
+.stat-num { animation: statPop 3s ease-in-out infinite; }
+.stat-item:nth-child(2) .stat-num { animation-delay: .4s; }
+.stat-item:nth-child(3) .stat-num { animation-delay: .8s; }
+.stat-item:nth-child(4) .stat-num { animation-delay: 1.2s; }
+.badge-item.earned { animation: badgeFloat 3.5s ease-in-out infinite; }
+.badge-item.earned:nth-child(2) { animation-delay: .5s; }
+.badge-item.earned:nth-child(3) { animation-delay: 1s; }
+.community-card { animation: borderPulse 3s ease-in-out infinite; }
+.testi-card { animation: breathe 5s ease-in-out infinite; }
+.testi-card:nth-child(2) { animation-delay: .8s; }
+.testi-card:nth-child(3) { animation-delay: 1.6s; }
+/* Pause motion on hover so hover effects still feel intentional */
+.law-card:hover, .tool-card-dash:hover, .testi-card:hover { animation-play-state: paused; }
+
 @media(max-width:900px){
   .hero-wrap { grid-template-columns: 1fr; }
   .hero-score-card { display: none; }
@@ -485,7 +561,7 @@ h2.st span { color: var(--blue); }
   <div class="hero-wrap">
     <div class="rv" style="transition-delay:0s">
       <span class="eyebrow">Welcome Back</span>
-      <h1 class="hero-greet">Keep Going,<br><span class="g">Champion Tina!</span></h1>
+      <h1 class="hero-greet">Keep Going,<br><span class="g">Champion!</span></h1>
       <p class="hero-sub-txt">You're 68% through Credit Repair Fundamentals. Your next lesson is ready — every step gets you closer to 700+.</p>
       <div class="hero-cta-row">
         <!-- Non-clickable per request -->
@@ -504,7 +580,7 @@ h2.st span { color: var(--blue); }
           <circle class="score-ring-fill" cx="60" cy="60" r="54" id="scoreRing"/>
         </svg>
         <div class="score-center">
-          <div class="score-num-big">671</div>
+          <div class="score-num-big" id="scoreNum">390</div>
           <div class="score-lbl-sm">Credit Score</div>
         </div>
       </div>
@@ -804,6 +880,41 @@ h2.st span { color: var(--blue); }
       if(!isOpen){ item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
     });
   });
+
+  // Credit score ring + counter: 390 → 760
+  var START_SCORE = 390;
+  var END_SCORE   = 760;
+  var CIRC        = 339;   // 2π × r54
+  var MAX_SCORE   = 850;
+  var DURATION    = 2400;  // ms, matches CSS transition
+
+  function scoreToOffset(s){ return CIRC * (1 - s / MAX_SCORE); }
+
+  var ring    = document.getElementById('scoreRing');
+  var numEl   = document.getElementById('scoreNum');
+
+  function runCounter(){
+    var start = null;
+    // Animate ring
+    if(ring){ ring.style.strokeDashoffset = scoreToOffset(END_SCORE); }
+    // Animate number
+    function step(ts){
+      if(!start) start = ts;
+      var pct = Math.min((ts - start) / DURATION, 1);
+      // ease-out cubic
+      var ease = 1 - Math.pow(1 - pct, 3);
+      var cur = Math.round(START_SCORE + (END_SCORE - START_SCORE) * ease);
+      if(numEl) numEl.textContent = cur;
+      if(pct < 1){ requestAnimationFrame(step); }
+      else{
+        if(numEl) numEl.textContent = END_SCORE;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Start after a short delay so the page has settled
+  setTimeout(runCounter, 600);
 })();
 </script>
 </body>
