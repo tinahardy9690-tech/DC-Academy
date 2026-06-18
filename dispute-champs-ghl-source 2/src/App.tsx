@@ -7,7 +7,7 @@ import {
   ShieldCheck,
   X,
 } from "lucide-react";
-import academyLogo from "./assets/dispute-champs-academy-logo.png";
+const academyLogo = "https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2cd68c8a3c98ce56594aa1.png";
 import { AdminPortal } from "./components/AdminPortal";
 import { Generator } from "./components/Generator";
 import { Library } from "./components/Library";
