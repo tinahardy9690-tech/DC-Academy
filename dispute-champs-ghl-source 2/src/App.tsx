@@ -128,7 +128,7 @@ function StudentGenerator() {
         <div className="topbar">
           <a
             className="topbar-client topbar-dashboard"
-            href="https://disputechamps.org/student-dash"
+            href="https://disputechamps.org/student-dashboard"
             target="_top"
           >
             ← Student Dashboard
