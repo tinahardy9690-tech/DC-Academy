@@ -23,7 +23,6 @@ import {
   WalletCards,
   X,
 } from "lucide-react";
-const academyLogo = "https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2cd68c8a3c98ce56594aa1.png";
 import { libraryCategoryDescriptions } from "../libraryData";
 import { libraryService } from "../libraryServices";
 import {
@@ -36,6 +35,8 @@ import type {
   LibraryResourceType,
 } from "../libraryTypes";
 import "../library.css";
+
+const academyLogo = "https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2cd68c8a3c98ce56594aa1.png";
 
 const categoryIcons: Record<LibraryCategory, LucideIcon> = {
   "Legal Documents": Landmark,
