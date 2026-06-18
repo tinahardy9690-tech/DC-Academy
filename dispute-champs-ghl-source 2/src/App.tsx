@@ -7,7 +7,6 @@ import {
   ShieldCheck,
   X,
 } from "lucide-react";
-import academyLogo from "./assets/dispute-champs-academy-logo.png";
 import { AdminPortal } from "./components/AdminPortal";
 import { Generator } from "./components/Generator";
 import { Library } from "./components/Library";
@@ -19,6 +18,8 @@ import {
   templateService,
 } from "./services";
 import type { ClientProfile, LetterTemplate } from "./types";
+
+const academyLogo = "https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2cd68c8a3c98ce56594aa1.png";
 
 const generatorSteps = [
   {
@@ -128,7 +129,7 @@ function StudentGenerator() {
         <div className="topbar">
           <a
             className="topbar-client topbar-dashboard"
-            href="https://disputechamps.org/student-dash"
+            href="https://disputechamps.org/student-dashboard"
             target="_top"
           >
             ← Student Dashboard
