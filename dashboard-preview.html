@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dispute Champs — Student Dashboard Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #0b6cd1;
+  --blue-dark: #075ab2;
+  --green: #0bae66;
+  --green-dark: #078c52;
+  --aqua: #ebf8ff;
+  --orange: #FF6F33;
+  --orange-dk: #e55a1f;
+  --navy: #0d1b34;
+  --body: #1e2d45;
+  --muted: #5a6a82;
+  --line: #dde6f0;
+  --white: #ffffff;
+  --shadow-sm: 0 4px 16px rgba(11,108,209,.10);
+  --shadow-md: 0 12px 40px rgba(11,108,209,.15);
+  --shadow-lg: 0 24px 64px rgba(11,108,209,.18);
+  --radius: 16px;
+  --radius-sm: 10px;
+  font-family: "DM Sans", Arial, sans-serif;
+  color: var(--body);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Scroll reveal */
+.rv { opacity: 0; transform: translateY(36px); transition: opacity .6s ease, transform .6s ease; }
+.rv.on { opacity: 1; transform: none; }
+.rvl { opacity: 0; transform: translateX(-40px); transition: opacity .6s ease, transform .6s ease; }
+.rvl.on { opacity: 1; transform: none; }
+.rvr { opacity: 0; transform: translateX(40px); transition: opacity .6s ease, transform .6s ease; }
+.rvr.on { opacity: 1; transform: none; }
+
+/* Typography */
+.eyebrow {
+  display: inline-block;
+  font-family: "Manrope", sans-serif;
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--green); background: rgba(11,174,102,.10);
+  padding: 4px 14px; border-radius: 50px; margin-bottom: 16px;
+}
+.eyebrow.org { color: var(--orange); background: rgba(255,111,51,.10); }
+.eyebrow.blu { color: var(--blue); background: rgba(11,108,209,.10); }
+h2.st {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800; line-height: 1.15;
+  color: var(--navy); margin-bottom: 14px;
+}
+h2.st span { color: var(--blue); }
+.sub { font-size: 1rem; color: var(--muted); line-height: 1.7; max-width: 560px; }
+.ctr { text-align: center; }
+.ctr .sub { margin: 0 auto; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: "Manrope", sans-serif; font-weight: 700;
+  font-size: .97rem; border: none; cursor: pointer;
+  border-radius: 50px; padding: 13px 28px;
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-p { background: var(--orange); color: #fff; box-shadow: 0 8px 24px rgba(255,111,51,.35); }
+.btn-p:hover { background: var(--orange-dk); }
+.btn-b { background: var(--blue); color: #fff; box-shadow: 0 8px 24px rgba(11,108,209,.28); }
+.btn-b:hover { background: var(--blue-dark); }
+.btn-g { background: transparent; color: var(--blue); border: 2px solid var(--blue); }
+.btn-g:hover { background: var(--blue); color: #fff; }
+.btn-sm { padding: 9px 20px; font-size: .84rem; }
+
+/* Check circles */
+.chk { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.chk svg { width: 11px; height: 11px; stroke: #fff; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+/* =================================================
+   TOP NAV
+   ================================================= */
+#dash-nav {
+  background: linear-gradient(135deg, #0d1b34 0%, #0e2a55 100%);
+  border-bottom: 3px solid var(--orange);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; height: 64px; position: sticky; top: 0; z-index: 100;
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; }
+.nav-logo-circle {
+  width: 36px; height: 36px; background: var(--orange);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: "Manrope", sans-serif; font-weight: 900; color: #fff; font-size: 13px;
+}
+.nav-brand-name { font-family: "Manrope", sans-serif; font-weight: 800; color: #fff; font-size: 1rem; }
+.nav-brand-sub { font-size: .72rem; color: rgba(255,255,255,.5); letter-spacing: .08em; text-transform: uppercase; }
+.nav-links { display: flex; align-items: center; gap: 6px; }
+.nav-link {
+  padding: 7px 16px; border-radius: 8px;
+  font-size: .88rem; font-weight: 600; color: rgba(255,255,255,.65);
+  text-decoration: none; transition: background .15s, color .15s;
+}
+.nav-link:hover, .nav-link.active { background: rgba(255,255,255,.10); color: #fff; }
+.nav-link.active { color: var(--orange); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-notif {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  position: relative;
+}
+.nav-notif svg { width: 17px; height: 17px; stroke: rgba(255,255,255,.7); fill: none; stroke-width: 2; }
+.notif-dot { position: absolute; top: 7px; right: 7px; width: 7px; height: 7px; background: var(--orange); border-radius: 50%; border: 1.5px solid #0e2a55; }
+.nav-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  display: flex; align-items: center; justify-content: center;
+  font-family: "Manrope", sans-serif; font-weight: 800; color: #fff; font-size: .88rem;
+  cursor: pointer; border: 2px solid rgba(255,255,255,.2);
+}
+
+/* =================================================
+   HERO WELCOME BANNER
+   ================================================= */
+#dash-hero {
+  background: linear-gradient(135deg, #0d1b34 0%, #0e2a55 60%, #0b3d7a 100%);
+  padding: 52px 32px 48px; position: relative; overflow: hidden;
+}
+#dash-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(11,174,102,.15) 0%, transparent 50%),
+              radial-gradient(circle at 10% 80%, rgba(11,108,209,.22) 0%, transparent 45%);
+  pointer-events: none;
+}
+.hero-wrap { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; position: relative; z-index: 1; }
+.hero-greet { font-family: "Manrope", sans-serif; font-size: clamp(1.6rem,3vw,2.4rem); font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 8px; }
+.hero-greet .g { color: var(--green); }
+.hero-sub-txt { color: rgba(255,255,255,.68); font-size: 1rem; line-height: 1.6; margin-bottom: 24px; max-width: 500px; }
+.hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.hero-trust { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,.55); font-size: .83rem; }
+.hero-stars { color: #f5c518; letter-spacing: 1px; }
+
+.hero-score-card {
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13);
+  border-radius: 20px; padding: 28px 36px; min-width: 260px; text-align: center;
+}
+.score-ring-wrap { position: relative; width: 120px; height: 120px; margin: 0 auto 14px; }
+.score-ring-wrap svg { width: 120px; height: 120px; transform: rotate(-90deg); }
+.score-ring-bg { fill: none; stroke: rgba(255,255,255,.12); stroke-width: 10; }
+.score-ring-fill { fill: none; stroke: var(--green); stroke-width: 10; stroke-linecap: round; stroke-dasharray: 339; stroke-dashoffset: 95; transition: stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1); }
+.score-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.score-num-big { font-family: "Manrope", sans-serif; font-size: 2rem; font-weight: 900; color: #fff; line-height: 1; }
+.score-lbl-sm { font-size: .7rem; color: rgba(255,255,255,.5); letter-spacing: .08em; text-transform: uppercase; margin-top: 2px; }
+.score-delta { display: inline-flex; align-items: center; gap: 5px; background: rgba(11,174,102,.18); border: 1px solid rgba(11,174,102,.3); color: var(--green); font-size: .8rem; font-weight: 700; padding: 4px 12px; border-radius: 50px; }
+.score-delta svg { width: 12px; height: 12px; stroke: var(--green); fill: none; stroke-width: 2.5; }
+
+/* =================================================
+   STAT STRIP
+   ================================================= */
+#dash-stats {
+  background: #fff; border-bottom: 1px solid var(--line);
+  padding: 0 32px;
+}
+.stats-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
+.stat-item {
+  padding: 22px 20px; border-right: 1px solid var(--line);
+  display: flex; align-items: center; gap: 14px;
+}
+.stat-item:last-child { border-right: none; }
+.stat-icon { width: 44px; height: 44px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.stat-icon svg { width: 20px; height: 20px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.si-b { background: rgba(11,108,209,.10); } .si-b svg { stroke: var(--blue); }
+.si-g { background: rgba(11,174,102,.10); } .si-g svg { stroke: var(--green); }
+.si-o { background: rgba(255,111,51,.10); } .si-o svg { stroke: var(--orange); }
+.si-n { background: rgba(13,27,52,.07); } .si-n svg { stroke: var(--navy); }
+.stat-num { font-family: "Manrope", sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--navy); line-height: 1; }
+.stat-lbl { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+
+/* =================================================
+   MAIN LAYOUT
+   ================================================= */
+.dash-body { max-width: 1160px; margin: 0 auto; padding: 36px 32px 80px; }
+.dash-grid { display: grid; grid-template-columns: 1fr 340px; gap: 28px; align-items: start; }
+
+/* =================================================
+   SECTION HEADERS
+   ================================================= */
+.sec-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.sec-hdr h3 { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--navy); }
+.sec-hdr a { font-size: .84rem; font-weight: 600; color: var(--blue); text-decoration: none; }
+.sec-hdr a:hover { text-decoration: underline; }
+
+/* =================================================
+   COURSE PROGRESS SECTION
+   ================================================= */
+.course-card {
+  background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; margin-bottom: 16px;
+  transition: border-color .25s, box-shadow .25s, transform .25s;
+}
+.course-card:hover { border-color: var(--blue); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+.course-card-top { height: 4px; background: linear-gradient(90deg, var(--blue), var(--green)); }
+.course-card-body { padding: 22px 24px; display: flex; gap: 18px; align-items: center; }
+.course-thumb {
+  width: 58px; height: 58px; border-radius: 13px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.course-thumb svg { width: 26px; height: 26px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ct-b { background: rgba(11,108,209,.10); } .ct-b svg { stroke: var(--blue); }
+.ct-g { background: rgba(11,174,102,.10); } .ct-g svg { stroke: var(--green); }
+.ct-o { background: rgba(255,111,51,.10); } .ct-o svg { stroke: var(--orange); }
+.course-info { flex: 1; min-width: 0; }
+.course-tag { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
+.course-info h4 { font-family: "Manrope", sans-serif; font-weight: 700; font-size: .97rem; color: var(--navy); margin-bottom: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.prog-bar-track { height: 7px; background: var(--line); border-radius: 50px; overflow: hidden; margin-bottom: 5px; }
+.prog-bar-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, var(--blue), var(--green)); transition: width 1.2s cubic-bezier(.4,0,.2,1); width: 0; }
+.prog-meta { display: flex; justify-content: space-between; font-size: .75rem; color: var(--muted); }
+.course-action { flex-shrink: 0; }
+
+/* Active lesson indicator */
+.active-lesson-card {
+  background: linear-gradient(135deg, var(--blue) 0%, #0947a0 100%);
+  border-radius: var(--radius); padding: 24px; margin-bottom: 28px;
+  display: flex; align-items: center; gap: 18px; position: relative; overflow: hidden;
+}
+.active-lesson-card::before {
+  content: ""; position: absolute; top: -40px; right: -40px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: rgba(255,255,255,.05); pointer-events: none;
+}
+.al-icon {
+  width: 52px; height: 52px; border-radius: 13px;
+  background: rgba(255,255,255,.15); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.al-icon svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.al-text { flex: 1; }
+.al-eyebrow { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 4px; }
+.al-title { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1.05rem; color: #fff; margin-bottom: 2px; }
+.al-sub { font-size: .82rem; color: rgba(255,255,255,.65); }
+
+/* =================================================
+   TOOL CARDS (DC Tools grid)
+   ================================================= */
+.tools-section { margin-top: 32px; }
+.tool-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.tool-card-dash {
+  background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius);
+  padding: 20px; display: flex; flex-direction: column; gap: 12px;
+  transition: border-color .25s, box-shadow .25s, transform .25s; cursor: pointer;
+}
+.tool-card-dash:hover { border-color: var(--blue); box-shadow: var(--shadow-sm); transform: translateY(-3px); }
+.tcd-icon { width: 46px; height: 46px; border-radius: 11px; display: flex; align-items: center; justify-content: center; }
+.tcd-icon svg { width: 22px; height: 22px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.tcd-i-b { background: rgba(11,108,209,.10); } .tcd-i-b svg { stroke: var(--blue); }
+.tcd-i-g { background: rgba(11,174,102,.10); } .tcd-i-g svg { stroke: var(--green); }
+.tcd-i-o { background: rgba(255,111,51,.10); } .tcd-i-o svg { stroke: var(--orange); }
+.tcd-i-n { background: rgba(13,27,52,.07); } .tcd-i-n svg { stroke: var(--navy); }
+.tcd-name { font-family: "Manrope", sans-serif; font-weight: 700; font-size: .92rem; color: var(--navy); }
+.tcd-desc { font-size: .78rem; color: var(--muted); line-height: 1.5; }
+.tcd-arrow {
+  align-self: flex-end; width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--blue); color: #fff;
+  transition: transform .2s;
+}
+.tcd-arrow:hover { transform: scale(1.15); }
+.tcd-arrow svg { width: 14px; height: 14px; stroke: #fff; fill: none; stroke-width: 2.5; }
+.tool-card-dash.blue-t { background: linear-gradient(145deg,#ebf8ff,#cce5ff); border-color: #b3d4f8; }
+.tool-card-dash.green-t { background: linear-gradient(145deg,#f0fff8,#c8f5e0); border-color: #a8eacc; }
+.tool-card-dash.orange-t { background: linear-gradient(145deg,#fff5f0,#ffd9c4); border-color: #ffcaac; }
+.tool-card-dash.teal-t { background: linear-gradient(145deg,#ebf8ff,#c0dff5); border-color: #a0cce8; }
+
+/* =================================================
+   RIGHT SIDEBAR
+   ================================================= */
+
+/* Mentorship card */
+.mentor-card {
+  background: linear-gradient(135deg, #0d1b34 0%, #0e2a55 100%);
+  border-radius: var(--radius); padding: 28px; margin-bottom: 20px;
+  position: relative; overflow: hidden;
+}
+.mentor-card::before {
+  content: ""; position: absolute; top: -30px; right: -30px;
+  width: 120px; height: 120px; border-radius: 50%;
+  background: rgba(11,174,102,.10); pointer-events: none;
+}
+.mc-eyebrow { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 8px; }
+.mc-title { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1.15rem; color: #fff; margin-bottom: 8px; line-height: 1.25; }
+.mc-sub { font-size: .82rem; color: rgba(255,255,255,.58); line-height: 1.55; margin-bottom: 20px; }
+.mc-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--orange); color: #fff;
+  font-family: "Manrope", sans-serif; font-weight: 700; font-size: .88rem;
+  padding: 11px 22px; border-radius: 50px; text-decoration: none;
+  box-shadow: 0 6px 20px rgba(255,111,51,.35);
+  transition: transform .2s, box-shadow .2s;
+}
+.mc-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,111,51,.45); }
+.mc-btn svg { width: 14px; height: 14px; stroke: #fff; fill: none; stroke-width: 2.5; }
+
+/* Achievement badges */
+.achieve-card { background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); padding: 22px; margin-bottom: 20px; }
+.achieve-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 14px; }
+.badge-item {
+  background: var(--aqua); border-radius: 10px; padding: 14px 8px;
+  text-align: center; border: 1.5px solid transparent;
+  transition: border-color .2s, transform .2s;
+}
+.badge-item:hover { border-color: var(--blue); transform: translateY(-2px); }
+.badge-item.earned { background: rgba(11,174,102,.08); border-color: rgba(11,174,102,.25); }
+.badge-item.locked { opacity: .45; }
+.badge-icon { font-size: 1.5rem; margin-bottom: 5px; }
+.badge-lbl { font-size: .66rem; font-weight: 700; color: var(--navy); line-height: 1.3; }
+
+/* Community card */
+.community-card { background: var(--aqua); border: 1.5px solid rgba(11,108,209,.15); border-radius: var(--radius); padding: 22px; }
+.community-card h4 { font-family: "Manrope", sans-serif; font-weight: 700; font-size: .97rem; color: var(--navy); margin-bottom: 6px; }
+.community-card p { font-size: .82rem; color: var(--muted); margin-bottom: 16px; line-height: 1.55; }
+.community-avatars { display: flex; align-items: center; margin-bottom: 12px; }
+.c-av {
+  width: 32px; height: 32px; border-radius: 50%; border: 2px solid #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: "Manrope", sans-serif; font-weight: 800; font-size: .72rem; color: #fff;
+  margin-left: -8px; flex-shrink: 0;
+}
+.c-av:first-child { margin-left: 0; }
+.cav1 { background: linear-gradient(135deg, var(--blue), #2e8de8); }
+.cav2 { background: linear-gradient(135deg, var(--green), #08c972); }
+.cav3 { background: linear-gradient(135deg, var(--orange), #ffad87); }
+.cav4 { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+.c-av-more { background: var(--navy); font-size: .66rem; }
+.community-online { font-size: .78rem; color: var(--green); font-weight: 600; }
+
+/* =================================================
+   TESTIMONIALS (dark section reused)
+   ================================================= */
+#dash-wins {
+  background: linear-gradient(160deg, #0d1b34 0%, #0e2e58 100%);
+  padding: 60px 32px;
+}
+.wins-inner { max-width: 1160px; margin: 0 auto; }
+#dash-wins .st { color: #fff; }
+#dash-wins .sub { color: rgba(255,255,255,.58); }
+.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin-top: 40px; }
+.testi-card {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius); padding: 28px;
+  display: flex; flex-direction: column; gap: 16px;
+  transition: transform .3s, background .3s;
+}
+.testi-card:hover { transform: translateY(-5px); background: rgba(255,255,255,.10); }
+.testi-hdr { display: flex; justify-content: space-between; align-items: flex-start; }
+.testi-rating { color: #f5c518; font-size: .97rem; }
+.quote-icon { opacity: .14; }
+.quote-icon svg { width: 36px; height: 36px; fill: #fff; }
+.testi-quote { color: rgba(255,255,255,.80); line-height: 1.7; font-size: .92rem; flex: 1; }
+.testi-ftr { display: flex; align-items: center; gap: 12px; }
+.t-av { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1rem; color: #fff; flex-shrink: 0; }
+.av-b { background: linear-gradient(135deg, var(--blue), #2e8de8); }
+.av-g { background: linear-gradient(135deg, var(--green), #08c972); }
+.av-o { background: linear-gradient(135deg, var(--orange), #ffad87); }
+.person-name { font-weight: 700; color: #fff; font-size: .92rem; }
+.person-type { font-size: .78rem; color: rgba(255,255,255,.48); }
+
+/* =================================================
+   FAQ (reused exactly)
+   ================================================= */
+#dash-faq { background: #fff; padding: 60px 32px; }
+.faq-inner { max-width: 1160px; margin: 0 auto; }
+.faq-list { max-width: 760px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 12px; }
+.faq-item { border: 1.5px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue); }
+.faq-q {
+  width: 100%; background: #fff; border: none;
+  padding: 20px 22px; display: flex; justify-content: space-between; align-items: center; gap: 14px;
+  cursor: pointer; text-align: left;
+  font-family: "Manrope", sans-serif; font-weight: 700; font-size: .97rem; color: var(--navy);
+  transition: background .2s;
+}
+.faq-q:hover { background: rgba(11,108,209,.04); }
+.faq-item.open .faq-q { background: rgba(11,108,209,.04); color: var(--blue); }
+.faq-chv {
+  width: 26px; height: 26px; border-radius: 50%; background: var(--aqua);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  transition: transform .3s, background .2s;
+}
+.faq-chv svg { width: 13px; height: 13px; stroke: var(--blue); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.faq-item.open .faq-chv { transform: rotate(180deg); background: var(--blue); }
+.faq-item.open .faq-chv svg { stroke: #fff; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+.faq-a-inner { padding: 0 22px 20px; color: var(--muted); line-height: 1.7; font-size: .95rem; }
+
+/* =================================================
+   FINAL CTA (reused exactly)
+   ================================================= */
+#dash-final {
+  background: linear-gradient(135deg, #0d1b34 0%, #0d2d5e 50%, #0b3d7a 100%);
+  padding: 80px 32px; text-align: center; position: relative; overflow: hidden;
+}
+#dash-final::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(11,174,102,.14) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(11,108,209,.18) 0%, transparent 50%);
+  pointer-events: none;
+}
+.final-in { position: relative; z-index: 1; max-width: 660px; margin: 0 auto; }
+.final-in h2 { font-family: "Manrope", sans-serif; font-size: clamp(1.9rem,3.8vw,2.9rem); font-weight: 900; color: #fff; line-height: 1.18; margin-bottom: 18px; }
+.final-in h2 span { color: var(--green); }
+.final-in p { font-size: 1.05rem; color: rgba(255,255,255,.68); margin-bottom: 36px; line-height: 1.65; }
+.final-row { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.trust-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
+.trust-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .8rem; color: rgba(255,255,255,.58);
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+  padding: 6px 14px; border-radius: 50px;
+}
+.trust-pill svg { width: 13px; height: 13px; flex-shrink: 0; stroke: rgba(255,255,255,.58); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* =================================================
+   RESPONSIVE
+   ================================================= */
+@media(max-width:900px){
+  .hero-wrap { grid-template-columns: 1fr; }
+  .hero-score-card { display: none; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .dash-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .tool-grid-4 { grid-template-columns: 1fr; }
+  #dash-nav .nav-links { display: none; }
+}
+@media(max-width:540px){
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .final-row { flex-direction: column; }
+}
+</style>
+</head>
+<body style="background:#f8fafc;">
+
+<!-- ============================================================
+     TOP NAV
+     ============================================================ -->
+<nav id="dash-nav">
+  <div class="nav-brand">
+    <div class="nav-logo-circle">DC</div>
+    <div>
+      <div class="nav-brand-name">Dispute Champs Academy</div>
+      <div class="nav-brand-sub">Student Portal</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link active" href="#">Dashboard</a>
+    <a class="nav-link" href="#">My Courses</a>
+    <a class="nav-link" href="#">DC Tools</a>
+    <a class="nav-link" href="#">Community</a>
+    <a class="nav-link" href="#">Resources</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-notif">
+      <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <div class="notif-dot"></div>
+    </div>
+    <div class="nav-avatar">TT</div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO WELCOME BANNER
+     ============================================================ -->
+<section id="dash-hero">
+  <div class="hero-wrap">
+    <div class="rv" style="transition-delay:0s">
+      <span class="eyebrow">Welcome Back</span>
+      <h1 class="hero-greet">Keep Going,<br><span class="g">Champion Tina!</span></h1>
+      <p class="hero-sub-txt">You're 68% through Credit Repair Fundamentals. Your next lesson is ready — every step gets you closer to 700+.</p>
+      <div class="hero-cta-row">
+        <a href="#" class="btn btn-p">Resume My Lesson ›</a>
+        <a href="#" class="btn" style="background:rgba(255,255,255,.10);color:#fff;border:2px solid rgba(255,255,255,.25);">View All Courses</a>
+      </div>
+      <div class="hero-trust" style="margin-top:18px;">
+        <span class="hero-stars">★★★★★</span>
+        <span>Rated 4.9 by 2,000+ students</span>
+      </div>
+    </div>
+    <div class="hero-score-card rv" style="transition-delay:.2s">
+      <div class="score-ring-wrap">
+        <svg viewBox="0 0 120 120">
+          <circle class="score-ring-bg" cx="60" cy="60" r="54"/>
+          <circle class="score-ring-fill" cx="60" cy="60" r="54" id="scoreRing"/>
+        </svg>
+        <div class="score-center">
+          <div class="score-num-big">671</div>
+          <div class="score-lbl-sm">Credit Score</div>
+        </div>
+      </div>
+      <div class="score-delta">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+        +112 pts since joining
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STAT STRIP
+     ============================================================ -->
+<div id="dash-stats">
+  <div class="stats-inner rv">
+    <div class="stat-item">
+      <div class="stat-icon si-b"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+      <div><div class="stat-num">68%</div><div class="stat-lbl">Course Complete</div></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon si-g"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg></div>
+      <div><div class="stat-num">14</div><div class="stat-lbl">Letters Generated</div></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon si-o"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+      <div><div class="stat-num">+112</div><div class="stat-lbl">Points Gained</div></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon si-n"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div><div class="stat-num">23 days</div><div class="stat-lbl">Member Streak</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MAIN DASHBOARD GRID
+     ============================================================ -->
+<div class="dash-body">
+  <div class="dash-grid">
+
+    <!-- LEFT COLUMN -->
+    <div>
+
+      <!-- Active Lesson -->
+      <div class="active-lesson-card rv">
+        <div class="al-icon">
+          <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        </div>
+        <div class="al-text">
+          <div class="al-eyebrow">Continue Where You Left Off</div>
+          <div class="al-title">Module 3 · Lesson 4: Writing Effective Dispute Letters</div>
+          <div class="al-sub">Credit Repair Fundamentals &nbsp;·&nbsp; 15 min remaining</div>
+        </div>
+        <a href="#" class="btn btn-p btn-sm" style="flex-shrink:0;">Resume ›</a>
+      </div>
+
+      <!-- My Courses -->
+      <div class="sec-hdr rv">
+        <h3>My Courses</h3>
+        <a href="#">View all →</a>
+      </div>
+
+      <div class="course-card rv" style="transition-delay:.05s">
+        <div class="course-card-top"></div>
+        <div class="course-card-body">
+          <div class="course-thumb ct-b"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+          <div class="course-info">
+            <div class="course-tag">In Progress</div>
+            <h4>Credit Repair Fundamentals</h4>
+            <div class="prog-bar-track"><div class="prog-bar-fill" data-w="68%"></div></div>
+            <div class="prog-meta"><span>Module 3 of 6</span><span>68%</span></div>
+          </div>
+          <div class="course-action"><a href="#" class="btn btn-b btn-sm">Continue</a></div>
+        </div>
+      </div>
+
+      <div class="course-card rv" style="transition-delay:.1s">
+        <div class="course-card-top" style="background:linear-gradient(90deg,var(--green),#08c972)"></div>
+        <div class="course-card-body">
+          <div class="course-thumb ct-g"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="course-info">
+            <div class="course-tag" style="color:var(--green);">Completed ✓</div>
+            <h4>FCRA &amp; Metro 2 Compliance</h4>
+            <div class="prog-bar-track"><div class="prog-bar-fill" data-w="100%" style="background:linear-gradient(90deg,var(--green),#08c972)"></div></div>
+            <div class="prog-meta"><span>All 6 modules done</span><span>100%</span></div>
+          </div>
+          <div class="course-action"><a href="#" class="btn btn-g btn-sm">Review</a></div>
+        </div>
+      </div>
+
+      <div class="course-card rv" style="transition-delay:.15s">
+        <div class="course-card-top" style="background:linear-gradient(90deg,var(--orange),#ffad87)"></div>
+        <div class="course-card-body">
+          <div class="course-thumb ct-o"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <div class="course-info">
+            <div class="course-tag" style="color:var(--orange);">Not Started</div>
+            <h4>Launch Your Credit Repair Business</h4>
+            <div class="prog-bar-track"><div class="prog-bar-fill" data-w="0%"></div></div>
+            <div class="prog-meta"><span>6 modules</span><span>0%</span></div>
+          </div>
+          <div class="course-action"><a href="#" class="btn btn-p btn-sm">Start</a></div>
+        </div>
+      </div>
+
+      <!-- DC Tools -->
+      <div class="tools-section">
+        <div class="sec-hdr rv">
+          <h3>DC Tools</h3>
+          <a href="#">Quick Launch →</a>
+        </div>
+        <div class="tool-grid-4">
+          <a href="https://boisterous-bubblegum-82ed03.netlify.app/" target="_blank" class="tool-card-dash blue-t rv" style="transition-delay:.05s;text-decoration:none;">
+            <div class="tcd-icon tcd-i-b"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg></div>
+            <div class="tcd-name">DC Generator</div>
+            <div class="tcd-desc">Build dispute letters in seconds</div>
+            <div class="tcd-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          </a>
+          <a href="https://boisterous-bubblegum-82ed03.netlify.app/library" target="_blank" class="tool-card-dash green-t rv" style="transition-delay:.1s;text-decoration:none;">
+            <div class="tcd-icon tcd-i-g"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+            <div class="tcd-name">DC Library</div>
+            <div class="tcd-desc">150+ templates &amp; guides</div>
+            <div class="tcd-arrow" style="background:var(--green)"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          </a>
+          <a href="https://majestic-malabi-257700.netlify.app/" target="_blank" class="tool-card-dash orange-t rv" style="transition-delay:.15s;text-decoration:none;">
+            <div class="tcd-icon tcd-i-o"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></svg></div>
+            <div class="tcd-name">DC Tool Kit</div>
+            <div class="tcd-desc">Metro 2, research &amp; widgets</div>
+            <div class="tcd-arrow" style="background:var(--orange)"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          </a>
+          <a href="https://disputechamps.app.clientclub.net/" target="_blank" class="tool-card-dash teal-t rv" style="transition-delay:.2s;text-decoration:none;">
+            <div class="tcd-icon" style="background:rgba(22,127,180,.12)"><svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:none;stroke:#167fb4;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+            <div class="tcd-name">My Courses</div>
+            <div class="tcd-desc">Academy portal &amp; lessons</div>
+            <div class="tcd-arrow" style="background:#167fb4"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- / LEFT COLUMN -->
+
+    <!-- RIGHT SIDEBAR -->
+    <div>
+
+      <!-- Mentorship Card -->
+      <div class="mentor-card rv">
+        <div class="mc-eyebrow">One-on-One Mentorship</div>
+        <div class="mc-title">Book Your Free Session</div>
+        <div class="mc-sub">Get personalized guidance on your disputes. Limited slots available each week.</div>
+        <a href="https://api.leadconnectorhq.com/widget/booking/zLvaJWeDZBFZCa2SRuav" target="_blank" class="mc-btn">
+          Book Free Session
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <!-- Achievements -->
+      <div class="achieve-card rv" style="transition-delay:.1s">
+        <div class="sec-hdr" style="margin-bottom:4px;">
+          <h3 style="font-size:.97rem;">My Achievements</h3>
+          <a href="#">All →</a>
+        </div>
+        <div class="achieve-grid">
+          <div class="badge-item earned"><div class="badge-icon">🏆</div><div class="badge-lbl">First Dispute</div></div>
+          <div class="badge-item earned"><div class="badge-icon">⚡</div><div class="badge-lbl">Fast Learner</div></div>
+          <div class="badge-item earned"><div class="badge-icon">📈</div><div class="badge-lbl">+100 Points</div></div>
+          <div class="badge-item locked"><div class="badge-icon">🛡️</div><div class="badge-lbl">FCRA Expert</div></div>
+          <div class="badge-item locked"><div class="badge-icon">💼</div><div class="badge-lbl">Business Pro</div></div>
+          <div class="badge-item locked"><div class="badge-icon">🎓</div><div class="badge-lbl">Graduate</div></div>
+        </div>
+      </div>
+
+      <!-- Community Card -->
+      <div class="community-card rv" style="transition-delay:.15s">
+        <h4>Student Community</h4>
+        <div class="community-avatars">
+          <div class="c-av cav1">JM</div>
+          <div class="c-av cav2">SP</div>
+          <div class="c-av cav3">DT</div>
+          <div class="c-av cav4">MR</div>
+          <div class="c-av c-av-more">+1.9k</div>
+        </div>
+        <p>Connect with 2,000+ students. Share wins, ask questions, grow together.</p>
+        <div class="community-online">● 147 members online now</div>
+        <a href="#" class="btn btn-b btn-sm" style="margin-top:14px;width:100%;justify-content:center;">Join the Community</a>
+      </div>
+
+    </div><!-- / RIGHT SIDEBAR -->
+
+  </div><!-- / .dash-grid -->
+</div><!-- / .dash-body -->
+
+<!-- ============================================================
+     STUDENT WINS (Testimonials section — exact design reused)
+     ============================================================ -->
+<section id="dash-wins">
+  <div class="wins-inner">
+    <div class="ctr rv">
+      <span class="eyebrow">Student Results</span>
+      <h2 class="st">Champions Just Like You.</h2>
+      <p class="sub rv" style="transition-delay:.1s;color:rgba(255,255,255,.6);margin:0 auto;">Real students following the same system you're using right now.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card rv" style="transition-delay:.1s">
+        <div class="testi-hdr">
+          <div class="testi-rating">★★★★★</div>
+          <div class="quote-icon"><svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg></div>
+        </div>
+        <p class="testi-quote">"I went from a 528 to a 671 in just 4 months. I removed 6 collections and 3 late payments using the exact templates from this course."</p>
+        <div class="testi-ftr"><div class="t-av av-b">DT</div><div><div class="person-name">Darnell T.</div><div class="person-type">Individual Student · Atlanta, GA</div></div></div>
+      </div>
+      <div class="testi-card rv" style="transition-delay:.2s">
+        <div class="testi-hdr">
+          <div class="testi-rating">★★★★★</div>
+          <div class="quote-icon"><svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg></div>
+        </div>
+        <p class="testi-quote">"I launched my credit repair business after completing this program. Now I have 18 clients and growing. Best investment I've made."</p>
+        <div class="testi-ftr"><div class="t-av av-g">MR</div><div><div class="person-name">Maria R.</div><div class="person-type">Business Owner · Houston, TX</div></div></div>
+      </div>
+      <div class="testi-card rv" style="transition-delay:.3s">
+        <div class="testi-hdr">
+          <div class="testi-rating">★★★★★</div>
+          <div class="quote-icon"><svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg></div>
+        </div>
+        <p class="testi-quote">"The letter generator alone saves me 3 hours per client. My dispute success rate jumped from 40% to over 85% since I switched to Dispute Champs."</p>
+        <div class="testi-ftr"><div class="t-av av-o">KC</div><div><div class="person-name">Kevin C.</div><div class="person-type">Credit Repair Agency · Chicago, IL</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ (exact same design)
+     ============================================================ -->
+<section id="dash-faq">
+  <div class="faq-inner">
+    <div class="ctr rv">
+      <span class="eyebrow">Student Support</span>
+      <h2 class="st">Quick <span>Answers</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">How do I generate a dispute letter?<span class="faq-chv"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Click the DC Generator card on your dashboard. The tool will walk you through selecting a dispute type, entering the account details, and generating a personalized letter. Download as PDF and send directly to the bureau.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Where do I send my dispute letters?<span class="faq-chv"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">The DC Tool Kit includes an updated bureau address database. Always use certified mail with return receipt requested. Addresses for Equifax, Experian, and TransUnion dispute departments are kept current inside the toolkit.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does the bureau have to respond?<span class="faq-chv"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Under the FCRA, credit bureaus must investigate and respond within 30 days (45 days if you provide additional information). If they don't respond in time, the item must be removed. Module 2 covers this in full.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do I book a mentorship session?<span class="faq-chv"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Click the "Book Free Session" button on your dashboard or in the right sidebar. You'll be taken to the scheduling calendar to pick a time that works for you. Sessions are 30 minutes and completely free for active members.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA (exact same design)
+     ============================================================ -->
+<section id="dash-final">
+  <div class="final-in rv">
+    <h2>Your Score Is <span>Moving.</span><br>Don't Stop Now.</h2>
+    <p>You've already made real progress. Pick up your next lesson, generate your next dispute, and keep the momentum going.</p>
+    <div class="final-row">
+      <a href="#" class="btn btn-p" style="font-size:1.1rem;padding:18px 40px">Resume My Lesson ›</a>
+      <a href="#" class="btn" style="background:rgba(255,255,255,.10);color:#fff;border:2px solid rgba(255,255,255,.25);font-size:1.1rem;padding:18px 32px;">Open DC Generator</a>
+    </div>
+    <div class="trust-pills">
+      <span class="trust-pill"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>FCRA Compliant</span>
+      <span class="trust-pill"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Cancel Anytime</span>
+      <span class="trust-pill"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Secure Portal</span>
+      <span class="trust-pill"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Instant Access</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // Scroll reveal
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); }
+    });
+  },{threshold:0.08});
+  document.querySelectorAll('.rv,.rvl,.rvr').forEach(function(el){ obs.observe(el); });
+
+  // Progress bars
+  var progTriggered = false;
+  var progObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !progTriggered){
+        progTriggered = true;
+        document.querySelectorAll('.prog-bar-fill').forEach(function(b,i){
+          setTimeout(function(){ b.style.width = b.dataset.w || b.getAttribute('data-w') || '0%'; }, i * 150);
+        });
+        progObs.disconnect();
+      }
+    });
+  },{threshold:0.2});
+  var firstCourse = document.querySelector('.course-card');
+  if(firstCourse) progObs.observe(firstCourse);
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.parentElement;
+      var ans = item.querySelector('.faq-a');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = '0';
+      });
+      if(!isOpen){ item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+    });
+  });
+})();
+</script>
+</body>
+</html>
