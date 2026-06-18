@@ -23,7 +23,7 @@ import {
   WalletCards,
   X,
 } from "lucide-react";
-import academyLogo from "../assets/dispute-champs-academy-logo.png";
+const academyLogo = "https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a2cd68c8a3c98ce56594aa1.png";
 import { libraryCategoryDescriptions } from "../libraryData";
 import { libraryService } from "../libraryServices";
 import {
@@ -261,7 +261,7 @@ export function Library() {
             <LibraryBig />
             Dispute Champs Library
           </span>
-          <a href="https://disputechamps.org/student-dash" target="_top">
+          <a href="https://disputechamps.org/student-dashboard" target="_top">
             ← Student Dashboard
           </a>
         </div>
