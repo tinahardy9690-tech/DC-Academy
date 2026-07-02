@@ -6,6 +6,10 @@ export type TemplateCategory =
   | "Bankruptcy"
   | "Late Payments"
   | "Fraud"
+  | "Consumer Reporting Agencies"
+  | "Check Systems and Early Warnings"
+  | "Compliance Officers"
+  | "Risk Officers and Registered Agents"
   | "Miscellaneous";
 
 export interface LetterTemplate {
