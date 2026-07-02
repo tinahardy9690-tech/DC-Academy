@@ -21,28 +21,28 @@ const textFileExtensions = [
 ];
 
 type ImportedFile = File & { importPath?: string };
-type FileSystemEntry = {
+type LocalFileSystemEntry = {
   isFile: boolean;
   isDirectory: boolean;
   name: string;
 };
-type FileSystemFileEntry = FileSystemEntry & {
+type LocalFileSystemFileEntry = LocalFileSystemEntry & {
   file: (successCallback: (file: File) => void) => void;
 };
-type FileSystemDirectoryEntry = FileSystemEntry & {
+type LocalFileSystemDirectoryEntry = LocalFileSystemEntry & {
   createReader: () => {
-    readEntries: (successCallback: (entries: FileSystemEntry[]) => void) => void;
+    readEntries: (successCallback: (entries: LocalFileSystemEntry[]) => void) => void;
   };
 };
-type DataTransferItemWithEntry = DataTransferItem & {
-  webkitGetAsEntry?: () => FileSystemEntry | null;
+type DataTransferItemWithEntry = Omit<DataTransferItem, "webkitGetAsEntry"> & {
+  webkitGetAsEntry?: () => LocalFileSystemEntry | null;
 };
 
 function getImportPath(file: ImportedFile) {
   return file.importPath || file.webkitRelativePath || file.name;
 }
 
-function readFileEntry(entry: FileSystemFileEntry, path: string) {
+function readFileEntry(entry: LocalFileSystemFileEntry, path: string) {
   return new Promise<File>((resolve) => {
     entry.file((file) => {
       (file as ImportedFile).importPath = `${path}${file.name}`;
@@ -52,20 +52,20 @@ function readFileEntry(entry: FileSystemFileEntry, path: string) {
 }
 
 function readDirectoryEntries(
-  reader: ReturnType<FileSystemDirectoryEntry["createReader"]>,
+  reader: ReturnType<LocalFileSystemDirectoryEntry["createReader"]>,
 ) {
-  return new Promise<FileSystemEntry[]>((resolve) => {
+  return new Promise<LocalFileSystemEntry[]>((resolve) => {
     reader.readEntries(resolve);
   });
 }
 
-async function readEntryFiles(entry: FileSystemEntry, path = ""): Promise<File[]> {
+async function readEntryFiles(entry: LocalFileSystemEntry, path = ""): Promise<File[]> {
   if (entry.isFile) {
-    return [await readFileEntry(entry as FileSystemFileEntry, path)];
+    return [await readFileEntry(entry as LocalFileSystemFileEntry, path)];
   }
   if (!entry.isDirectory) return [];
 
-  const reader = (entry as FileSystemDirectoryEntry).createReader();
+  const reader = (entry as LocalFileSystemDirectoryEntry).createReader();
   const files: File[] = [];
   let entries = await readDirectoryEntries(reader);
 
@@ -85,7 +85,7 @@ async function readEntryFiles(entry: FileSystemEntry, path = ""): Promise<File[]
 async function getDroppedFiles(dataTransfer: DataTransfer) {
   const entries = Array.from(dataTransfer.items)
     .map((item) => (item as DataTransferItemWithEntry).webkitGetAsEntry?.())
-    .filter((entry): entry is FileSystemEntry => Boolean(entry));
+    .filter((entry): entry is LocalFileSystemEntry => Boolean(entry));
 
   if (!entries.length) return Array.from(dataTransfer.files);
 

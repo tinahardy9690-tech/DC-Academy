@@ -48,7 +48,7 @@ export const bureauAddresses: BureauAddress[] = [
 ["Certegy Check Services","Consumer Response Center","P.O. Box 30046","Consumer Response Center","Tampa","FL","33630"],
 ["TeleCheck Services","Consumer Resolution","P.O. Box 4514","Consumer Resolution","Houston","TX","77210"],
 ["L2C Inc.","Consumer Assistance","P.O. Box 550598","Consumer Assistance","Jacksonville","FL","32255"],
-["Medical Information Bureau (MIB)","Consumer Services","50 Braintree Hill Park","Consumer Services","Braintree","MA","02184"]
+["Medical Information Bureau (MIB)","Consumer Services","50 Braintree Hill Park","Consumer Services","Braintree","MA","02184"],
   ["Capital One","Office of the President","P.O. Box 30285","Executive Customer Relations","Salt Lake City","UT","84130-0285"],
 ["JPMorgan Chase","Executive Office","P.O. Box 15298","Executive Office","Wilmington","DE","19850-5298"],
 ["Bank of America","Executive Customer Relations","P.O. Box 25118","Executive Customer Relations","Tampa","FL","33622-5118"],
@@ -68,7 +68,7 @@ export const bureauAddresses: BureauAddress[] = [
 ["TD Bank","Customer Advocacy","P.O. Box 9547","Customer Advocacy","Portland","ME","04112"],
 ["Fifth Third Bank","Executive Resolution Team","P.O. Box 630782","Executive Resolution Team","Cincinnati","OH","45263"],
 ["Regions Bank","Executive Customer Relations","P.O. Box 11007","Executive Customer Relations","Birmingham","AL","35288"],
-["Huntington National Bank","Customer Advocacy","P.O. Box 1558","Customer Advocacy","Columbus","OH","43216"]
+["Huntington National Bank","Customer Advocacy","P.O. Box 1558","Customer Advocacy","Columbus","OH","43216"],
   ["Goldman Sachs Bank USA (Marcus)","Executive Office","P.O. Box 70379","Executive Customer Relations","Philadelphia","PA","19176-0379"],
 ["M&T Bank","Executive Customer Relations","P.O. Box 1288","Executive Customer Relations","Buffalo","NY","14240"],
 ["KeyBank","Executive Client Relations","127 Public Square","Executive Client Relations","Cleveland","OH","44114"],
@@ -98,7 +98,7 @@ export const bureauAddresses: BureauAddress[] = [
 ["SoFi Bank","Executive Customer Relations","2750 East Cottonwood Parkway","Executive Customer Relations","Cottonwood Heights","UT","84121"],
 ["FirstBank Puerto Rico","Executive Customer Relations","1519 Ponce de León Avenue","Executive Customer Relations","San Juan","PR","00908"],
 ["City National Bank","Executive Client Relations","555 South Flower Street","Executive Client Relations","Los Angeles","CA","90071"],
-["Hancock Whitney Bank","Executive Customer Relations","P.O. Box 4019","Executive Customer Relations","Gulfport","MS","39502"]
+["Hancock Whitney Bank","Executive Customer Relations","P.O. Box 4019","Executive Customer Relations","Gulfport","MS","39502"],
   ["Capital One","General Counsel","1680 Capital One Drive","Legal Department","McLean","VA","22102"],
 ["JPMorgan Chase","General Counsel","383 Madison Avenue","Legal Department","New York","NY","10179"],
 ["Bank of America","General Counsel","100 North Tryon Street","Legal Department","Charlotte","NC","28255"],
@@ -148,7 +148,7 @@ export const bureauAddresses: BureauAddress[] = [
 ["Navy Federal Credit Union","General Counsel","820 Follin Lane","Legal Department","Vienna","VA","22180"],
 ["PenFed Credit Union","General Counsel","2930 Eisenhower Avenue","Legal Department","Alexandria","VA","22314"],
 ["BECU","General Counsel","12770 Gateway Drive","Legal Department","Tukwila","WA","98168"],
-["SchoolsFirst Federal Credit Union","General Counsel","15442 Newport Avenue","Legal Department","Tustin","CA","92780"]
+["SchoolsFirst Federal Credit Union","General Counsel","15442 Newport Avenue","Legal Department","Tustin","CA","92780"],
 ["Capital One","Registered Agent","Corporation Service Company","251 Little Falls Drive","Wilmington","DE","19808"],
 ["JPMorgan Chase","Registered Agent","Corporation Service Company","251 Little Falls Drive","Wilmington","DE","19808"],
 ["Bank of America","Registered Agent","Corporation Service Company","251 Little Falls Drive","Wilmington","DE","19808"],
@@ -198,7 +198,7 @@ export const bureauAddresses: BureauAddress[] = [
 ["Navy Federal Credit Union","Registered Agent","Corporation Service Company","251 Little Falls Drive","Wilmington","DE","19808"],
 ["PenFed Credit Union","Registered Agent","Corporation Service Company","251 Little Falls Drive","Wilmington","DE","19808"],
 ["BECU","Registered Agent","Corporation Service Company","251 Little Falls Drive","Wilmington","DE","19808"],
-["SchoolsFirst Federal Credit Union","Registered Agent","Corporation Service Company","251 Little Falls Drive","Wilmington","DE","19808"]
+["SchoolsFirst Federal Credit Union","Registered Agent","Corporation Service Company","251 Little Falls Drive","Wilmington","DE","19808"],
   ["Capital One","Office of the President","P.O. Box 30285","Executive Escalations","Salt Lake City","UT","84130-0285"],
 ["JPMorgan Chase","Executive Office","P.O. Box 15298","Executive Escalations","Wilmington","DE","19850-5298"],
 ["Bank of America","Office of the President","P.O. Box 25118","Executive Escalations","Tampa","FL","33622-5118"],
