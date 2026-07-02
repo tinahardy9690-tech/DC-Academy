@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import {
   Check,
   Copy,
@@ -8,8 +8,173 @@ import {
   Plus,
   Search,
   Trash2,
+  UploadCloud,
   X,
 } from "lucide-react";
+const textFileExtensions = [
+  ".txt",
+  ".text",
+  ".html",
+  ".htm",
+  ".md",
+  ".rtf",
+];
+
+type ImportedFile = File & { importPath?: string };
+type FileSystemEntry = {
+  isFile: boolean;
+  isDirectory: boolean;
+  name: string;
+};
+type FileSystemFileEntry = FileSystemEntry & {
+  file: (successCallback: (file: File) => void) => void;
+};
+type FileSystemDirectoryEntry = FileSystemEntry & {
+  createReader: () => {
+    readEntries: (successCallback: (entries: FileSystemEntry[]) => void) => void;
+  };
+};
+type DataTransferItemWithEntry = DataTransferItem & {
+  webkitGetAsEntry?: () => FileSystemEntry | null;
+};
+
+function getImportPath(file: ImportedFile) {
+  return file.importPath || file.webkitRelativePath || file.name;
+}
+
+function readFileEntry(entry: FileSystemFileEntry, path: string) {
+  return new Promise<File>((resolve) => {
+    entry.file((file) => {
+      (file as ImportedFile).importPath = `${path}${file.name}`;
+      resolve(file);
+    });
+  });
+}
+
+function readDirectoryEntries(
+  reader: ReturnType<FileSystemDirectoryEntry["createReader"]>,
+) {
+  return new Promise<FileSystemEntry[]>((resolve) => {
+    reader.readEntries(resolve);
+  });
+}
+
+async function readEntryFiles(entry: FileSystemEntry, path = ""): Promise<File[]> {
+  if (entry.isFile) {
+    return [await readFileEntry(entry as FileSystemFileEntry, path)];
+  }
+  if (!entry.isDirectory) return [];
+
+  const reader = (entry as FileSystemDirectoryEntry).createReader();
+  const files: File[] = [];
+  let entries = await readDirectoryEntries(reader);
+
+  while (entries.length) {
+    const nestedFiles = await Promise.all(
+      entries.map((nestedEntry) =>
+        readEntryFiles(nestedEntry, `${path}${entry.name}/`),
+      ),
+    );
+    files.push(...nestedFiles.flat());
+    entries = await readDirectoryEntries(reader);
+  }
+
+  return files;
+}
+
+async function getDroppedFiles(dataTransfer: DataTransfer) {
+  const entries = Array.from(dataTransfer.items)
+    .map((item) => (item as DataTransferItemWithEntry).webkitGetAsEntry?.())
+    .filter((entry): entry is FileSystemEntry => Boolean(entry));
+
+  if (!entries.length) return Array.from(dataTransfer.files);
+
+  const files = await Promise.all(entries.map((entry) => readEntryFiles(entry)));
+  return files.flat();
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function formatTemplateBody(content: string) {
+  const trimmed = content.trim();
+  if (/<[a-z][\s\S]*>/i.test(trimmed)) return trimmed;
+  return trimmed
+    .split(/\n{2,}/)
+    .map((paragraph) => `<p>${escapeHtml(paragraph).replace(/\n/g, "<br>")}</p>`)
+    .join("");
+}
+
+function formatTemplateName(file: File) {
+  return file.name
+    .replace(/\.[^/.]+$/, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function inferTemplateCategory(file: File): TemplateCategory {
+  const source = `${getImportPath(file)} ${file.name}`.toLowerCase();
+  if (
+    source.includes("consumer reporting") ||
+    source.includes("credit reporting agenc") ||
+    source.includes("cra") ||
+    source.includes("experian") ||
+    source.includes("equifax") ||
+    source.includes("transunion") ||
+    source.includes("trans union")
+  ) {
+    return "Consumer Reporting Agencies";
+  }
+  if (
+    source.includes("check system") ||
+    source.includes("chexsystem") ||
+    source.includes("chex system") ||
+    source.includes("early warning") ||
+    source.includes("ews")
+  ) {
+    return "Check Systems and Early Warnings";
+  }
+  if (source.includes("compliance officer") || source.includes("compliance")) {
+    return "Compliance Officers";
+  }
+  if (
+    source.includes("risk officer") ||
+    source.includes("registered agent") ||
+    source.includes("risk") ||
+    source.includes("agent")
+  ) {
+    return "Risk Officers and Registered Agents";
+  }
+  if (source.includes("collection")) return "Collection";
+  if (source.includes("charge off") || source.includes("charge-off")) {
+    return "Charge-Off Account";
+  }
+  if (source.includes("inquiry") || source.includes("inquiries")) {
+    return "Inquiry";
+  }
+  if (source.includes("personal information") || source.includes("personal info")) {
+    return "Personal Information";
+  }
+  if (source.includes("bankruptcy")) return "Bankruptcy";
+  if (source.includes("late payment") || source.includes("payment history")) {
+    return "Late Payments";
+  }
+  if (source.includes("fraud") || source.includes("identity theft")) {
+    return "Fraud";
+  }
+  return "Miscellaneous";
+}
+
+function canImportFile(file: File) {
+  const name = file.name.toLowerCase();
+  return textFileExtensions.some((extension) => name.endsWith(extension));
+}
 import { mergeFields } from "../merge";
 import { templateCategories } from "../data";
 import type { LetterTemplate, TemplateCategory } from "../types";
@@ -38,6 +203,7 @@ export function TemplateManager({
   const [editing, setEditing] = useState<LetterTemplate | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [draft, setDraft] = useState(blankTemplate);
+  const folderInputRef = useRef<HTMLInputElement | null>(null);
 
   const filtered = useMemo(() => {
     const query = search.toLowerCase();
@@ -96,6 +262,29 @@ export function TemplateManager({
   function insertField(field: string) {
     setDraft((current) => ({ ...current, body: `${current.body}${field}` }));
   }
+  async function importTemplateFiles(fileList: FileList | File[]) {
+  const files = Array.from(fileList).filter(canImportFile);
+  if (!files.length) {
+    window.alert("No supported letter files were found in that folder.");
+    return;
+  }
+
+  const now = new Date().toISOString();
+  const importedTemplates = await Promise.all(
+    files.map(async (file) => ({
+      id: crypto.randomUUID(),
+      templateName: formatTemplateName(file),
+      category: inferTemplateCategory(file),
+      description: `Imported from ${getImportPath(file)}.`,
+      body: formatTemplateBody(await file.text()),
+      isActive: true,
+      createdAt: now,
+      updatedAt: now,
+    })),
+  );
+
+  onChange([...templates, ...importedTemplates]);
+}
 
   return (
     <main className="content-area">
@@ -105,10 +294,40 @@ export function TemplateManager({
           <h1>Letter Templates</h1>
           <p>Create and manage the letters available to your students.</p>
         </div>
-        <button className="button button-blue" onClick={openNew}>
-          <Plus />
-          New Template
-        </button>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+  <button
+    className="button button-blue"
+    onClick={() => folderInputRef.current?.click()}
+    onDragOver={(event) => event.preventDefault()}
+    onDrop={(event) => {
+      event.preventDefault();
+      void getDroppedFiles(event.dataTransfer).then(importTemplateFiles);
+    }}
+  >
+    <UploadCloud />
+    Import Folder
+  </button>
+  <input
+    ref={(node) => {
+      folderInputRef.current = node;
+      node?.setAttribute("webkitdirectory", "");
+      node?.setAttribute("directory", "");
+    }}
+    type="file"
+    multiple
+    hidden
+    onChange={(event) => {
+      if (event.target.files?.length) {
+        void importTemplateFiles(event.target.files);
+      }
+      event.target.value = "";
+    }}
+  />
+  <button className="button button-blue" onClick={openNew}>
+    <Plus />
+    New Template
+  </button>
+</div>
       </div>
 
       <div className="stats-row">
