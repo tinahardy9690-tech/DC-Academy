@@ -262,9 +262,22 @@ export function Library() {
             <LibraryBig />
             Dispute Champs Library
           </span>
-          <a href="https://disputechamps.org/student-dashboard" target="_top">
-            ← Student Dashboard
-          </a>
+          <div className="library-topbar-actions">
+            <a
+              className="library-button library-button-orange"
+              href="https://disputechamps.app.clientclub.net/login"
+              target="_top"
+            >
+              Course Portal
+            </a>
+            <a
+              className="library-button library-button-orange"
+              href="https://disputechamps.org/student-dashboard-848681"
+              target="_top"
+            >
+              ← Student Dashboard
+            </a>
+          </div>
         </div>
 
         <div className="library-content">
@@ -276,8 +289,11 @@ export function Library() {
               </span>
               <h1>Your Credit Education Resource Library</h1>
               <p>
-                Explore Academy e-books, templates, checklists, guides, and
-                reference materials organized for easy learning.
+                Browse hundreds of dispute templates, guides, educational
+                resources, Metro 2 references, FCRA laws, FDCPA materials,
+                bankruptcy resources, repossession guides, collections
+                strategies, and professional credit repair documents—all
+                organized in one place.
               </p>
               <div className="library-hero-stats">
                 <span>
