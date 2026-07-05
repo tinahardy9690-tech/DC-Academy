@@ -9,7 +9,6 @@ import {
   FileText,
   MapPin,
   Sparkles,
-  UserRound,
 } from "lucide-react";
 import { templateCategories } from "../data";
 import { mergeTemplate } from "../merge";
@@ -133,21 +132,8 @@ export function Generator({
       <div className="page-heading">
         <div>
           <span className="eyebrow">Letter Workspace</span>
-          <h1>Generate a Dispute Letter</h1>
+          <h1>DC Letter Generator</h1>
           <p>Choose a proven template, merge the client details, then personalize.</p>
-        </div>
-        <div className="client-pill">
-          <span className="client-avatar">
-            {client.firstName.charAt(0)}
-            {client.lastName.charAt(0)}
-          </span>
-          <span>
-            <small>Creating for</small>
-            <strong>
-              {client.firstName} {client.lastName}
-            </strong>
-          </span>
-          <Check className="client-check" />
         </div>
       </div>
 
@@ -253,21 +239,16 @@ export function Generator({
 
       {!generated ? (
         <section className="empty-editor">
-          <div className="empty-icon">
-            <FileText />
-          </div>
+          <img
+            className="empty-icon-photo"
+            src="https://assets.cdn.filesafe.space/UeWWqFYIdbMwMRPoM8HF/media/6a4aaa1f1209780f80d64d10.png"
+            alt="Dispute Champs Academy"
+          />
           <h2>Your Letter Will Appear Here</h2>
           <p>
             Select a template and bureau above, then generate a professionally
             formatted letter ready for review.
           </p>
-          <div className="profile-preview">
-            <UserRound />
-            <span>
-              <small>Profile Connected</small>
-              {client.email}
-            </span>
-          </div>
         </section>
       ) : (
         <section className="editor-section">

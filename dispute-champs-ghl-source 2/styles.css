@@ -75,8 +75,8 @@ svg {
 
 .brand img {
   width: 100%;
-  max-width: 200px;
-  height: 112px;
+  max-width: 440px;
+  height: 246px;
   object-fit: contain;
 }
 
@@ -252,6 +252,12 @@ svg {
   color: #67768b;
   font-size: 11px;
   font-weight: 600;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .topbar-dashboard {
@@ -505,6 +511,16 @@ h3 {
   background: var(--green-dark);
 }
 
+.button-orange {
+  color: #fff;
+  background: var(--orange);
+  box-shadow: 0 7px 14px rgba(255, 111, 51, 0.18);
+}
+
+.button-orange:hover {
+  background: var(--orange-dark);
+}
+
 .button-blue {
   color: #fff;
   background: var(--blue);
@@ -546,16 +562,11 @@ h3 {
   text-align: center;
 }
 
-.empty-icon {
-  width: 58px;
-  height: 58px;
-  display: grid;
-  place-items: center;
+.empty-icon-photo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
   margin-bottom: 17px;
-  color: var(--blue);
-  background: #e7f3ff;
-  border-radius: 17px;
-  transform: rotate(-3deg);
 }
 
 .empty-icon svg {
