@@ -64,12 +64,27 @@ svg {
   padding: 26px 18px 20px;
   background: #fff;
   border-right: 1px solid #e4eaf2;
+  scrollbar-width: thin;
+  scrollbar-color: #d3dce6 transparent;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #d3dce6;
+  border-radius: 10px;
 }
 
 .brand {
   display: grid;
   place-items: center;
-  min-height: 118px;
+  min-height: 270px;
   padding: 0 5px 23px;
 }
 
@@ -564,8 +579,8 @@ h3 {
 }
 
 .empty-icon-photo {
-  width: 8px;
-  height: 8px;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
   margin-bottom: 17px;
   cursor: pointer;
