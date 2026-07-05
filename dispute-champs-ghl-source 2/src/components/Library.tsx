@@ -311,17 +311,11 @@ export function Library() {
               </div>
             </div>
             <div className="library-hero-art" aria-hidden="true">
-              <span className="hero-art-card card-one">
-                <FileText />
-              </span>
-              <span className="hero-art-card card-two">
-                <BookOpen />
-              </span>
-              <span className="hero-art-card card-three">
-                <GraduationCap />
-              </span>
-              <i className="hero-art-spark spark-one" />
-              <i className="hero-art-spark spark-two" />
+              <img
+                className="library-hero-photo"
+                src="https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a4ad3768a69aa244188a97e.png"
+                alt=""
+              />
             </div>
           </section>
 
