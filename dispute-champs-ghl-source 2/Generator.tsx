@@ -9,7 +9,6 @@ import {
   MapPin,
   Save,
   Sparkles,
-  UserRound,
 } from "lucide-react";
 import { mergeTemplate } from "../merge";
 import type {
@@ -140,19 +139,6 @@ export function Generator({
           <h1>Generate a dispute letter</h1>
           <p>Choose a proven template, merge the client details, then personalize.</p>
         </div>
-        <div className="client-pill">
-          <span className="client-avatar">
-            {client.firstName.charAt(0)}
-            {client.lastName.charAt(0)}
-          </span>
-          <span>
-            <small>Creating for</small>
-            <strong>
-              {client.firstName} {client.lastName}
-            </strong>
-          </span>
-          <Check className="client-check" />
-        </div>
       </div>
 
       <section className="setup-card">
@@ -229,13 +215,6 @@ export function Generator({
             Select a template and bureau above, then generate a professionally
             formatted letter ready for review.
           </p>
-          <div className="profile-preview">
-            <UserRound />
-            <span>
-              <small>Profile connected</small>
-              {client.email}
-            </span>
-          </div>
         </section>
       ) : (
         <section className="editor-section">
