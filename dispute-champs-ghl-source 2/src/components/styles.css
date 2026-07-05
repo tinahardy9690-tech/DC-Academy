@@ -74,8 +74,9 @@ svg {
 }
 
 .brand img {
-  width: 96px;
-  height: auto;
+  width: 100%;
+  max-width: 440px;
+  height: 246px;
   object-fit: contain;
 }
 
@@ -562,10 +563,27 @@ h3 {
 }
 
 .empty-icon-photo {
-  width: 90px;
-  height: 90px;
+  width: 8px;
+  height: 8px;
   object-fit: contain;
   margin-bottom: 17px;
+  cursor: pointer;
+  animation: emptyIconBob 2.4s ease-in-out infinite;
+  transition: transform 0.2s ease;
+}
+
+.empty-icon-photo:hover {
+  transform: scale(1.35) rotate(-6deg);
+  animation-play-state: paused;
+}
+
+@keyframes emptyIconBob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-5px) rotate(3deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .empty-icon-photo { animation: none; }
 }
 
 .empty-icon svg {
