@@ -89,7 +89,7 @@ function StudentGenerator() {
           </button>
           <a className="sidebar-nav-link" href="/library">
             <LibraryBig />
-            Download Library
+            Letter Library
           </a>
         </nav>
 
@@ -129,18 +129,18 @@ function StudentGenerator() {
         <div className="topbar">
           <div className="topbar-actions">
             <a
-              className="topbar-client topbar-dashboard"
-              href="https://disputechamps.org/student-dashboard-848681"
-              target="_top"
-            >
-              ← Student Dashboard
-            </a>
-            <a
               className="button button-orange"
               href="https://disputechamps.app.clientclub.net/login"
               target="_top"
             >
               Course Portal
+            </a>
+            <a
+              className="button button-orange"
+              href="https://disputechamps.org/student-dashboard-848681"
+              target="_top"
+            >
+              ← Student Dashboard
             </a>
           </div>
         </div>
