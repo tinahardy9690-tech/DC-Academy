@@ -313,7 +313,7 @@ export function Library() {
             <div className="library-hero-art" aria-hidden="true">
               <img
                 className="library-hero-photo"
-                src="https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a4ad3768a69aa244188a97e.png"
+                src="https://assets.cdn.filesafe.space/I87sqLmyfcEtoco69zBT/media/6a4ad5b18a69aa24418988e8.png"
                 alt=""
               />
             </div>
