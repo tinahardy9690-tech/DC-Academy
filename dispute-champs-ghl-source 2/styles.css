@@ -579,12 +579,12 @@ h3 {
 }
 
 .empty-icon-photo {
-  width: 44px;
-  height: 44px;
+  width: 132px;
+  height: 132px;
   object-fit: contain;
   margin-bottom: 17px;
   cursor: pointer;
-  animation: emptyIconBob 2.4s ease-in-out infinite;
+  animation: emptyIconBreathe 2.4s ease-in-out infinite;
   transition: transform 0.2s ease;
 }
 
@@ -593,9 +593,9 @@ h3 {
   animation-play-state: paused;
 }
 
-@keyframes emptyIconBob {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%      { transform: translateY(-5px) rotate(3deg); }
+@keyframes emptyIconBreathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
 }
 
 @media (prefers-reduced-motion: reduce) {
