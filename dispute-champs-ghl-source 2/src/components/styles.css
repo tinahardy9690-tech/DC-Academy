@@ -74,9 +74,8 @@ svg {
 }
 
 .brand img {
-  width: 100%;
-  max-width: 440px;
-  height: 246px;
+  width: 96px;
+  height: auto;
   object-fit: contain;
 }
 
