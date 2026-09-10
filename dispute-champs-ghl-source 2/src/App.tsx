@@ -91,6 +91,10 @@ function StudentGenerator() {
             <LibraryBig />
             Letter Library
           </a>
+          <a className="sidebar-nav-link" href="https://disputechamps.org/tool-kit-page-404163">
+            <LibraryBig />
+            DC Tool Kit
+          </a>
         </nav>
 
         <section className="sidebar-workflow" aria-label="Letter generator steps">
