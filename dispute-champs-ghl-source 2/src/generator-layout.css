@@ -180,6 +180,10 @@
     width: min(318px, 88vw);
   }
 
+  .student-generator .main-panel {
+    margin-left: 0;
+  }
+
   .setup-step {
     display: flex;
     gap: 0;
